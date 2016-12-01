@@ -1,10 +1,11 @@
 package service;
 
+import java.rmi.Remote;
 import java.util.List;
 
 import vo.OrderVO;
 
-public interface OrderService {
+public interface OrderService extends Remote{
 	/**
 	 * 
 	 * @param orderID
@@ -87,37 +88,37 @@ public interface OrderService {
 	 * 
 	 * @return 是否撤销订单成功
 	 */
-	public boolean cancelOrder();
+	public boolean cancelOrder(int orderID);
 	
 	/**
 	 * 
 	 * @return 是否创建订单成功
 	 */
-	public boolean createOrder();
+	public boolean createOrder(OrderVO order);
 	
 	/**
 	 * 
 	 * @return 是否将订单置为异常成功
 	 */
-	public boolean setOrderUnusual();
+	public boolean setOrderUnusual(int orderID);
 	
 	/**
 	 * 
 	 * @return 延迟入住，是否将异常订单置为撤销成功
 	 */
-	public boolean setOrderUnusualToCancel();
+	public boolean setOrderUnusualToCancel(int orderID);
 	
 	/**
 	 * 
 	 * @return 是否将异常订单置为已完成成功
 	 */
-	public boolean setOrderUnusualToExecute();
+	public boolean setOrderUnusualToExecute(int orderID);
 	
 	/**
 	 * 
 	 * @return 是否将订单置为已完成成功
 	 */
-	public boolean setOrderExecute();
+	public boolean setOrderExecute(int orderID);
 	
 
 }

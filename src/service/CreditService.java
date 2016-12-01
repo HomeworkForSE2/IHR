@@ -1,10 +1,11 @@
 package service;
 
+import java.rmi.Remote;
 import java.util.List;
 
 import vo.CreditChangeVO;
 
-public interface CreditService {
+public interface CreditService extends Remote{
 	
 	/**
 	 * 

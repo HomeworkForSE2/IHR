@@ -1,6 +1,8 @@
 package service;
 
-public interface RoomService {
+import java.rmi.Remote;
+
+public interface RoomService extends Remote{
 	/**
 	 * 
 	 * @param roomType
@@ -8,7 +10,7 @@ public interface RoomService {
 	 * @param price
 	 * @return 是否创建房间成功
 	 */
-	public boolean creatRoom(int hotelId,int roomType,int roomNum,int price);
+	public boolean creatRoom(int hotelID,int roomType,int roomNum,int price);
 	
 	/**
 	 * 

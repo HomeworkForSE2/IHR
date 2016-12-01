@@ -1,9 +1,11 @@
 package service;
 
+import java.rmi.Remote;
+
 import vo.HotelInfoVO;
 import vo.UserInfoVO;
 
-public interface HotelManageService {
+public interface HotelManageService extends Remote{
 	
 	/**
 	 * 

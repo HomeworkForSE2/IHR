@@ -74,37 +74,37 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public boolean cancelOrder() {
+	public boolean cancelOrder(int orderID) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean createOrder() {
+	public boolean createOrder(OrderVO order) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean setOrderUnusual() {
+	public boolean setOrderUnusual(int orderID) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean setOrderUnusualToCancel() {
+	public boolean setOrderUnusualToCancel(int orderID) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean setOrderUnusualToExecute() {
+	public boolean setOrderUnusualToExecute(int orderID) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean setOrderExecute() {
+	public boolean setOrderExecute(int orderID) {
 		// TODO Auto-generated method stub
 		return false;
 	}

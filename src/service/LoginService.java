@@ -1,6 +1,8 @@
 package service;
 
-public interface LoginService {
+import java.rmi.Remote;
+
+public interface LoginService extends Remote{
 	/**
 	 *
 	 * @param userName

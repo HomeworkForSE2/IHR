@@ -5,7 +5,7 @@ import service.RoomService;
 public class RoomServiceImpl implements RoomService{
 
 	@Override
-	public boolean creatRoom(int hotelId, int roomType, int roomNum, int price) {
+	public boolean creatRoom(int hotelID, int roomType, int roomNum, int price) {
 		// TODO Auto-generated method stub
 		return false;
 	}

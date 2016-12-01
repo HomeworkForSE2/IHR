@@ -1,15 +1,16 @@
 package service;
 
+import java.rmi.Remote;
 import java.util.List;
 
 import vo.HotelInfoVO;
 
-public interface JudgeService {
+public interface JudgeService extends Remote{
 	
 	/**
 	 * 
 	 * @param userID
-	 * @return
+	 * @return 用户未评价酒店列表
 	 */
 	public List<HotelInfoVO> viewNotJudgeHotelList(int userID);//和已经评价列表之间的关系
 	

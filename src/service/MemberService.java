@@ -1,6 +1,8 @@
 package service;
 
-public interface MemberService {
+import java.rmi.Remote;
+
+public interface MemberService extends Remote{
 	/**
 	 * 
 	 * @param userName

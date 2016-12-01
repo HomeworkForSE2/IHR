@@ -1,11 +1,12 @@
 package service;
 
+import java.rmi.Remote;
 import java.util.List;
 
 import vo.OrderVO;
 import vo.StrategyVO;
 
-public interface StrategyService {
+public interface StrategyService extends Remote{
 	
 
 	/**

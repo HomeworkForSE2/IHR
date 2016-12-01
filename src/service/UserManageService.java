@@ -1,8 +1,10 @@
 package service;
 
+import java.rmi.Remote;
+
 import vo.UserInfoVO;
 
-public interface UserManageService {
+public interface UserManageService extends Remote{
 	
 	/**
 	 * 
