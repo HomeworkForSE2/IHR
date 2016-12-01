@@ -15,49 +15,57 @@ public class DataFactoryImpl implements DataFactory{
 	@Override
 	public UserDataHelper getUserDataHelper() {
 		// TODO Auto-generated method stub
-		return null;
+		UserDataHelper userDao=new UserDataTxtHelper();
+		return userDao;
 	}
 
 	@Override
 	public HotelDataHelper getHotelDataHelper() {
 		// TODO Auto-generated method stub
-		return null;
+		HotelDataHelper hotelDao=new HotelDataTxtHelper();
+		return hotelDao;
 	}
 
 	@Override
 	public RoomDataHelper getRoomDataHelper() {
 		// TODO Auto-generated method stub
-		return null;
+		RoomDataHelper roomDao=new RoomDataTxtHelper();
+		return roomDao;
 	}
 
 	@Override
 	public CreditDataHelper getCreditDataHelper() {
 		// TODO Auto-generated method stub
-		return null;
+		CreditDataHelper creditDao=new CreditDataTxtHelper();
+		return creditDao;
 	}
 
 	@Override
 	public StrategyDataHelper getStrategyDataHelper() {
 		// TODO Auto-generated method stub
-		return null;
+		StrategyDataHelper strategyDao=new StrategyDataTxtHelper();
+		return strategyDao;
 	}
 
 	@Override
 	public MemberDataHelper getMemberDataHelper() {
 		// TODO Auto-generated method stub
-		return null;
+		MemberDataHelper memberDao=new MemberDataTxtHelper();
+		return memberDao;
 	}
 
 	@Override
 	public JudgeDataHelper getJudgeDataHelper() {
 		// TODO Auto-generated method stub
-		return null;
+		JudgeDataHelper judgeDao=new JudgeDataTxtHelper(); 
+		return judgeDao;
 	}
 
 	@Override
 	public OrderDataHelper getOrderDataHelper() {
 		// TODO Auto-generated method stub
-		return null;
+		OrderDataHelper orderDao=new OrderDataTxtHelper();
+		return orderDao;
 	}
 
 }

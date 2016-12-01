@@ -3,7 +3,7 @@ package po;
 /*
  *酒店id
  *酒店名称
- *酒店工作人员
+ *有无酒店工作人员
  *地址 
  *商圈 
  *星级 
@@ -18,7 +18,7 @@ public class HotelPO {
 	
 	private String hotelName;
 	
-	private UserPO hotelWorker;
+	private boolean hasHotelWorker;
 	
 	private String location;
 	
@@ -33,11 +33,11 @@ public class HotelPO {
 	private int score;
 	
 	//
-	public HotelPO(int hotelID,String hotelName,UserPO hotelWorker,String location,String BD,int starNum,String introduction,String device,int score){
+	public HotelPO(int hotelID,String hotelName,boolean hasHotelWorker,String location,String BD,int starNum,String introduction,String device,int score){
 		super();
 		this.hotelID=hotelID;
 		this.hotelName=hotelName;
-		this.hotelWorker=hotelWorker;
+		this.hasHotelWorker=hasHotelWorker;
 		this.location=location;
 		this.BD=BD;
 		this.starNum=starNum;
@@ -47,9 +47,18 @@ public class HotelPO {
 	}
 
 	//
-
+	
+	
 	public int getHotelID() {
 		return hotelID;
+	}
+
+	public boolean isHasHotelWorker() {
+		return hasHotelWorker;
+	}
+
+	public void setHasHotelWorker(boolean hasHotelWorker) {
+		this.hasHotelWorker = hasHotelWorker;
 	}
 
 	public void setHotelID(int hotelID) {
@@ -62,14 +71,6 @@ public class HotelPO {
 	
 	public void setHotelName(String hotelName) {
 		this.hotelName = hotelName;
-	}
-
-	public UserPO getHotelWorker() {
-		return hotelWorker;
-	}
-
-	public void setHotelWorker(UserPO hotelWorker) {
-		this.hotelWorker = hotelWorker;
 	}
 
 	public String getLocation() {

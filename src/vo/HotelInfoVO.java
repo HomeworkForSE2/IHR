@@ -1,12 +1,11 @@
 package vo;
 
 import po.HotelPO;
-import po.UserPO;
 
 /*
  *酒店id
  *酒店名称
- *酒店工作人员
+ *是否有酒店工作人员
  *地址 
  *商圈 
  *星级 
@@ -18,8 +17,6 @@ public class HotelInfoVO {
 	private int hotelID;
 	
 	private String hotelName;
-	
-	private UserPO hotelWorker;
 	
 	private String location;
 	
@@ -48,7 +45,6 @@ public class HotelInfoVO {
 	public HotelInfoVO(HotelPO hotel){
 		this.hotelID=hotel.getHotelID();
 		this.hotelName=hotel.getHotelName();
-		this.hotelWorker=hotel.getHotelWorker();
 		this.location=hotel.getLocation();
 		this.BD=hotel.getBD();
 		this.starNum=hotel.getStarNum();
@@ -72,14 +68,6 @@ public class HotelInfoVO {
 
 	public void setHotelName(String hotelName) {
 		this.hotelName = hotelName;
-	}
-
-	public UserPO getHotelWorker() {
-		return hotelWorker;
-	}
-
-	public void setHotelWorker(UserPO hotelWorker) {
-		this.hotelWorker = hotelWorker;
 	}
 
 	public String getLocation() {
