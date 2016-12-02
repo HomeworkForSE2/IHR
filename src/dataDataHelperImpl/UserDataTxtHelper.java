@@ -11,7 +11,10 @@ import java.util.Iterator;
 import java.util.Map;
 
 import dataDataHelper.UserDataHelper;
+import po.HotelWorkerPO;
 import po.UserPO;
+import po.WebsiteAdminPO;
+import po.WebsiteWorkerPO;
 
 public class UserDataTxtHelper implements UserDataHelper{
 	
@@ -82,14 +85,25 @@ public class UserDataTxtHelper implements UserDataHelper{
 		}
 	}
 	
-	public void test() throws IOException{
-		 File file=new File("src/txtData/User");
-		 FileWriter fw=new FileWriter(file,true);
-		 BufferedWriter bw=new BufferedWriter(fw);
-		 bw.write("Hello World!");
-		 bw.newLine();
-		 bw.close();
-		 fw.close();
+	
+	@Override
+	public WebsiteAdminPO getWebsiteAdminData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void updateWebsiteAdmin(WebsiteAdminPO admin) {
+		// TODO Auto-generated method stub
+		
 	}
 
+	public void test() throws IOException{
+		File file=new File("src/txtData/User");
+		FileWriter fw=new FileWriter(file,true);
+		BufferedWriter bw=new BufferedWriter(fw);
+		bw.write("Hello World!");
+		bw.newLine();
+		bw.close();
+		fw.close();
+	}
 }

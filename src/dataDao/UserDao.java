@@ -9,13 +9,13 @@ public interface UserDao {
 	 * @param userID
 	 * @return
 	 */
-	public UserPO find(int userID);
+	public UserPO findUser(int userID);
 	
 	/**
 	 * 
 	 * @param user
 	 * @return
 	 */
-	public boolean update(UserPO user);
+	public boolean updateUser(UserPO user);
 
 }

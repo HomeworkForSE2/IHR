@@ -22,7 +22,7 @@ public class CreditChangePO {
 	
 	private int action;
 
-	//
+	
 
 	public CreditChangePO(String time, int orderID, int userID, int startCredit, int endCredit, int action) {
 		super();
