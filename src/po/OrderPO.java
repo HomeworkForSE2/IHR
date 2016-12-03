@@ -15,7 +15,7 @@ package po;
  */
 
 public class OrderPO {
-	private int orderID=0;
+	private int orderID;
 	
 	private int userID;
 	

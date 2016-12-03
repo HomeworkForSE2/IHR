@@ -79,7 +79,7 @@ public class OrderDaoImpl implements OrderDao{
 	public boolean addOrder(OrderPO order) {
 		// TODO Auto-generated method stub
 		
-		int orderID=order.getOrderID();
+		int orderID=map.size();
 		map.put(orderID,order);
 		orderDataHelper.updateOrderData(map);
 		return true;
