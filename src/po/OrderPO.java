@@ -153,9 +153,7 @@ public class OrderPO {
 		// TODO Auto-generated method stub
 		return orderID;
 	}
-	public void setOrderID(){
-		this.orderID=orderID+1;
-	}
+
 	
 	
 	

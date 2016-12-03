@@ -79,7 +79,6 @@ public class OrderDaoImpl implements OrderDao{
 	public boolean addOrder(OrderPO order) {
 		// TODO Auto-generated method stub
 		
-		order.setOrderID();
 		int orderID=order.getOrderID();
 		map.put(orderID,order);
 		orderDataHelper.updateOrderData(map);
@@ -95,6 +94,7 @@ public class OrderDaoImpl implements OrderDao{
 			OrderPO order=entry.getValue();
 			if(order.getOrderID()==orderID){
 				map.remove(orderID);
+				orderDataHelper.updateOrderData(map);
 				return true;
 			}
 		}
