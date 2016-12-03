@@ -1,2 +1,13 @@
+/clientRMI/
+/clientRunner/
+/dataDao/
 /dataDaoImpl/
+/dataDataHelper/
+/dataDataHelperImpl/
 /po/
+/serverRMI/
+/serverRunner/
+/service/
+/serviceImpl/
+/txtData/
+/vo/

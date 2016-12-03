@@ -1,6 +1,8 @@
 package dataDaoImpl;
 
-import java.util.Map;
+
+
+import java.util.List;
 
 import dataDao.CreditDao;
 import dataDataHelper.DataFactory;
@@ -10,7 +12,7 @@ import po.CreditChangePO;
 
 public class CreditDaoImpl implements CreditDao{
 
-	private Map<Integer,CreditChangePO> map;
+	private List<CreditChangePO> list;
 	
 	private CreditDataHelper creditDataHelper;
 	
@@ -26,17 +28,19 @@ public class CreditDaoImpl implements CreditDao{
 	}
 	
 	public CreditDaoImpl(){
-		if(map==null){
+		if(list==null){
 			dataFactory=new DataFactoryImpl();
 			creditDataHelper=dataFactory.getCreditDataHelper();
-			map=creditDataHelper.getCreditData();
+			list=creditDataHelper.getCreditData();
 		}
 	}
 	@Override
 	public boolean addCreditChange(CreditChangePO creditChange) {
-		// TODO Auto-generated method stub
-		return false;
+			list.add(creditChange);
+			creditDataHelper.updateCreditData(list);
+			return true;
 	}
+
 
 	@Override
 	public boolean addUserCredit(int userID, int credit) {

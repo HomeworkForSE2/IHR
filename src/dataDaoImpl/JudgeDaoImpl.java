@@ -12,7 +12,7 @@ import po.JudgePO;
 
 public class JudgeDaoImpl implements JudgeDao{
 
-	private Map<Integer,JudgePO> map;
+	private List<JudgePO> list;
 	
 	private JudgeDataHelper judgeDataHelper;
 	
@@ -28,10 +28,10 @@ public class JudgeDaoImpl implements JudgeDao{
 	}
 	
 	public JudgeDaoImpl(){
-		if(map==null){
+		if(list==null){
 			dataFactory=new DataFactoryImpl();
 			judgeDataHelper=dataFactory.getJudgeDataHelper();
-			map=judgeDataHelper.getJudgeData();
+			list=judgeDataHelper.getJudgeData();
 		}
 	}
 	@Override
@@ -41,9 +41,11 @@ public class JudgeDaoImpl implements JudgeDao{
 	}
 
 	@Override
-	public boolean addJudge(JudgePO judeg) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean addJudge(JudgePO judge) {
+			list.add(judge);
+			judgeDataHelper.updateJudgeData(list);
+			return true;
 	}
+
 
 }
