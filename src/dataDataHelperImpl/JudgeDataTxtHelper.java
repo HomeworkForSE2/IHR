@@ -15,6 +15,13 @@ import po.JudgePO;
 import po.StrategyPO;
 
 public class JudgeDataTxtHelper implements JudgeDataHelper{
+	
+	public static void main(String arg[]){
+		
+		JudgeDataTxtHelper ex2 = new JudgeDataTxtHelper();
+		ex2.test();
+		
+	}
 
 	@Override
 	public List<JudgePO> getJudgeData() {
@@ -68,6 +75,31 @@ public class JudgeDataTxtHelper implements JudgeDataHelper{
 			
 			e.printStackTrace();
 		}
+	}
+	
+	public void test(){
+		
+		List<JudgePO> list = new ArrayList<>();
+		JudgePO judge1 = new JudgePO(12345, 111, "This hotel sucks", 2);
+		JudgePO judge2 = new JudgePO(12344, 111, "I think hotel manager is retarded!!", 1);
+		JudgePO judge3 = new JudgePO(12333, 113, "It was sooo much better than what i thought :) ", 4);
+		JudgePO judge4 = new JudgePO(12222, 113, "You must try for the room service!! so freakin tasty",5);
+		JudgePO judge5 = new JudgePO(11111, 112, "nahhh.. it was just a ordinary hotel", 3);
+		list.add(judge1);
+		list.add(judge2);
+		list.add(judge3);
+		list.add(judge4);
+		list.add(judge5);
+		updateJudgeData(list);
+		
+		List<JudgePO> list2 = getJudgeData();
+		Iterator it = list2.iterator();
+		
+		while(it.hasNext()){
+			JudgePO judge = (JudgePO) it.next();
+			System.out.println(judge.getUserID()+";"+judge.getHotelID()+";"+judge.getJudgeWord()+";"+judge.getJudgeScore());
+		}
+		
 	}
 
 }

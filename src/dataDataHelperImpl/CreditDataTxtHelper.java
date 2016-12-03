@@ -14,6 +14,12 @@ import dataDataHelper.CreditDataHelper;
 import po.CreditChangePO;
 
 public class CreditDataTxtHelper implements CreditDataHelper{
+	
+	public static void main(String arg[]){
+		
+		CreditDataTxtHelper ex = new CreditDataTxtHelper();
+		ex.test();
+			}
 
 	@Override
 	public List<CreditChangePO> getCreditData() {
@@ -71,6 +77,28 @@ public class CreditDataTxtHelper implements CreditDataHelper{
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public void test(){
+		List<CreditChangePO> list = new ArrayList<>();
+		CreditChangePO change1 = new CreditChangePO("12/01",100001,12345,500,600,3);
+		CreditChangePO change2 = new CreditChangePO("12/02",100002,12344,650,600,2);
+		CreditChangePO change3 = new CreditChangePO("12/02",100003,12333,520,620,1);
+		CreditChangePO change4 = new CreditChangePO("12/03",100004,12222,400,500,3);
+		
+		list.add(change1);
+		list.add(change2);
+		list.add(change3);
+		list.add(change4);
+		updateCreditData(list);
+		
+		List<CreditChangePO> list2 = getCreditData();
+		Iterator it=list2.iterator();
+		while(it.hasNext()){
+			CreditChangePO credit = (CreditChangePO) it.next();
+			System.out.println(credit.getTime()+";"+credit.getOrderID()+";"+credit.getUserID()+";"+credit.getStartCredit()+";"+credit.getEndCredit()+";"+credit.getAction());
+			
+		}
 	}
 
 }

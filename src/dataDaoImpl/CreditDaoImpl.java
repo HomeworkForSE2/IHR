@@ -53,5 +53,15 @@ public class CreditDaoImpl implements CreditDao{
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	public static void main(String arg[]){
+		CreditDaoImpl ex = new CreditDaoImpl();
+		ex.test();
+	}
+	
+	public void test(){
+		CreditChangePO change = new CreditChangePO("12/05",100021,12345,120,300,3);
+		addCreditChange(change);
+	}
 
 }

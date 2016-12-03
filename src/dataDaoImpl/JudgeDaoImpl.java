@@ -46,6 +46,17 @@ public class JudgeDaoImpl implements JudgeDao{
 			judgeDataHelper.updateJudgeData(list);
 			return true;
 	}
+	
+	public static void main(String arg[]){
+		JudgeDaoImpl ex = new JudgeDaoImpl();
+		ex.test();
+	}
+	
+	public void test(){
+		JudgePO judge = new JudgePO(11111, 119, "Can not find any supermarket nearby the hotel", 3);
+		addJudge(judge);
+		
+	}
 
 
 }
