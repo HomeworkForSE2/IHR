@@ -9,5 +9,12 @@ public interface LoginDao {
 	 * @return 匹配
 	 */
 	public boolean checkUser(String userName,String password);
+	
+	/**
+	 * 
+	 * @param password
+	 * @return
+	 */
+	public boolean checkAdmin(String password);
 
 }

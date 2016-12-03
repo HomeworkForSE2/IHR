@@ -73,6 +73,25 @@ public class MemberDataTxtHelper implements MemberDataHelper{
 	}
 
 	public void test(){
+		Map<Integer, MemberPO> map=new HashMap<Integer, MemberPO>();
+		MemberPO m1=new MemberPO(1, "19970418", "华为");
+		MemberPO m2=new MemberPO(2, "19920418", "小米");
+		MemberPO m3=new MemberPO(2, "19930418", "google");
+		MemberPO m4=new MemberPO(3, "19930418", "google");
+		map.put(m1.getUserID(), m1);
+		map.put(m2.getUserID(), m2);
+		map.put(m3.getUserID(), m3);
+		map.put(m4.getUserID(), m4);
+		
+		updateMemberData(map);
+		
+		Map<Integer, MemberPO> map2=getMemberData();
+		Iterator<Map.Entry<Integer, MemberPO>> it=map2.entrySet().iterator();
+		while(it.hasNext()){
+			MemberPO m=it.next().getValue();
+			System.out.println(m.getUserID()+";"+m.getBirthday()+";"+m.getEnterpriseName());			
+		}
+		
 		
 	}
 	

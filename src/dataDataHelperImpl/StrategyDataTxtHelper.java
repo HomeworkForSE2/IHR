@@ -150,6 +150,50 @@ public class StrategyDataTxtHelper implements StrategyDataHelper{
 			e.printStackTrace();
 		}
 	}
+	
+	public static void main(String[] args) {
+		StrategyDataTxtHelper go=new StrategyDataTxtHelper();
+		go.test();
+	}
+	
+	public void test(){
+		Map<Integer, VipPO> map=new HashMap<Integer, VipPO>();
+		VipPO v1=new VipPO(1, 400);
+		VipPO v2=new VipPO(2, 700);
+		VipPO v3=new VipPO(3, 1000);
+		VipPO v4=new VipPO(4, 1500);
+		VipPO v5=new VipPO(1, 150);
+		map.put(v1.getVipGrade(), v1);
+		map.put(v2.getVipGrade(), v2);
+		map.put(v3.getVipGrade(), v3);
+		map.put(v4.getVipGrade(), v4);
+		map.put(v5.getVipGrade(), v5);
+		updateVipData(map);
+		
+		Map<Integer, VipPO> map2=getVipData();
+		Iterator<Map.Entry<Integer, VipPO>> it=map2.entrySet().iterator();
+		while(it.hasNext()){
+			VipPO v=it.next().getValue();
+			System.out.println(v.getVipGrade()+";"+v.getVipGradeCredit());
+		}
+		
+		List<StrategyPO> list=new ArrayList<>();
+		StrategyPO s1=new StrategyPO(0, 1, "生日策略", 0.8, "19970909", "19980908");
+		StrategyPO s2=new StrategyPO(0, 1, "生日策略", 0.8, "19970909", "19980908");
+		StrategyRoomNumPO s3=new StrategyRoomNumPO(2, 0, "房间", 0.9, "1888", "1900", 3);
+		StrategyEntPO s4=new StrategyEntPO(3, 3, "", 0.7, "10", "11", "南京大学");
+		StrategyForVipPO s5=new StrategyForVipPO(3, 3, "", 0.1, "101", "111", "仙林", 4);
+		list.add(s1);
+		list.add(s2);
+		list.add(s3);
+		list.add(s4);
+		list.add(s5);
+		
+		updateStrategyData(list);
+		
+		List<StrategyPO> list1=getStrategyData();
+		System.out.println(list1.size());
+	}
 
 	
 }

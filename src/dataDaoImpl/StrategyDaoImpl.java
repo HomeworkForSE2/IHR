@@ -32,7 +32,7 @@ public class StrategyDaoImpl implements StrategyDao{
 	}
 	
 	public StrategyDaoImpl(){
-		if(list==null){
+		if(list==null&&map==null){
 			dataFactory=new DataFactoryImpl();
 			strategyDataHelper=dataFactory.getStrategyDataHelper();
 			list=strategyDataHelper.getStrategyData();
@@ -72,11 +72,21 @@ public class StrategyDaoImpl implements StrategyDao{
 		// TODO Auto-generated method stub
 		int vipGrade=vip.getVipGrade();
 		if(map.get(vipGrade)==null){
-			map.put(vipGrade, vip);
-			strategyDataHelper.updateVipData(map);
-			return true;
+			if(map.get(vipGrade+1)==null||map.get(vipGrade+1).getVipGradeCredit()>vip.getVipGradeCredit()){
+				map.put(vipGrade, vip);
+				strategyDataHelper.updateVipData(map);
+				return true;
+			}
 		}
 		return false;
+	}
+	
+	public static void main(String[] args) {
+		
+	}
+	
+	public void test(){
+		
 	}
 
 }

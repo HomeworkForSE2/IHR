@@ -66,10 +66,15 @@ public class MemberDaoImpl implements MemberDao{
 	
 	public static void main(String[] args) {
 		MemberDaoImpl go=new MemberDaoImpl();
-		go.test();
+		go.test1();
 	}
 
-	public void test(){
+	public void test1(){
+		MemberPO m=new MemberPO(1, "1111", "2222");
+		System.out.println(insert(m));
+		m=new MemberPO(4, "1111", "2222");
+		System.out.println(insert(m));
+		System.out.println(update(new MemberPO(1, "1111", "2222")));
 		
 	}
 

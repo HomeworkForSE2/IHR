@@ -62,7 +62,7 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 		
 		File file=new File("src/txtData/Hotel");		 
 		try {
-			FileWriter fw = new FileWriter(file,true);
+			FileWriter fw = new FileWriter(file);
 			BufferedWriter bw=new BufferedWriter(fw);
 			Iterator <Map.Entry<Integer, HotelPO>>it=map.entrySet().iterator(); 
 			while(it.hasNext()){
@@ -84,6 +84,23 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 	}
 
 	public void test(){
+		Map<Integer, HotelPO> map=new HashMap<Integer, HotelPO>();
+		HotelPO h1=new HotelPO(100001, "格林豪泰", "仙林", "南大和园", 5, "一家连锁酒店", "24小时热水", 5);
+		HotelPO h2=new HotelPO(100001, "格林豪泰", "仙林", "南大和园", 5, "一家连锁酒店", "24小时热水", 4);
+		HotelPO h3=new HotelPO(100003, "南大3栋", "仙林", "南大和园", 10, "一家连锁酒店", "24小时热水", 0);
+		HotelPO h4=new HotelPO(100004, "南大招待所", "仙林", "南大和园", 2, "一家连锁酒店", "24小时热水", 5);
+		map.put(h1.getHotelID(), h1);
+		map.put(h2.getHotelID(), h2);
+		map.put(h3.getHotelID(), h3);
+		map.put(h4.getHotelID(), h4);
+		updateHotelData(map);
+		
+		Map<Integer, HotelPO> map2=getHotelData();
+		Iterator<Map.Entry<Integer, HotelPO>> it=map2.entrySet().iterator();
+		while(it.hasNext()){
+			HotelPO h=it.next().getValue();
+			System.out.println(h.getHotelID()+";"+h.getHotelName()+";"+h.getBD()+";"+h.getLocation()+";"+h.getStarNum()+";"+h.getIntroduction()+";"+h.getDevice()+";"+h.getScore());
+		}
 		
 	}
 

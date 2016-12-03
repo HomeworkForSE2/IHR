@@ -8,7 +8,7 @@ public class StrategyForVipPO extends StrategyPO{
 	
 	public StrategyForVipPO(int ownerID, int strategyType, String strategyName, double discount, String startTime,
 			String endTime,String BD,int vipGrade) {
-		super(ownerID, 4, strategyName, discount, startTime, endTime);
+		super(ownerID, 4, "VIP"+vipGrade+""+BD+"商圈优惠策略", discount, startTime, endTime);
 		this.BD=BD;
 		this.vipGrade=vipGrade;
 		// TODO Auto-generated constructor stub

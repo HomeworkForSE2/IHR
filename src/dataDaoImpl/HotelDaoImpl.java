@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.plaf.synth.SynthStyle;
+
 import dataDao.HotelBrowseDao;
 import dataDao.HotelDao;
 import dataDao.HotelManageDao;
@@ -114,7 +116,14 @@ public class HotelDaoImpl implements HotelDao ,HotelBrowseDao,HotelManageDao   {
 		go.test();
 	}
 	
-	public void  test() {
-		
+	public void  test(){
+		System.out.println(findHotel(100001).getBD());
+		System.out.println(searchHotel("格林豪泰").getBD());
+		HotelPO h=new HotelPO(4, "pipa", "1", "2", 5, "1", "2", 2);
+		System.out.println(addHotel(h));
+		h=new HotelPO(3, "pipa", "1", "2", 5, "1", "2", 2);
+		System.out.println(addHotel(h));
+		System.out.println(updateHotel(new HotelPO(4, "pipa", "1", "2", 5, "1", "3", 2)) );
+		System.out.println(searchHotelList("仙林","南大和园").size());
 	}
 }

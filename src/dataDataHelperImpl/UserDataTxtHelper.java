@@ -123,6 +123,28 @@ public class UserDataTxtHelper implements UserDataHelper{
 	}
 
 	public void test() throws IOException{
+		Map<Integer, UserPO> map=new HashMap<Integer, UserPO>();
+		UserPO u1=new UserPO(0, "宋吉哉", "aaaab", "1388888888", 450);
+		UserPO u2=new UserPO(1, "朱劲", "ajjjba", "19999999", 55500);
+		WebsiteWorkerPO w1=new WebsiteWorkerPO(120, "单苏婉", "1111111", "1111111111", 9);
+		HotelWorkerPO h1=new HotelWorkerPO(1200, "叶童", "wwwwww", "18992727", 20);
+		map.put(u1.getUserID(), u1);
+		map.put(u2.getUserID(), u2);
+		map.put(w1.getUserID(), w1);
+		map.put(h1.getUserID(), h1);
+		
+		updateUserData(map);
+		
+		Map<Integer, UserPO> map2=getUserData();
+		Iterator<Map.Entry<Integer, UserPO>> it=map2.entrySet().iterator();
+		while(it.hasNext()){
+			UserPO u=it.next().getValue();
+			System.out.println(u.getUserID()+";"+u.getUserName()+";"+u.getPassword()+";"+u.getPhoneNumber()+u.getCredit());
+		}
+		
+		WebsiteAdminPO admin=new WebsiteAdminPO("admin");
+		updateWebsiteAdmin(admin);
+		System.out.println(getWebsiteAdminData().getAdminPassword());
 		
 	}
 }

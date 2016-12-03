@@ -1,6 +1,7 @@
 package dataDao;
 
 import po.UserPO;
+import po.WebsiteAdminPO;
 
 public interface UserDao {
 	
@@ -17,5 +18,12 @@ public interface UserDao {
 	 * @return
 	 */
 	public boolean updateUser(UserPO user);
+	
+	/**
+	 * 
+	 * @param admin
+	 * @return
+	 */
+	public boolean updateAdmin(WebsiteAdminPO admin);
 
 }

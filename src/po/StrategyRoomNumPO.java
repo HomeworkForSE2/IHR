@@ -4,7 +4,7 @@ public class StrategyRoomNumPO extends StrategyPO{
 	
 	public StrategyRoomNumPO(int ownerID, int strategyType, String strategyName, double discount, String startTime,
 			String endTime,int roomNum) {
-		super(ownerID, 2, strategyName, discount, startTime, endTime);
+		super(ownerID, 2, "房间优惠策略", discount, startTime, endTime);
 		this.roomNum=roomNum;
 		// TODO Auto-generated constructor stub
 	}

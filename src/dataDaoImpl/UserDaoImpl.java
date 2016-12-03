@@ -114,7 +114,7 @@ public class UserDaoImpl implements UserDao ,LoginDao,UserManageDao{
 	}
 
 	/*
-	 * 登陆匹配
+	 * 用户登陆匹配
 	 */
 	@Override
 	public boolean checkUser(String userName, String password) {
@@ -132,14 +132,66 @@ public class UserDaoImpl implements UserDao ,LoginDao,UserManageDao{
 		return false;
 	}
 
+	/*
+	 * 管理员登陆匹配
+	 */
+	@Override
+	public boolean checkAdmin(String password) {
+		// TODO Auto-generated method stub
+		if(password.equals(admin.getAdminPassword())){
+			return true;
+		}
+		return false;
+	}
+	
+	/*
+	 * 管理员修改密码
+	 */
+	@Override
+	public boolean updateAdmin(WebsiteAdminPO ad) {
+		// TODO Auto-generated method stub
+		if(ad.getAdminPassword().equals(admin.getAdminPassword())){
+			return false;
+		}
+		admin=ad;
+		userDataHelper.updateWebsiteAdmin(ad);
+		return true;
+	}
 	
 	public static void main(String[] args) {
 		UserDaoImpl go=new UserDaoImpl();
-		go.test();	
+		go.test3();	
 	}
 	
-	public void test(){
+	public void test1(){
+		System.out.println(checkUser("宋吉哉", "aaaab"));
+		System.out.println(checkUser("宋吉哉", "aaaaba"));
+		System.out.println(checkUser("叶童", "wwwwww"));
+		System.out.println(checkUser("叶童", "wwwwwwa"));
+		System.out.println(checkUser("朱劲", "ajjjba"));
+		System.out.println(checkUser("朱劲", "ajjjba1"));
+		System.out.println(checkUser("单苏婉", "1111111"));
+		System.out.println(checkUser("单苏婉", "1111111a"));
 		
+	}
+	
+	public void test2(){
+		UserPO u1=new UserPO(1, "朱劲", "aa", "111", 4000);
+		WebsiteWorkerPO w1=new WebsiteWorkerPO(900, "小王", "111", "00000", 9);
+		HotelWorkerPO h1=new HotelWorkerPO(9887, "小李", "sss", "111", 30);
+		System.out.println(addWebsiteWorker(u1));
+		System.out.println(addWebsiteWorker(w1));
+		System.out.println(addWebsiteWorker(h1));	
+		System.out.println(updateUser(u1));
+	}
+
+	
+
+	public void test3(){	
+		System.out.println(checkAdmin(admin.getAdminPassword()));
+		WebsiteAdminPO w=new WebsiteAdminPO("nswdw1ZJ...");
+		System.out.println(updateAdmin(w));
+		System.out.println(checkAdmin(w.getAdminPassword()));
 	}
 	
 	
