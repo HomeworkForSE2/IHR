@@ -40,19 +40,6 @@ public class CreditDaoImpl implements CreditDao{
 			creditDataHelper.updateCreditData(list);
 			return true;
 	}
-
-
-	@Override
-	public boolean addUserCredit(int userID, int credit) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean reduceUserCredit(int userID, int credit) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 	
 	public static void main(String arg[]){
 		CreditDaoImpl ex = new CreditDaoImpl();

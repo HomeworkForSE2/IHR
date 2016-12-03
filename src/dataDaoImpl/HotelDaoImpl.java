@@ -111,6 +111,26 @@ public class HotelDaoImpl implements HotelDao ,HotelBrowseDao,HotelManageDao   {
 		return hotelList;
 	}
 	
+	@Override
+	public List<HotelPO> findNotJudgedHotel(int userID) {
+		// TODO Auto-generated method stub
+		List<HotelPO> l=new ArrayList<>();
+		List<Integer> l1=OrderDaoImpl.getInstance().resHotelIDList(userID);
+		List<Integer> l2=JudgeDaoImpl.getInstance().judHotelIDList(userID);
+		Iterator it=l1.iterator();
+		while(it.hasNext()){
+			int help=(int)it.next();
+			if(l2.contains(help)){
+				l1.remove(help);
+			}
+		}
+		Iterator it2=l1.iterator();
+		while(it.hasNext()){
+			l.add(map.get((int)it.next()));
+		}
+		return l;
+	}
+	
 	public static void main(String[] args) {
 		HotelDaoImpl go=new HotelDaoImpl();
 		go.test();
@@ -126,4 +146,6 @@ public class HotelDaoImpl implements HotelDao ,HotelBrowseDao,HotelManageDao   {
 		System.out.println(updateHotel(new HotelPO(4, "pipa", "1", "2", 5, "1", "3", 2)) );
 		System.out.println(searchHotelList("仙林","南大和园").size());
 	}
+
+	
 }

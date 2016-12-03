@@ -47,5 +47,7 @@ public interface OrderDao {
 	 * @return 是否更新订单信息成功
 	 */
 	public boolean updateOrder(OrderPO order);
+	
+	public List<Integer> resHotelIDList(int userID);
 
 }

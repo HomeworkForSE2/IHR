@@ -17,5 +17,7 @@ public interface HotelDao {
 	 * @return 是否更新酒店信息成功
 	 */
 	public boolean updateHotel(HotelPO hotel);
+	
+	
 
 }

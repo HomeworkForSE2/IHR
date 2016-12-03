@@ -158,9 +158,32 @@ public class UserDaoImpl implements UserDao ,LoginDao,UserManageDao{
 		return true;
 	}
 	
+	/*
+	 * 
+	 */
+	@Override
+	public boolean addUserCredit(int userID, int credit) {
+		// TODO Auto-generated method stub
+		if(map.get(userID)!=null){
+			map.get(userID).setCredit(map.get(userID).getCredit()+credit);
+			userDataHelper.updateUserData(map);
+			return true;
+		}
+		return false;
+	}
+
+	/*
+	 * 
+	 */
+	@Override
+	public boolean reduceUserCredit(int userID, int credit) {
+		// TODO Auto-generated method stub
+		return addUserCredit(userID, -credit);
+	}
+	
 	public static void main(String[] args) {
 		UserDaoImpl go=new UserDaoImpl();
-		go.test3();	
+		
 	}
 	
 	public void test1(){
@@ -185,14 +208,14 @@ public class UserDaoImpl implements UserDao ,LoginDao,UserManageDao{
 		System.out.println(updateUser(u1));
 	}
 
-	
-
 	public void test3(){	
 		System.out.println(checkAdmin(admin.getAdminPassword()));
 		WebsiteAdminPO w=new WebsiteAdminPO("nswdw1ZJ...");
 		System.out.println(updateAdmin(w));
 		System.out.println(checkAdmin(w.getAdminPassword()));
 	}
+
+	
 	
 	
 

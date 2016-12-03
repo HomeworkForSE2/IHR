@@ -1,5 +1,7 @@
 package dataDaoImpl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -34,17 +36,26 @@ public class JudgeDaoImpl implements JudgeDao{
 			list=judgeDataHelper.getJudgeData();
 		}
 	}
-	@Override
-	public List<HotelPO> findNotJudgedHotel(int userID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public boolean addJudge(JudgePO judge) {
 			list.add(judge);
 			judgeDataHelper.updateJudgeData(list);
 			return true;
+	}
+	
+	@Override
+	public List<Integer> judHotelIDList(int userID) {
+		// TODO Auto-generated method stub
+		List<Integer> IDList=new ArrayList<>();
+		Iterator it=list.iterator();
+		while(it.hasNext()){
+			JudgePO judge=(JudgePO)it.next();
+			if(judge.getUserID()==userID){
+				IDList.add(judge.getHotelID());
+			}
+		}
+		return IDList;
 	}
 	
 	public static void main(String arg[]){
@@ -57,6 +68,8 @@ public class JudgeDaoImpl implements JudgeDao{
 		addJudge(judge);
 		
 	}
+
+	
 
 
 }

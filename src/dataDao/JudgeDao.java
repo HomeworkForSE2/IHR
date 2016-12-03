@@ -7,12 +7,6 @@ import po.JudgePO;
 
 public interface JudgeDao {
 	
-	/**
-	 * 
-	 * @param userID
-	 * @return 用户未评价酒店列表
-	 */
-	public List<HotelPO> findNotJudgedHotel(int userID);
 	
 	/**
 	 * 
@@ -20,4 +14,6 @@ public interface JudgeDao {
 	 * @return 是否添加评价成功
 	 */
 	public boolean addJudge(JudgePO judeg);
+	
+	public List<Integer> judHotelIDList(int userID);
 }

@@ -114,4 +114,21 @@ public class OrderDaoImpl implements OrderDao{
 		return false;
 	}
 
+	@Override
+	public List<Integer> resHotelIDList(int userID) {
+		// TODO Auto-generated method stub
+		List<Integer> list=new ArrayList<>();
+		Iterator<Map.Entry<Integer,OrderPO>> it=map.entrySet().iterator();
+		while(it.hasNext()){
+			Map.Entry<Integer,OrderPO> entry=it.next();
+			OrderPO order=entry.getValue();
+			if(order.getUserID()==userID){
+				if(!list.contains(order.getHotelID())){
+					list.add(order.getHotelID());
+				}
+			}			
+		}	
+		return list;
+	}
+
 }
