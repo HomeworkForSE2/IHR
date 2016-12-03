@@ -1,20 +1,22 @@
 package dataDaoImpl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import dataDao.StrategyDao;
 import dataDataHelper.DataFactory;
-import dataDataHelper.OrderDataHelper;
 import dataDataHelper.StrategyDataHelper;
 import dataDataHelperImpl.DataFactoryImpl;
-import po.OrderPO;
 import po.StrategyPO;
 import po.VipPO;
 
 public class StrategyDaoImpl implements StrategyDao{
 
-	private Map<Integer,StrategyPO> map;
+	private List<StrategyPO> list;
+	
+	private Map<Integer,VipPO> map;
 	
 	private StrategyDataHelper strategyDataHelper;
 	
@@ -30,33 +32,50 @@ public class StrategyDaoImpl implements StrategyDao{
 	}
 	
 	public StrategyDaoImpl(){
-		if(map==null){
+		if(list==null){
 			dataFactory=new DataFactoryImpl();
 			strategyDataHelper=dataFactory.getStrategyDataHelper();
-			map=strategyDataHelper.getStrategyData();
+			list=strategyDataHelper.getStrategyData();
+			map=strategyDataHelper.getVipData();
 		}
 	}
 	@Override
 	public boolean addStrategy(StrategyPO strategy) {
 		// TODO Auto-generated method stub
-		return false;
+		list.add(strategy);
+		strategyDataHelper.updateStrategyData(list);
+		return true;
 	}
 
 	@Override
 	public List<StrategyPO> findHotelStrategyList(int hotelID) {
 		// TODO Auto-generated method stub
-		return null;
+		List <StrategyPO> hotelStrategyList=new ArrayList<StrategyPO>();
+		Iterator it=list.iterator();
+		while(it.hasNext()){	
+			StrategyPO strategy=(StrategyPO)it.next();
+			if(strategy.getOwner()==hotelID){
+				hotelStrategyList.add(strategy);
+			}
+		}
+		return hotelStrategyList;
 	}
 
 	@Override
 	public List<StrategyPO> findWebstrategyList() {
 		// TODO Auto-generated method stub
-		return null;
+		return findHotelStrategyList(0);
 	}
 
 	@Override
 	public boolean addVip(VipPO vip) {
 		// TODO Auto-generated method stub
+		int vipGrade=vip.getVipGrade();
+		if(map.get(vipGrade)==null){
+			map.put(vipGrade, vip);
+			strategyDataHelper.updateVipData(map);
+			return true;
+		}
 		return false;
 	}
 

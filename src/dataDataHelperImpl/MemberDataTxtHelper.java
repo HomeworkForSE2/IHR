@@ -31,8 +31,9 @@ public class MemberDataTxtHelper implements MemberDataHelper{
 			while(str!=null){
 				String []data=str.split(";");
 				int ID=Integer.valueOf(data[0]);
-				String string=data[1]; 
-				MemberPO member=new MemberPO(ID, string);
+				String birthday=data[1]; 
+				String enterpriseName=data[2];
+				MemberPO member=new MemberPO(ID, birthday,enterpriseName);
 				map.put(ID, member);
 				
 				str=br.readLine();
@@ -58,7 +59,7 @@ public class MemberDataTxtHelper implements MemberDataHelper{
 			while(it.hasNext()){
 				Map.Entry<Integer, MemberPO> entry=it.next();
 				MemberPO member=entry.getValue();
-				String str=member.getID()+";"+member.getString();
+				String str=member.getUserID()+";"+member.getBirthday()+";"+member.getEnterpriseName();
 				bw.write(str);
 				bw.newLine();
 			}

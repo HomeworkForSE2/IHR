@@ -2,27 +2,47 @@ package po;
 
 public class MemberPO {
 	
-	private int ID;
+	private int userID;
 	
-	private String string;
+	private String birthday;
 	
-	public MemberPO(int iD, String string) {
+	private String enterpriseName;
+
+	public MemberPO(int iD, String birthday, String enterpriseName) {
 		super();
-		ID = iD;
-		this.string = string;
+		userID = iD;
+		this.birthday = birthday;
+		this.enterpriseName = enterpriseName;
 	}
-	public int getID() {
-		return ID;
+
+	
+	public int getUserID() {
+		return userID;
 	}
-	public void setID(int iD) {
-		ID = iD;
+
+
+	public void setUserID(int userID) {
+		this.userID = userID;
 	}
-	public String getString() {
-		return string;
+
+
+	public String getBirthday() {
+		return birthday;
 	}
-	public void setString(String string) {
-		this.string = string;
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
+
+	public String getEnterpriseName() {
+		return enterpriseName;
+	}
+
+	public void setEnterpriseName(String enterpriseName) {
+		this.enterpriseName = enterpriseName;
+	}
+	
+	
 	
 	
 

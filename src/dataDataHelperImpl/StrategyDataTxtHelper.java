@@ -1,21 +1,154 @@
 package dataDataHelperImpl;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import dataDataHelper.StrategyDataHelper;
+import po.StrategyEntPO;
+import po.StrategyForVipPO;
 import po.StrategyPO;
+import po.StrategyRoomNumPO;
+import po.VipPO;
 
 public class StrategyDataTxtHelper implements StrategyDataHelper{
 
 	@Override
-	public Map<Integer, StrategyPO> getStrategyData() {
+	public List<StrategyPO> getStrategyData() {
 		// TODO Auto-generated method stub
+		List <StrategyPO> list=new ArrayList<>();
+		File file=new File("src/txtData/Strategy");
+		try {
+			FileReader fr= new FileReader(file);
+			BufferedReader br=new BufferedReader(fr);
+			String str=br.readLine();
+			while(str!=null){
+				String []data=str.split(";");
+				int ownerID=Integer.valueOf(data[0]);
+				int strategyType=Integer.valueOf(data[1]);
+				String strategyName=data[2];
+				double discount=Double.valueOf(data[3]);
+				String startTime=data[4];
+				String endTime=data[5];
+				if(strategyType==2){
+					int roomNum=Integer.valueOf(data[6]);
+					StrategyRoomNumPO s2=new StrategyRoomNumPO(ownerID, strategyType, strategyName, discount, startTime, endTime, roomNum);
+					list.add(s2);
+				}else if(strategyType==3){
+					String enterpriseName=data[6];
+					StrategyEntPO s3=new StrategyEntPO(ownerID, strategyType, strategyName, discount, startTime, endTime, enterpriseName);
+					list.add(s3);
+				}else if(strategyType==4){
+					String BD=data[6];
+					int vipGrade=Integer.valueOf(data[7]);
+					StrategyForVipPO s4=new StrategyForVipPO(ownerID, strategyType, strategyName, discount, startTime, endTime, BD, vipGrade);
+					list.add(s4);
+				}else{
+					StrategyPO s=new StrategyPO(ownerID, strategyType, strategyName, discount, startTime, endTime);
+					list.add(s);
+				}
+				str=br.readLine();
+			}
+			return list;
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	@Override
-	public void updateStrategyData(Map<Integer, StrategyPO> map) {
+	public void updateStrategyData(List<StrategyPO> list) {
 		// TODO Auto-generated method stub
-		
+		File file=new File("src/txtData/Strategy");
+		try {
+			FileWriter fw= new FileWriter(file);
+			BufferedWriter bw=new BufferedWriter(fw);
+			Iterator it=list.iterator();
+			while(it.hasNext()){
+				StrategyPO s=(StrategyPO)it.next();
+				int strategyType=s.getStrategyType();
+				String str=s.getOwner()+";"+s.getStrategyType()+";"+s.getStrategyName()+";"+s.getDiscount()+";"+s.getStartTime()+";"+s.getEndTime();
+				if(strategyType==2){
+					StrategyRoomNumPO s2=(StrategyRoomNumPO)s;
+					str=str+";"+s2.getRoomNum();
+				}else if(strategyType==3){
+					StrategyEntPO s3=(StrategyEntPO)s;
+					str=str+";"+s3.getEnterpriseName();
+				}else if(strategyType==4){
+					StrategyForVipPO s4=(StrategyForVipPO)s;
+					str=str+";"+s4.getBD()+";"+s4.getVipGrade();
+				}
+				bw.write(str);
+				bw.newLine();
+			}
+			bw.close();
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public Map<Integer, VipPO> getVipData() {
+		// TODO Auto-generated method stub
+		Map <Integer, VipPO>map=new HashMap<Integer, VipPO>();
+		File file=new File("src/txtData/Vip");
+		try {
+			FileReader fr= new FileReader(file);
+			BufferedReader br=new BufferedReader(fr);
+			
+			String str=br.readLine();
+			while(str!=null){
+				String []data=str.split(";");
+				int vipGrade=Integer.valueOf(data[0]);
+				int credit=Integer.valueOf(data[1]);
+				VipPO vip=new VipPO(vipGrade, credit);				
+				map.put(vipGrade, vip);	
+				
+				str=br.readLine();
+				
+			}
+			
+			return map;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public void updateVipData(Map<Integer, VipPO> map) {
+		// TODO Auto-generated method stub
+		File file=new File("src/txtData/Vip");
+		try {
+			FileWriter fw= new FileWriter(file);
+			BufferedWriter bw=new BufferedWriter(fw);
+			Iterator <Map.Entry<Integer, VipPO>> it=map.entrySet().iterator();
+			while(it.hasNext()){
+				Map.Entry<Integer, VipPO> entry=it.next();
+				VipPO vip=entry.getValue();
+				String str=vip.getVipGrade()+";"+vip.getVipGradeCredit();	
+				bw.write(str);
+				bw.newLine();
+			}
+			bw.close();
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	

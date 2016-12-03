@@ -1,13 +1,11 @@
 package dataDaoImpl;
 
-import java.util.Iterator;
 import java.util.Map;
 
 import dataDao.MemberDao;
 import dataDataHelper.DataFactory;
 import dataDataHelper.MemberDataHelper;
 import dataDataHelperImpl.DataFactoryImpl;
-import po.HotelPO;
 import po.MemberPO;
 import po.UserPO;
 
@@ -38,18 +36,41 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public boolean insert(MemberPO member) {
 		// TODO Auto-generated method stub
-		Iterator <Map.Entry<Integer,MemberPO>> it=map.entrySet().iterator();
-		while(it.hasNext()){
-			Map.Entry<Integer,MemberPO> entry=it.next();
-			MemberPO memberHelp=entry.getValue();
+		int userID=member.getUserID();	
+		if(map.get(userID)==null){
+			map.put(userID, member);
+			memberDataHelper.updateMemberData(map);
+			return true;
+		}	
+		return false;
+	}
+	
+	@Override
+	public boolean update(MemberPO member) {
+		// TODO Auto-generated method stub
+		int userID=member.getUserID();	
+		if(map.get(userID)!=null){
+			map.put(userID, member);
+			memberDataHelper.updateMemberData(map);
+			return true;
 		}
 		return false;
 	}
 
+	
 	@Override
 	public boolean insert(UserPO user) {
 		// TODO Auto-generated method stub
 		return UserDaoImpl.getInstance().addWebsiteWorker(user);
+	}
+	
+	public static void main(String[] args) {
+		MemberDaoImpl go=new MemberDaoImpl();
+		go.test();
+	}
+
+	public void test(){
+		
 	}
 
 }

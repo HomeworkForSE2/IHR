@@ -14,6 +14,13 @@ public interface MemberDao {
 	
 	/**
 	 * 
+	 * @param member
+	 * @return 更新会员信息
+	 */
+	public boolean update(MemberPO member);
+	
+	/**
+	 * 
 	 * @param user
 	 * @return 插入新用户信息
 	 */

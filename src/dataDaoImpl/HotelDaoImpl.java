@@ -1,5 +1,6 @@
 package dataDaoImpl;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -94,11 +95,26 @@ public class HotelDaoImpl implements HotelDao ,HotelBrowseDao,HotelManageDao   {
 	}
 
 	@Override
-	public List<HotelPO> searchHotelList(String location, String BD, int roomType, int star, int judgeScore) {
+	public List<HotelPO> searchHotelList(String location, String BD) {
 		// TODO Auto-generated method stub
-		return null;
+		List<HotelPO> hotelList=new ArrayList<HotelPO>();
+		Iterator <Map.Entry<Integer, HotelPO>> it=map.entrySet().iterator();
+		while(it.hasNext()){
+			Map.Entry<Integer, HotelPO> entry=it.next();
+			HotelPO hotel=entry.getValue();
+			if(hotel.getBD().equals(BD)&&hotel.getLocation().equals(location)){
+				hotelList.add(hotel);
+			}
+		}
+		return hotelList;
 	}
-
 	
-
+	public static void main(String[] args) {
+		HotelDaoImpl go=new HotelDaoImpl();
+		go.test();
+	}
+	
+	public void  test() {
+		
+	}
 }

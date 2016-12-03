@@ -17,11 +17,8 @@ public interface HotelBrowseDao {
 	 * 
 	 * @param location
 	 * @param BD
-	 * @param roomType
-	 * @param star
-	 * @param judgeScore
 	 * @return 符合条件酒店列表
 	 */
-	public List<HotelPO> searchHotelList(String location,String BD,int roomType,int star,int judgeScore);
+	public List<HotelPO> searchHotelList(String location,String BD);
 
 }

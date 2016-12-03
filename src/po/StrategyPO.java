@@ -1,6 +1,7 @@
 package po;
 /*
  * 拥有者
+ * 策略类型
  * 名称
  * 折扣率
  * 起始时间
@@ -10,6 +11,8 @@ package po;
 public class StrategyPO {
 	
 	private int ownerID;
+
+	private int strategyType;
 	
 	private String strategyName;
 	
@@ -19,25 +22,32 @@ public class StrategyPO {
 	
 	private String endTime;
 
-	//
-	public StrategyPO(int owner, String strategyName, double discount, String startTime, String endTime) {
+
+	public StrategyPO(int ownerID, int strategyType, String strategyName, double discount, String startTime,
+			String endTime) {
 		super();
-		this.ownerID = owner;
+		this.ownerID = ownerID;
+		this.strategyType = strategyType;
 		this.strategyName = strategyName;
 		this.discount = discount;
 		this.startTime = startTime;
 		this.endTime = endTime;
 	}
 
-	//
 	public int getOwner() {
 		return ownerID;
 	}
-
+	
 	public void setOwner(int owner) {
 		this.ownerID = owner;
 	}
+	public int getStrategyType() {
+		return strategyType;
+	}
 
+	public void setStrategyType(int strategyType) {
+		this.strategyType = strategyType;
+	}
 	public String getStrategyName() {
 		return strategyName;
 	}
