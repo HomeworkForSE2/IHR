@@ -35,12 +35,22 @@ public class RoomDaoImpl implements RoomDao {
 	@Override
 	public boolean addRoom(RoomPO room) {
 		// TODO Auto-generated method stub
-		return false;
+		room.setRoomID();
+		int roomID=room.getRoomID();
+		map.put(roomID, room);
+		return true;
 	}
 
 	@Override
 	public boolean updateRoom(RoomPO room) {
 		// TODO Auto-generated method stub
+		int roomID=room.getRoomID();
+		if(map.get(roomID)!=null){
+			map.put(roomID, room);
+			roomDataHelper.updateRoomData(map);
+			return true;
+		}
+		
 		return false;
 	}
 

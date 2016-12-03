@@ -15,6 +15,7 @@ package po;
  */
 
 public class OrderPO {
+	private int orderID=0;
 	
 	private int userID;
 	
@@ -40,7 +41,7 @@ public class OrderPO {
 
 	//
 	public OrderPO(int userID,int hotelID,int state, int credit, int price,String startTime, String endTime, String finishTime, int roomType,
-			int roomNum,boolean hasChildren) {
+			int roomNum,boolean hasChildren,int orderID) {
 		super();
 		this.userID=userID;
 		this.hotelID=hotelID;
@@ -53,6 +54,7 @@ public class OrderPO {
 		this.roomType = roomType;
 		this.roomNum = roomNum;
 		this.hasChildren=hasChildren;
+		this.orderID=orderID;
 	}
 
 	//
@@ -146,7 +148,14 @@ public class OrderPO {
 	public void setHasChildren(boolean hasChildren) {
 		this.hasChildren = hasChildren;
 	}
-	
+
+	public int getOrderID() {
+		// TODO Auto-generated method stub
+		return orderID;
+	}
+	public void setOrderID(){
+		this.orderID=orderID+1;
+	}
 	
 	
 	

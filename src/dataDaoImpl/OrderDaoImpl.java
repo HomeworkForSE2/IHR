@@ -1,5 +1,7 @@
 package dataDaoImpl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +11,7 @@ import dataDataHelper.DataFactory;
 import dataDataHelper.OrderDataHelper;
 import dataDataHelperImpl.DataFactoryImpl;
 import po.OrderPO;
+import po.UserPO;
 
 public class OrderDaoImpl implements OrderDao{
 	
@@ -39,36 +42,75 @@ public class OrderDaoImpl implements OrderDao{
 	@Override
 	public List<OrderPO> getHotelOrderList(int hotelID) {
 		// TODO Auto-generated method stub
-		return null;
+		List<OrderPO>list=new ArrayList<OrderPO>();
+		Iterator<Map.Entry<Integer,OrderPO>> it=map.entrySet().iterator();
+		while(it.hasNext()){
+			Map.Entry<Integer,OrderPO> entry=it.next();
+			OrderPO order=entry.getValue();
+			if(order.getHotelID()==hotelID){
+				list.add(order);
+			}
+		}
+		return list;
 	}
 
 	@Override
 	public List<OrderPO> getUserOrderList(int userID) {
 		// TODO Auto-generated method stub
-		return null;
+		List<OrderPO>list=new ArrayList<OrderPO>();
+		Iterator<Map.Entry<Integer,OrderPO>> it=map.entrySet().iterator();
+		while(it.hasNext()){
+			Map.Entry<Integer,OrderPO> entry=it.next();
+			OrderPO order=entry.getValue();
+			if(order.getUserID()==userID){
+				list.add(order);
+			}
+		}
+		return list;
 	}
 
 	@Override
 	public OrderPO getOrder(int orderID) {
 		// TODO Auto-generated method stub
-		return null;
+		return map.get(orderID);
 	}
 
 	@Override
 	public boolean addOrder(OrderPO order) {
 		// TODO Auto-generated method stub
-		return false;
+		
+		order.setOrderID();
+		int orderID=order.getOrderID();
+		map.put(orderID,order);
+		orderDataHelper.updateOrderData(map);
+		return true;
 	}
 
 	@Override
 	public boolean deleteOrder(int orderID) {
 		// TODO Auto-generated method stub
+		Iterator<Map.Entry<Integer,OrderPO>> it=map.entrySet().iterator();
+		while(it.hasNext()){
+			Map.Entry<Integer,OrderPO> entry=it.next();
+			OrderPO order=entry.getValue();
+			if(order.getOrderID()==orderID){
+				map.remove(orderID);
+				return true;
+			}
+		}
 		return false;
 	}
 
 	@Override
 	public boolean updateOrder(OrderPO order) {
 		// TODO Auto-generated method stub
+		int orderID=order.getOrderID();
+		if(map.get(orderID)!=null){
+			map.put(orderID, order);
+			orderDataHelper.updateOrderData(map);
+			return true;
+		}
+		
 		return false;
 	}
 

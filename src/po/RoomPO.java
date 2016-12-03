@@ -13,7 +13,7 @@ public class RoomPO {
 	
 	private int roomType;
 	
-	private int roomID;
+	private int roomID=0;
 	
 	private double price;
 	
@@ -52,8 +52,8 @@ public class RoomPO {
 		this.roomType = roomType;
 	}
 
-	public void setRoomID(int roomID) {
-		this.roomID = roomID;
+	public void setRoomID() {
+		this.roomID = roomID+1;
 	}
 
 	public double getPrice() {
