@@ -11,7 +11,7 @@ public interface HotelBrowseDao {
 	 * @param hotelName
 	 * @return 酒店信息
 	 */
-	public HotelPO findHotel(String hotelName);
+	public HotelPO searchHotel(String hotelName);
 	
 	/**
 	 * 
@@ -22,6 +22,6 @@ public interface HotelBrowseDao {
 	 * @param judgeScore
 	 * @return 符合条件酒店列表
 	 */
-	public List<HotelPO> findHotelList(String location,String BD,int roomType,int star,int judgeScore);
+	public List<HotelPO> searchHotelList(String location,String BD,int roomType,int star,int judgeScore);
 
 }

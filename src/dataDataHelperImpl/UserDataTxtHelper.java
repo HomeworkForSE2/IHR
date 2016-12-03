@@ -3,6 +3,7 @@ package dataDataHelperImpl;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -21,8 +22,8 @@ public class UserDataTxtHelper implements UserDataHelper{
 	public static void main(String[] args) throws IOException {
 		UserDataTxtHelper go=new UserDataTxtHelper();
 		go.test();
-		go.test();
 	}
+	
 	@Override
 	public Map<Integer, UserPO> getUserData() {
 		Map <Integer, UserPO>map=new HashMap<Integer, UserPO>();
@@ -85,25 +86,43 @@ public class UserDataTxtHelper implements UserDataHelper{
 		}
 	}
 	
-	
 	@Override
 	public WebsiteAdminPO getWebsiteAdminData() {
 		// TODO Auto-generated method stub
+		File file=new File("src/txtData/Admin");
+		try {
+			FileReader fr= new FileReader(file);
+			BufferedReader br=new BufferedReader(fr);
+			String password=br.readLine();
+			WebsiteAdminPO admin=new WebsiteAdminPO(password);
+			return admin;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return null;
 	}
+	
 	@Override
 	public void updateWebsiteAdmin(WebsiteAdminPO admin) {
 		// TODO Auto-generated method stub
+		File file=new File("src/txtData/Admin");
+		try {
+			FileWriter fw= new FileWriter(file);
+			BufferedWriter bw=new BufferedWriter(fw);
+			bw.write(admin.getAdminPassword());
+			bw.newLine();
+			bw.close();
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
 	public void test() throws IOException{
-		File file=new File("src/txtData/User");
-		FileWriter fw=new FileWriter(file,true);
-		BufferedWriter bw=new BufferedWriter(fw);
-		bw.write("Hello World!");
-		bw.newLine();
-		bw.close();
-		fw.close();
+		
 	}
 }

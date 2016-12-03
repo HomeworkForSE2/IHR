@@ -22,7 +22,7 @@ public class StrategyDaoImpl implements StrategyDao{
 
 	private static StrategyDaoImpl strategyDataServiceImpl;
 	
-	private static StrategyDaoImpl getInstance(){
+	public static StrategyDaoImpl getInstance(){
 		if(strategyDataServiceImpl==null){
 			strategyDataServiceImpl=new StrategyDaoImpl();
 		}

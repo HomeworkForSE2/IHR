@@ -20,7 +20,7 @@ public class JudgeDaoImpl implements JudgeDao{
 
 	private static JudgeDaoImpl judgeDataServiceImpl;
 	
-	private static JudgeDaoImpl getInstance(){
+	public static JudgeDaoImpl getInstance(){
 		if(judgeDataServiceImpl==null){
 			judgeDataServiceImpl=new JudgeDaoImpl();
 		}

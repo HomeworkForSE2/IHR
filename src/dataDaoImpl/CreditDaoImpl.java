@@ -18,7 +18,7 @@ public class CreditDaoImpl implements CreditDao{
 
 	private static CreditDaoImpl creditDataServiceImpl;
 	
-	private static CreditDaoImpl getInstance(){
+	public static CreditDaoImpl getInstance(){
 		if(creditDataServiceImpl==null){
 			creditDataServiceImpl=new CreditDaoImpl();
 		}

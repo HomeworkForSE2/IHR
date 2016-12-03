@@ -18,6 +18,6 @@ public interface HotelManageDao {
 	 * @param hotelWorker
 	 * @return 是否添加酒店工作人员成功
 	 */
-	public boolean addHotelWorker(int hotelID,HotelWorkerPO hotelWorker);
+	public boolean addHotelWorker(HotelWorkerPO hotelWorker);
 
 }

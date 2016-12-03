@@ -1,5 +1,6 @@
 package dataDaoImpl;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +23,7 @@ public class HotelDaoImpl implements HotelDao ,HotelBrowseDao,HotelManageDao   {
 
 	private static HotelDaoImpl hotelDataServiceImpl;
 	
-	private static HotelDaoImpl getInstance(){
+	public static HotelDaoImpl getInstance(){
 		if(hotelDataServiceImpl==null){
 			hotelDataServiceImpl=new HotelDaoImpl();
 		}
@@ -36,34 +37,68 @@ public class HotelDaoImpl implements HotelDao ,HotelBrowseDao,HotelManageDao   {
 			map=hotelDataHelper.getHotelData();
 		}
 	}
+	
 	@Override
-	public boolean update(HotelPO hotel) {
+	public HotelPO findHotel(int hotelID) {
 		// TODO Auto-generated method stub
+		return map.get(hotelID);
+	}
+	
+	@Override
+	public boolean updateHotel(HotelPO hotel) {
+		// TODO Auto-generated method stub
+		int hotelID=hotel.getHotelID();
+		if(map.get(hotelID)!=null){
+			map.put(hotelID, hotel);
+			hotelDataHelper.updateHotelData(map);
+			return true;
+		}
 		return false;
 	}
 
 	@Override
 	public boolean addHotel(HotelPO hotel) {
 		// TODO Auto-generated method stub
-		return false;
+		Iterator<Map.Entry<Integer,HotelPO>> it=map.entrySet().iterator();
+		String hotelName=hotel.getHotelName();
+		while(it.hasNext()){
+			Map.Entry<Integer,HotelPO> entry=it.next();
+			HotelPO hotelHelp=entry.getValue();
+			if(hotelHelp.getHotelName().equals(hotelName)){
+				return false;
+			}
+		}
+		map.put(hotel.getHotelID(), hotel);
+		hotelDataHelper.updateHotelData(map);		
+		return true;
 	}
 
 	@Override
-	public boolean addHotelWorker(int hotelID, HotelWorkerPO hotelWorker) {
+	public boolean addHotelWorker(HotelWorkerPO hotelWorker) {
 		// TODO Auto-generated method stub
-		return false;
+		return UserDaoImpl.getInstance().addWebsiteWorker(hotelWorker);
 	}
 
 	@Override
-	public HotelPO findHotel(String hotelName) {
+	public HotelPO searchHotel(String hotelName) {
 		// TODO Auto-generated method stub
+		Iterator<Map.Entry<Integer,HotelPO>> it=map.entrySet().iterator();
+		while(it.hasNext()){
+			Map.Entry<Integer,HotelPO> entry=it.next();
+			HotelPO hotel=entry.getValue();
+			if(hotel.getHotelName().equals(hotelName)){
+				return hotel;
+			}
+		}
 		return null;
 	}
 
 	@Override
-	public List<HotelPO> findHotelList(String location, String BD, int roomType, int star, int judgeScore) {
+	public List<HotelPO> searchHotelList(String location, String BD, int roomType, int star, int judgeScore) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 }

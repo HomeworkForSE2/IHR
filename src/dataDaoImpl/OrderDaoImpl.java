@@ -20,7 +20,7 @@ public class OrderDaoImpl implements OrderDao{
 
 	private static OrderDaoImpl orderDataServiceImpl;
 	
-	private static OrderDaoImpl getInstance(){
+	public static OrderDaoImpl getInstance(){
 		if(orderDataServiceImpl==null){
 			orderDataServiceImpl=new OrderDaoImpl();
 		}

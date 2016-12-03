@@ -17,7 +17,7 @@ public class RoomDaoImpl implements RoomDao {
 
 	private static RoomDaoImpl roomDataServiceImpl;
 	
-	private static RoomDaoImpl getInstance(){
+	public static RoomDaoImpl getInstance(){
 		if(roomDataServiceImpl==null){
 			roomDataServiceImpl=new RoomDaoImpl();
 		}

@@ -25,6 +25,6 @@ public interface UserManageDao {
 	 * @param websiteWorker
 	 * @return 是否添加网站营销人员成功
 	 */
-	public boolean addWebsiteWorker(WebsiteWorkerPO websiteWorker);
+	public boolean addWebsiteWorker(UserPO websiteWorker);
 
 }
