@@ -15,5 +15,10 @@ public interface JudgeDao {
 	 */
 	public boolean addJudge(JudgePO judeg);
 	
-	public List<Integer> judHotelIDList(int userID);
+	/**
+	 * 
+	 * @param userID
+	 * @return
+	 */
+	public List<Integer> judgedHotelIDList(int userID);
 }

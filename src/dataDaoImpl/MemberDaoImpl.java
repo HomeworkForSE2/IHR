@@ -78,4 +78,22 @@ public class MemberDaoImpl implements MemberDao{
 		
 	}
 
+	@Override
+	public String findBirthday(int UserID) {
+		// TODO Auto-generated method stub
+		if(map.get(UserID)!=null){
+			return map.get(UserID).getBirthday();
+		}
+		return null;
+	}
+
+	@Override
+	public String findEnterprise(int UserID) {
+		// TODO Auto-generated method stub
+		if(map.get(UserID)!=null){
+			return map.get(UserID).getEnterpriseName();
+		}
+		return null;
+	}
+
 }

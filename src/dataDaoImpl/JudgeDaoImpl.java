@@ -45,7 +45,7 @@ public class JudgeDaoImpl implements JudgeDao{
 	}
 	
 	@Override
-	public List<Integer> judHotelIDList(int userID) {
+	public List<Integer> judgedHotelIDList(int userID) {
 		// TODO Auto-generated method stub
 		List<Integer> IDList=new ArrayList<>();
 		Iterator it=list.iterator();
@@ -66,9 +66,9 @@ public class JudgeDaoImpl implements JudgeDao{
 	public void test(){
 //		JudgePO judge = new JudgePO(11111, 119, "Can not find any supermarket nearby the hotel", 3);
 //		addJudge(judge);
-		System.out.println(judHotelIDList(0).size());
-		System.out.println(judHotelIDList(1).size());
-		System.out.println(judHotelIDList(2).size());
+		System.out.println(judgedHotelIDList(0).size());
+		System.out.println(judgedHotelIDList(1).size());
+		System.out.println(judgedHotelIDList(2).size());
 	}
 
 	

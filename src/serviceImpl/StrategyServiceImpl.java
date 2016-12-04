@@ -1,11 +1,20 @@
 package serviceImpl;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import dataDao.HotelDao;
+import dataDao.MemberDao;
 import dataDao.StrategyDao;
+import dataDao.UserDao;
+import dataDaoImpl.HotelDaoImpl;
+import dataDaoImpl.MemberDaoImpl;
 import dataDaoImpl.StrategyDaoImpl;
+import dataDaoImpl.UserDaoImpl;
 import po.StrategyEntPO;
 import po.StrategyForVipPO;
 import po.StrategyPO;
@@ -18,10 +27,15 @@ import vo.StrategyVO;
 public class StrategyServiceImpl implements StrategyService {
 	
 	private StrategyDao strategyDao;
-	
+	private MemberDao memberDao;
+	private HotelDao hotelDao;
+	private UserDao userDao;
 	public StrategyServiceImpl() {
 		// TODO Auto-generated constructor stub
 		strategyDao=StrategyDaoImpl.getInstance();
+		memberDao=MemberDaoImpl.getInstance();
+		hotelDao=HotelDaoImpl.getInstance();
+		userDao=UserDaoImpl.getInstance();
 	}
 
 	@Override
@@ -94,10 +108,64 @@ public class StrategyServiceImpl implements StrategyService {
 	}
 
 	@Override
-	public int calcute(OrderVO vo) {
+	public double calcute(OrderVO vo) {
 		// TODO Auto-generated method stub
 		int hotelID=vo.getHotelId();
-		return 0;
+		List <StrategyPO> list=strategyDao.findHotelStrategyList(hotelID);
+		Iterator it=list.iterator();
+		double price=vo.getPrice();
+		double discount=1;
+		while(it.hasNext()){
+			StrategyPO s=(StrategyPO)it.next();
+			Date date=new Date();
+			DateFormat format=new SimpleDateFormat("YYYYMMdd");
+			String time=format.format(date);
+			if(s.getStrategyType()==0){
+				//0特殊时期
+				if(Integer.valueOf(s.getStartTime())<=Integer.valueOf(time)&&Integer.valueOf(time)<=Integer.valueOf(s.getEndTime())){
+					if(discount>s.getDiscount()){
+						discount=s.getDiscount();
+					}
+				}
+				
+			}else if(s.getStrategyType()==1){
+				//1生日
+				if(memberDao.findBirthday(vo.getUserId()).equals(time)){
+					if(discount>s.getDiscount()){
+						discount=s.getDiscount();
+					}
+				}
+				
+			}else if(s.getStrategyType()==2){
+				//2房间
+				StrategyRoomNumPO srn=(StrategyRoomNumPO)s;
+				if(srn.getRoomNum()==vo.getRoomNum()){
+					if(discount>s.getDiscount()){
+						discount=s.getDiscount();
+					}
+				}
+				
+			}else if(s.getStrategyType()==3){
+				//3合作企业
+				StrategyEntPO se=(StrategyEntPO)s;
+				if(memberDao.findEnterprise(vo.getUserId()).equals(se.getEnterpriseName())){
+					if(discount>s.getDiscount()){
+						discount=s.getDiscount();
+					}
+				}
+			}else if(s.getStrategyType()==4){
+				//4vip
+				StrategyForVipPO sfv=(StrategyForVipPO)s;
+				if(sfv.getBD().equals(hotelDao.findHotel(vo.getHotelId()).getBD())&&sfv.getVipGrade()==strategyDao.getVipGrade(userDao.findUser(vo.getUserId()).getCredit())){
+					if(discount>s.getDiscount()){
+						discount=s.getDiscount();
+					}
+				}
+			}
+			
+				
+		}
+		return price*discount;
 	}
 
 }

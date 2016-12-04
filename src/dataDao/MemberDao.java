@@ -26,4 +26,7 @@ public interface MemberDao {
 	 */
 	public boolean insert(UserPO user);
 
+	public String findBirthday(int UserID);
+	public String findEnterprise(int UserID);
+	
 }

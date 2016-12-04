@@ -27,7 +27,7 @@ public class CreditServiceImpl implements CreditService {
 	private CreditDao creditDao;
 	private OrderDao orderDao;
 	
-	public void CreditServiceImpl(){
+	public CreditServiceImpl(){
 		
 		userManageDao = UserDaoImpl.getInstance();
 		userDao = UserDaoImpl.getInstance();

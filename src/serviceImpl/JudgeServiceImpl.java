@@ -19,12 +19,13 @@ public class JudgeServiceImpl implements JudgeService{
 	private JudgeDao judgeDao;
 	private HotelBrowseDao hotelBrowseDao;
 	
-	public void JudgeSeviceImpl(){
-		
+	public JudgeServiceImpl() {
+		// TODO Auto-generated constructor stub
 		judgeDao = JudgeDaoImpl.getInstance();
 		hotelBrowseDao = HotelDaoImpl.getInstance();
-		
 	}
+	
+	
 	
 	@Override
 	public List<HotelInfoVO> viewNotJudgeHotelList(int userID) {
@@ -44,8 +45,7 @@ public class JudgeServiceImpl implements JudgeService{
 	@Override
 	public boolean setJudge(int userId, int hotelId, int star, String evaluation) {
 		
-		JudgePO judge = new JudgePO(userId, hotelId, evaluation, star);
-		
+		JudgePO judge = new JudgePO(userId, hotelId, evaluation, star);	
 		return judgeDao.addJudge(judge);
 	}
 

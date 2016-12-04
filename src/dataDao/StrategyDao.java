@@ -34,4 +34,5 @@ public interface StrategyDao {
 	 */
 	public boolean addVip(VipPO vip);
 
+	public int getVipGrade(int credit);
 }

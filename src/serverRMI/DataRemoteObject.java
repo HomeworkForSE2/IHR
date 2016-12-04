@@ -33,6 +33,7 @@ import serviceImpl.UserManageServiceImpl;
 import vo.CreditChangeVO;
 import vo.HotelInfoVO;
 import vo.OrderVO;
+import vo.RoomConditionVO;
 import vo.StrategyVO;
 import vo.UserInfoVO;
 
@@ -84,7 +85,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements CreditServi
 	@Override
 	public List<HotelInfoVO> showReservedHotel(int userID) {
 		// TODO Auto-generated method stub
-		return userInfoService.showReservedHotel(userID);
+		return hotelBrowseService.showReservedHotel(userID);
 	}
 	@Override
 	public boolean modifyUserInfo(UserInfoVO userInfo) {
@@ -137,7 +138,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements CreditServi
 		return strategyService.viewWebStrategyList();
 	}
 	@Override
-	public int calcute(OrderVO vo) {
+	public double calcute(OrderVO vo) {
 		// TODO Auto-generated method stub
 		return strategyService.calcute(vo);
 	}
@@ -259,9 +260,9 @@ public class DataRemoteObject extends UnicastRemoteObject implements CreditServi
 		return hotelBrowseService.searchHotel(hotelName);
 	}
 	@Override
-	public List<HotelInfoVO> viewHotelList(String location, String BD, int roomType, int star, int judgeScore) {
+	public List<HotelInfoVO> viewHotelList(String location, String BD, RoomConditionVO room, int star, int judgeScore) {
 		// TODO Auto-generated method stub
-		return hotelBrowseService.viewHotelList(location, BD, roomType, star, judgeScore);
+		return hotelBrowseService.viewHotelList(location, BD, room, star, judgeScore);
 	}
 	@Override
 	public boolean addRechargeCredit(int userID, int credit, int orderID) {

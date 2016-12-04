@@ -29,11 +29,6 @@ public class UserInfoServiceImpl implements UserInfoService{
 		return new UserInfoVO(user);
 	}
 
-	@Override
-	public List<HotelInfoVO> showReservedHotel(int userID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public boolean modifyUserInfo(UserInfoVO userInfo) {

@@ -7,6 +7,7 @@ import po.OrderPO;
  * 酒店Id
  * 状态（已执行、未执行正常、已撤销、异常）
  * 价值（信用值）
+ * 价格
  * 开始时间
  * 最晚订单执行时间
  * 退房时间
@@ -24,6 +25,8 @@ public class OrderVO {
 	
 	private int credit;
 	
+	private int price;
+	
 	private String startTime;
 	
 	private String endTime;
@@ -37,9 +40,12 @@ public class OrderVO {
 	private boolean hasChildren;
 
 	//
-	public OrderVO(int credit, String startTime, String endTime, String finishTime, int roomType, int roomNum,boolean hasChildren) {
+	public OrderVO(int userId,int hotelId,int credit,int price, String startTime, String endTime, String finishTime, int roomType, int roomNum,boolean hasChildren) {
 		super();
+		this.userId = userId;
+		this.hotelId = hotelId;
 		this.credit = credit;
+		this.price = price;
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.finishTime = finishTime;
@@ -59,6 +65,14 @@ public class OrderVO {
 		this.roomNum=order.getRoomNum();
 		this.hasChildren=order.isHasChildren();
 		
+	}
+	
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 	public int getUserId() {

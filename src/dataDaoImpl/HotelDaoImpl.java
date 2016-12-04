@@ -116,7 +116,7 @@ public class HotelDaoImpl implements HotelDao ,HotelBrowseDao,HotelManageDao   {
 		// TODO Auto-generated method stub
 		List<HotelPO> l=new ArrayList<>();
 		List<Integer> l1=OrderDaoImpl.getInstance().resHotelIDList(userID);
-		List<Integer> l2=JudgeDaoImpl.getInstance().judHotelIDList(userID);
+		List<Integer> l2=JudgeDaoImpl.getInstance().judgedHotelIDList(userID);
 		Iterator it=l1.iterator();
 		while(it.hasNext()){
 			int help=(int)it.next();
@@ -125,6 +125,20 @@ public class HotelDaoImpl implements HotelDao ,HotelBrowseDao,HotelManageDao   {
 			}else{
 				l.add(map.get(help));
 			}
+		}
+		return l;
+	}
+	
+	@Override
+	public List<HotelPO> findResHotel(int userID) {
+		// TODO Auto-generated method stub
+		List<HotelPO> l=new ArrayList<>();
+		List<Integer> l1=OrderDaoImpl.getInstance().resHotelIDList(userID);
+		Iterator it=l1.iterator();
+		while(it.hasNext()){
+			int help=(int)it.next();
+			l.add(map.get(help));
+			
 		}
 		return l;
 	}
@@ -156,5 +170,7 @@ public class HotelDaoImpl implements HotelDao ,HotelBrowseDao,HotelManageDao   {
 		System.out.println(l4.size());
 		
 	}
+
+	
 	
 }

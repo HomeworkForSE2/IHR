@@ -16,13 +16,7 @@ public interface UserInfoService extends Remote{
 	 */
 	public UserInfoVO showUserInfo(int userID);
 		
-	
-	/**
-	 * 
-	 * @param userID
-	 * @return 用户已经预订酒店列表
-	 */
-	public List<HotelInfoVO> showReservedHotel(int userID);
+
 	
 	/**
 	 * 

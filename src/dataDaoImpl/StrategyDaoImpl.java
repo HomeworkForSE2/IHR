@@ -81,6 +81,20 @@ public class StrategyDaoImpl implements StrategyDao{
 		return false;
 	}
 	
+	@Override
+	public int getVipGrade(int credit) {
+		// TODO Auto-generated method stub
+		int vipGrade=0;
+		Iterator<Map.Entry<Integer,VipPO>> it=map.entrySet().iterator();
+		while(it.hasNext()){
+			VipPO vip=it.next().getValue();
+			if(vip.getVipGradeCredit()<credit&&vipGrade<vip.getVipGrade()){
+				vipGrade=vip.getVipGrade();
+			}
+		}
+		return vipGrade;
+	}
+	
 	public static void main(String[] args) {
 		
 	}
@@ -88,5 +102,7 @@ public class StrategyDaoImpl implements StrategyDao{
 	public void test(){
 		
 	}
+
+	
 
 }

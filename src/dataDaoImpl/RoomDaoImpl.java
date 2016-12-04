@@ -1,5 +1,8 @@
 package dataDaoImpl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import dataDao.RoomDao;
@@ -54,6 +57,34 @@ public class RoomDaoImpl implements RoomDao {
 		}
 		
 		return false;
+	}
+
+	@Override
+	public List<Integer> suitableHotelIDList(int roomType,int price,int roomNum) {
+		// TODO Auto-generated method stub
+		List<Integer> list=new ArrayList<Integer>();
+		List<Integer> hotelIDList=new ArrayList<Integer>();
+		Iterator<Map.Entry<Integer,RoomPO>> it=map.entrySet().iterator();
+		while(it.hasNext()){
+			RoomPO room=(RoomPO)it.next();
+			if(room.isState()==false&&room.getPrice()<=price&&room.getRoomType()==roomType){
+				list.add(room.getHotelID());
+			}
+		}
+		
+		int count=0;
+		for(int i=0;i<list.size();i++){
+			for(int j=0;j<list.size();j++){
+				if(list.get(i)==list.get(j)){
+					count++;
+				}
+			}
+			if(count>=roomNum&&!hotelIDList.contains(list.get(i))){
+				hotelIDList.add(list.get(i));
+			}
+			count=0;
+		}
+		return hotelIDList;
 	}
 
 }

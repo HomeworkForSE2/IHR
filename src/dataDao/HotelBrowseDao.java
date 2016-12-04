@@ -27,5 +27,12 @@ public interface HotelBrowseDao {
 	 * @return 用户未评价酒店列表
 	 */
 	public List<HotelPO> findNotJudgedHotel(int userID);//先去订单里找到预订过的所有酒店，再与评价里已经评价过的酒店对比
+	
+	/**
+	 * 
+	 * @param userID
+	 * @return 用户已经预订过的酒店列表
+	 */
+	public List<HotelPO> findResHotel(int userID);
 
 }

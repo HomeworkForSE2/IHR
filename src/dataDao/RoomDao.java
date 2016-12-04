@@ -1,5 +1,7 @@
 package dataDao;
 
+import java.util.List;
+
 import po.RoomPO;
 
 public interface RoomDao {
@@ -18,4 +20,9 @@ public interface RoomDao {
 	 */
 	public boolean updateRoom(RoomPO room);
 
+	/**
+	 * 
+	 * @return
+	 */
+	public List<Integer> suitableHotelIDList(int roomType,int price,int roomNum);
 }
