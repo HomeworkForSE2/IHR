@@ -7,7 +7,6 @@ import po.OrderPO;
  * 酒店Id
  * 状态（已执行、未执行正常、已撤销、异常）
  * 价值（信用值）
- * 价格
  * 开始时间
  * 最晚订单执行时间
  * 退房时间
@@ -17,6 +16,8 @@ import po.OrderPO;
  * 有无儿童
  */
 public class OrderVO {
+	private int price;
+	private int orderId;
 	private int userId;
 	
 	private int hotelId;
@@ -24,8 +25,6 @@ public class OrderVO {
 	private int state;
 	
 	private int credit;
-	
-	private int price;
 	
 	private String startTime;
 	
@@ -40,19 +39,16 @@ public class OrderVO {
 	private boolean hasChildren;
 
 	//
-	public OrderVO(int userId,int hotelId,int credit,int price, String startTime, String endTime, String finishTime, int roomType, int roomNum,boolean hasChildren) {
+	public OrderVO(int credit, String startTime, String endTime, String finishTime, int roomType, int roomNum,boolean hasChildren) {
 		super();
-		this.userId = userId;
-		this.hotelId = hotelId;
 		this.credit = credit;
-		this.price = price;
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.finishTime = finishTime;
 		this.roomType = roomType;
 		this.roomNum = roomNum;
 		this.hasChildren=hasChildren;
-	}
+			}
 	
 	//
 	public OrderVO(OrderPO order){
@@ -65,14 +61,6 @@ public class OrderVO {
 		this.roomNum=order.getRoomNum();
 		this.hasChildren=order.isHasChildren();
 		
-	}
-	
-	public int getPrice() {
-		return price;
-	}
-
-	public void setPrice(int price) {
-		this.price = price;
 	}
 
 	public int getUserId() {
@@ -154,6 +142,20 @@ public class OrderVO {
 	public void setHasChildren(boolean hasChildren) {
 		this.hasChildren = hasChildren;
 	}
+
+	public int getOrderID() {
+		// TODO Auto-generated method stub
+		return orderId;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	
 	
 	
 	

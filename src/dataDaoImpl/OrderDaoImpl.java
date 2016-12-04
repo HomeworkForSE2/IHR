@@ -74,7 +74,9 @@ public class OrderDaoImpl implements OrderDao{
 		// TODO Auto-generated method stub
 		return map.get(orderID);
 	}
-
+	public OrderPO getOrderByRoomID(int roomID){
+		return map.get(roomID);
+	}
 	@Override
 	public boolean addOrder(OrderPO order) {
 		// TODO Auto-generated method stub

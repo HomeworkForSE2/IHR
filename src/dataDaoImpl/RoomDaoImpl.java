@@ -1,14 +1,16 @@
 package dataDaoImpl;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
+
 
 import dataDao.RoomDao;
 import dataDataHelper.DataFactory;
 import dataDataHelper.RoomDataHelper;
 import dataDataHelperImpl.DataFactoryImpl;
+import po.OrderPO;
 import po.RoomPO;
 
 public class RoomDaoImpl implements RoomDao {
@@ -58,7 +60,14 @@ public class RoomDaoImpl implements RoomDao {
 		
 		return false;
 	}
-
+	//获得订单的ID
+	public int getRoomID(){
+		return map.size();
+	}
+	//根据roomID获得roomPO
+	public  RoomPO getRoomPO(int roomID){
+		return map.get(roomID);
+	}
 	@Override
 	public List<Integer> suitableHotelIDList(int roomType,int price,int roomNum) {
 		// TODO Auto-generated method stub

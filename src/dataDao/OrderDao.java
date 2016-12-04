@@ -26,7 +26,12 @@ public interface OrderDao {
 	 * @return 订单信息
 	 */
 	public OrderPO getOrder(int orderID);
-	
+	/**
+	 * 
+	 * @param roomID
+	 * @return 订单信息
+	 */
+	public OrderPO getOrderByRoomID(int roomID);
 	/**
 	 * 
 	 * @param order

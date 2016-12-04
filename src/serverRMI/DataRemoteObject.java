@@ -53,7 +53,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements CreditServi
 	private UserInfoService userInfoService;
 	private UserManageService userManageService;
 	
-	protected DataRemoteObject() throws RemoteException, FileNotFoundException {
+	protected DataRemoteObject(int hotelID) throws RemoteException, FileNotFoundException {
 		creditService=new CreditServiceImpl();
 		hotelBrowseService=new HotelBrowseServiceImpl();
 		hotelInfoService=new HotelInfoServiceImpl();
@@ -61,7 +61,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements CreditServi
 		judgeService=new JudgeServiceImpl();
 		loginService=new LoginServiceImpl();
 		memberService=new MemberServiceImpl();
-		orderService=new OrderServiceImpl();
+		orderService=new OrderServiceImpl(hotelID);
 		roomService=new RoomServiceImpl();
 		strategyService=new StrategyServiceImpl();
 		userInfoService=new UserInfoServiceImpl();
@@ -143,9 +143,9 @@ public class DataRemoteObject extends UnicastRemoteObject implements CreditServi
 		return strategyService.calcute(vo);
 	}
 	@Override
-	public boolean creatRoom(int hotelID, int roomType, int roomNum, int price) {
+	public boolean creatRoom(int hotelID, int roomType, boolean state, int price) {
 		// TODO Auto-generated method stub
-		return roomService.creatRoom(hotelID, roomType, roomNum, price);
+		return roomService.creatRoom(hotelID, roomType, state, price);
 	}
 	@Override
 	public boolean checkInRoom(int roomID, String startTime, String endTime) {

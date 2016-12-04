@@ -69,6 +69,11 @@ public class RoomPO {
 	public void setState(boolean state) {
 		this.state = state;
 	}
+
+	public void setRoomID(int roomID2) {
+		// TODO Auto-generated method stub
+		this.roomID=roomID;
+	}
 	
 	
 
