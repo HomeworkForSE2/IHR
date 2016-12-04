@@ -35,13 +35,15 @@ public class RoomDaoImpl implements RoomDao {
 	@Override
 	public boolean addRoom(RoomPO room) {
 		// TODO Auto-generated method stub
-		int roomID=map.size();
+		//int roomID=map.size();
+		int roomID=room.getRoomID();
 		map.put(roomID, room);
 		roomDataHelper.updateRoomData(map);
 		return true;
 	}
 
 	@Override
+	//这里的更新是指改变已有房间的属性,传参是roomPO
 	public boolean updateRoom(RoomPO room) {
 		// TODO Auto-generated method stub
 		int roomID=room.getRoomID();

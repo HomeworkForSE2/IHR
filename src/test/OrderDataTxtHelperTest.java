@@ -25,13 +25,15 @@ public class OrderDataTxtHelperTest {
     	map.put(0001,order);
     	test.updateOrderData(map);
 	}
+    //该测试方法没问题，但是好像第一次时由于没有更新导致str为null而失败，但是为什么第一次没有更新成功呢？？
+    //故推荐注释一个测一个
 	@Test
 	public void testGetOrderData() {
 		OrderDataTxtHelper test=new OrderDataTxtHelper();
-		OrderPO order=test.getOrderData().get(0001);
+		OrderPO order=test.getOrderData().get(1);
 		String str=order.getUserID()+";"+order.getHotelID()+";"+order.getState()+";"+order.getCredit()+";"+order.getPrice()+";"+order.getStartTime()+";"+order.getEndTime()+";"+order.getFinishTime()+";"+order.getRoomType()+";"+order.getRoomNum()+";"+order.isHasChildren()+";"+order.getOrderID();
-    	assertEquals("99;2;0;100;400;161203;161205;161205;2;2;false;1",str);
-	}
+		assertEquals("99;2;0;100;400;161203;161205;161205;2;2;false;1",str);
+		}
 
 	
 

@@ -79,7 +79,8 @@ public class OrderDaoImpl implements OrderDao{
 	public boolean addOrder(OrderPO order) {
 		// TODO Auto-generated method stub
 		
-		int orderID=map.size();
+		//int orderID=map.size();
+		int orderID=order.getOrderID();
 		map.put(orderID,order);
 		orderDataHelper.updateOrderData(map);
 		return true;

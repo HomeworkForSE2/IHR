@@ -16,6 +16,34 @@ import po.UserPO;
 
 public class OrderDataTxtHelper implements OrderDataHelper{
 
+	
+
+	@Override
+	public void updateOrderData(Map<Integer, OrderPO> map) {
+		// TODO Auto-generated method stub
+				File file=new File("src/txtData/Order");
+				try {
+					//写入用户数据
+					FileWriter fw = new FileWriter(file);
+					BufferedWriter bw=new BufferedWriter(fw);
+					
+					//对map的entry值进行遍历
+					Iterator <Map.Entry<Integer, OrderPO>> it=map.entrySet().iterator();
+					while(it.hasNext()){
+						Map.Entry<Integer,OrderPO> entry=it.next();
+						OrderPO order=entry.getValue();
+						String str=order.getUserID()+";"+order.getHotelID()+";"+order.getState()+";"+order.getCredit()+";"+order.getPrice()+";"+order.getStartTime()+";"+order.getEndTime()+";"+order.getFinishTime()+";"+order.getRoomType()+";"+order.getRoomNum()+";"+order.isHasChildren()+";"+order.getOrderID();
+						bw.write(str);
+						bw.newLine();
+					}
+					bw.close();
+					fw.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		
+	}
 	@Override
 	public Map<Integer, OrderPO> getOrderData() {
 		Map <Integer, OrderPO>map=new HashMap<Integer, OrderPO>();
@@ -57,32 +85,4 @@ public class OrderDataTxtHelper implements OrderDataHelper{
 		return null;
 		// TODO Auto-generated method stub
 	}
-
-	@Override
-	public void updateOrderData(Map<Integer, OrderPO> map) {
-		// TODO Auto-generated method stub
-				File file=new File("src/txtData/Order");
-				try {
-					//写入用户数据
-					FileWriter fw = new FileWriter(file);
-					BufferedWriter bw=new BufferedWriter(fw);
-					
-					//对map的entry值进行遍历
-					Iterator <Map.Entry<Integer, OrderPO>> it=map.entrySet().iterator();
-					while(it.hasNext()){
-						Map.Entry<Integer,OrderPO> entry=it.next();
-						OrderPO order=entry.getValue();
-						String str=order.getUserID()+";"+order.getHotelID()+";"+order.getState()+";"+order.getCredit()+";"+order.getPrice()+";"+order.getStartTime()+";"+order.getEndTime()+";"+order.getFinishTime()+";"+order.getRoomType()+";"+order.getRoomNum()+";"+order.isHasChildren()+";"+order.getOrderID();
-						bw.write(str);
-						bw.newLine();
-					}
-					bw.close();
-					fw.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		
-	}
-
 }
