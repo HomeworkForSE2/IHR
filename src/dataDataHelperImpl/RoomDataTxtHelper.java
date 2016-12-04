@@ -53,6 +53,7 @@ public class RoomDataTxtHelper implements RoomDataHelper{
 	}
 
 	@Override
+	//最底层的更新是重写一张map，传参也是map
 	public void updateRoomData(Map<Integer, RoomPO> map) {
 		// TODO Auto-generated method stub
 				File file=new File("src/txtData/Room");
