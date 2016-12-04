@@ -13,7 +13,7 @@ public interface CreditService extends Remote{
 	 * @param credit
 	 * @return 是否增加充值信用值成功
 	 */
-	public boolean addRechargeCredit(int userID,int credit);
+	public boolean addRechargeCredit(int userID,int credit, int orderID);
 
 	
 	/**
@@ -22,7 +22,7 @@ public interface CreditService extends Remote{
 	 * @param dicision
 	 * @return 是否恢复信用值成功
 	 */
-	public boolean recoverCredit(int userID,int dicision);
+	public boolean recoverCredit(int userID,int dicision, int orderID);
 	
 	/**
 	 * 
@@ -30,7 +30,7 @@ public interface CreditService extends Remote{
 	 * @param credit
 	 * @return 是否扣除信用值成功
 	 */
-	public boolean deduceCredit(int userID,int credit);
+	public boolean deduceCredit(int userID,int credit, int orderID);
 	
 	/**
 	 * 
@@ -38,7 +38,7 @@ public interface CreditService extends Remote{
 	 * @param credit
 	 * @return 是否增加完成订单信用值成功
 	 */
-	public boolean addOrderFinishCredit(int userID,int credit);
+	public boolean addOrderFinishCredit(int userID,int credit, int orderID);
 	
 	/**
 	 * 

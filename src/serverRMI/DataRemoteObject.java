@@ -264,24 +264,24 @@ public class DataRemoteObject extends UnicastRemoteObject implements CreditServi
 		return hotelBrowseService.viewHotelList(location, BD, roomType, star, judgeScore);
 	}
 	@Override
-	public boolean addRechargeCredit(int userID, int credit) {
+	public boolean addRechargeCredit(int userID, int credit, int orderID) {
 		// TODO Auto-generated method stub
-		return creditService.addRechargeCredit(userID, credit);
+		return creditService.addRechargeCredit(userID, credit, orderID);
 	}
 	@Override
-	public boolean recoverCredit(int userID, int dicision) {
+	public boolean recoverCredit(int userID, int dicision, int orderID) {
 		// TODO Auto-generated method stub
-		return creditService.recoverCredit(userID, dicision);
+		return creditService.recoverCredit(userID, dicision, orderID);
 	}
 	@Override
-	public boolean deduceCredit(int userID, int credit) {
+	public boolean deduceCredit(int userID, int credit, int orderID) {
 		// TODO Auto-generated method stub
-		return creditService.deduceCredit(userID, credit);
+		return creditService.deduceCredit(userID, credit, orderID);
 	}
 	@Override
-	public boolean addOrderFinishCredit(int userID, int credit) {
+	public boolean addOrderFinishCredit(int userID, int credit, int orderID) {
 		// TODO Auto-generated method stub
-		return creditService.addOrderFinishCredit(userID, credit);
+		return creditService.addOrderFinishCredit(userID, credit, orderID);
 	}
 	@Override
 	public List<CreditChangeVO> showCreditRecord(int userID) {

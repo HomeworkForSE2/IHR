@@ -2,6 +2,8 @@ package dataDaoImpl;
 
 
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import dataDao.CreditDao;
@@ -39,6 +41,19 @@ public class CreditDaoImpl implements CreditDao{
 			list.add(creditChange);
 			creditDataHelper.updateCreditData(list);
 			return true;
+	}
+	
+	public List<CreditChangePO> findCreditChangeList(int userID) {
+		List<CreditChangePO> creditChangeList = new ArrayList<CreditChangePO>();
+		Iterator it = list.iterator();
+		while(it.hasNext()){
+			CreditChangePO creditChange = (CreditChangePO) it.next();
+			if(creditChange.getUserID()==userID){
+				creditChangeList.add(creditChange);
+			}
+		}
+		
+		return creditChangeList;
 	}
 	
 	public static void main(String arg[]){
