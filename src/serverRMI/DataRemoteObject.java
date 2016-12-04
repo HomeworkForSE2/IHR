@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
+
+import po.MemberPO;
 import service.CreditService;
 import service.HotelBrowseService;
 import service.HotelInfoService;
@@ -115,9 +117,9 @@ public class DataRemoteObject extends UnicastRemoteObject implements CreditServi
 		return strategyService.setEnterpriseByHotel(strategy, enterpriseName);
 	}
 	@Override
-	public boolean setForVip(StrategyVO strategy, int vipGrade, String BD) {
+	public boolean setForVip(StrategyVO strategy, String BD,int vipGrade) {
 		// TODO Auto-generated method stub
-		return strategyService.setForVip(strategy, vipGrade, BD);
+		return strategyService.setForVip(strategy, BD,vipGrade);
 	}
 	@Override
 	public boolean setVipGrade(int vipGrade, int credit) {
@@ -125,9 +127,9 @@ public class DataRemoteObject extends UnicastRemoteObject implements CreditServi
 		return strategyService.setVipGrade(vipGrade, credit);
 	}
 	@Override
-	public List<StrategyVO> viewHotelStrategyList(String hotelName) {
+	public List<StrategyVO> viewHotelStrategyList(int hotelID) {
 		// TODO Auto-generated method stub
-		return strategyService.viewHotelStrategyList(hotelName);
+		return strategyService.viewHotelStrategyList(hotelID);
 	}
 	@Override
 	public List<StrategyVO> viewWebStrategyList() {
@@ -211,20 +213,16 @@ public class DataRemoteObject extends UnicastRemoteObject implements CreditServi
 	}
 
 	@Override
-	public boolean initialize(String userName, String password, String phoneNumber) {
+	public boolean initialize(UserInfoVO user) {
 		// TODO Auto-generated method stub
-		return memberService.initialize(userName, password, phoneNumber);
+		return memberService.initialize(user);
 	}
 	@Override
-	public boolean normalMember(String userName, String birthday) {
+	public boolean member(int userID,String birthday,String enterpriseName) {
 		// TODO Auto-generated method stub
-		return memberService.normalMember(userName, birthday);
+		return memberService.member(userID,birthday,enterpriseName);
 	}
-	@Override
-	public boolean enterpriseMember(String userName, String enterpriseName) {
-		// TODO Auto-generated method stub
-		return memberService.enterpriseMember(userName, enterpriseName);
-	}
+	
 	@Override
 	public boolean login(String userName, String password) {
 		// TODO Auto-generated method stub
@@ -319,5 +317,20 @@ public class DataRemoteObject extends UnicastRemoteObject implements CreditServi
 	public boolean setOrderExecute(int orderID) {
 		// TODO Auto-generated method stub
 		return orderService.setOrderExecute(orderID);
+	}
+	@Override
+	public boolean loginAdmin(String password) {
+		// TODO Auto-generated method stub
+		return loginService.loginAdmin(password);
+	}
+	@Override
+	public HotelInfoVO findHotel(int hotelID) {
+		// TODO Auto-generated method stub
+		return hotelInfoService.findHotel(hotelID);
+	}
+	@Override
+	public boolean memberUpdate(int userID, String birthday, String enterpriseName) {
+		// TODO Auto-generated method stub
+		return memberService.memberUpdate(userID, birthday, enterpriseName);
 	}
 }

@@ -85,14 +85,16 @@ public class HotelDataTxtHelper implements HotelDataHelper{
 
 	public void test(){
 		Map<Integer, HotelPO> map=new HashMap<Integer, HotelPO>();
-		HotelPO h1=new HotelPO(100001, "格林豪泰", "仙林", "南大和园", 5, "一家连锁酒店", "24小时热水", 5);
-		HotelPO h2=new HotelPO(100001, "格林豪泰", "仙林", "南大和园", 5, "一家连锁酒店", "24小时热水", 4);
-		HotelPO h3=new HotelPO(100003, "南大3栋", "仙林", "南大和园", 10, "一家连锁酒店", "24小时热水", 0);
-		HotelPO h4=new HotelPO(100004, "南大招待所", "仙林", "南大和园", 2, "一家连锁酒店", "24小时热水", 5);
+		HotelPO h1=new HotelPO(1, "格林豪泰", "仙林", "南大和园", 5, "一家连锁酒店", "24小时热水", 5);
+		HotelPO h2=new HotelPO(2, "格林", "仙林", "南大和园", 5, "一家连锁酒店", "24小时热水", 4);
+		HotelPO h3=new HotelPO(3, "南大3栋", "仙林", "南大和园", 10, "一家连锁酒店", "24小时热水", 0);
+		HotelPO h4=new HotelPO(4, "南大招待所", "仙林", "南大和园", 2, "一家连锁酒店", "24小时热水", 5);
+		HotelPO h5=new HotelPO(5, "南大", "仙林", "南大和园", 2, "一家连锁酒店", "24小时热水", 5);
 		map.put(h1.getHotelID(), h1);
 		map.put(h2.getHotelID(), h2);
 		map.put(h3.getHotelID(), h3);
 		map.put(h4.getHotelID(), h4);
+		map.put(h5.getHotelID(), h5);
 		updateHotelData(map);
 		
 		Map<Integer, HotelPO> map2=getHotelData();

@@ -31,8 +31,9 @@ public class HotelInfoVO {
 	private int score;
 
 	//
-	public HotelInfoVO(String hotelName, String location, String bD, int starNum, String introduction, String device) {
+	public HotelInfoVO(int hotelID,String hotelName, String location, String bD, int starNum, String introduction, String device) {
 		super();
+		this.hotelID=hotelID;
 		this.hotelName = hotelName;
 		this.location = location;
 		BD = bD;

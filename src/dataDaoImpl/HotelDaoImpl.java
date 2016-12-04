@@ -121,22 +121,20 @@ public class HotelDaoImpl implements HotelDao ,HotelBrowseDao,HotelManageDao   {
 		while(it.hasNext()){
 			int help=(int)it.next();
 			if(l2.contains(help)){
-				l1.remove(help);
+				
+			}else{
+				l.add(map.get(help));
 			}
-		}
-		Iterator it2=l1.iterator();
-		while(it.hasNext()){
-			l.add(map.get((int)it.next()));
 		}
 		return l;
 	}
 	
 	public static void main(String[] args) {
 		HotelDaoImpl go=new HotelDaoImpl();
-		go.test();
+		go.test2();
 	}
 	
-	public void  test(){
+	public void  test1(){
 		System.out.println(findHotel(100001).getBD());
 		System.out.println(searchHotel("格林豪泰").getBD());
 		HotelPO h=new HotelPO(4, "pipa", "1", "2", 5, "1", "2", 2);
@@ -147,5 +145,16 @@ public class HotelDaoImpl implements HotelDao ,HotelBrowseDao,HotelManageDao   {
 		System.out.println(searchHotelList("仙林","南大和园").size());
 	}
 
+	public void test2(){
+		List l1=findNotJudgedHotel(0);
+		System.out.println(l1.size());
+		List l2=findNotJudgedHotel(1);
+		System.out.println(l2.size());	
+		List l3=findNotJudgedHotel(2);
+		System.out.println(l3.size());
+		List l4=findNotJudgedHotel(3);
+		System.out.println(l4.size());
+		
+	}
 	
 }

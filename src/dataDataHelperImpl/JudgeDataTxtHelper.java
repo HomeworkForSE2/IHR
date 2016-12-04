@@ -80,11 +80,11 @@ public class JudgeDataTxtHelper implements JudgeDataHelper{
 	public void test(){
 		
 		List<JudgePO> list = new ArrayList<>();
-		JudgePO judge1 = new JudgePO(12345, 111, "This hotel sucks", 2);
-		JudgePO judge2 = new JudgePO(12344, 111, "I think hotel manager is retarded!!", 1);
-		JudgePO judge3 = new JudgePO(12333, 113, "It was sooo much better than what i thought :) ", 4);
-		JudgePO judge4 = new JudgePO(12222, 113, "You must try for the room service!! so freakin tasty",5);
-		JudgePO judge5 = new JudgePO(11111, 112, "nahhh.. it was just a ordinary hotel", 3);
+		JudgePO judge1 = new JudgePO(0, 1, "This hotel sucks", 2);
+		JudgePO judge2 = new JudgePO(0, 2, "I think hotel manager is retarded!!", 1);
+		JudgePO judge3 = new JudgePO(1, 1, "It was sooo much better than what i thought :) ", 4);
+		JudgePO judge4 = new JudgePO(1, 2, "You must try for the room service!! so freakin tasty",5);
+		JudgePO judge5 = new JudgePO(1, 3, "nahhh.. it was just a ordinary hotel", 3);
 		list.add(judge1);
 		list.add(judge2);
 		list.add(judge3);

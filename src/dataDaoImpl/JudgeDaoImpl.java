@@ -64,9 +64,11 @@ public class JudgeDaoImpl implements JudgeDao{
 	}
 	
 	public void test(){
-		JudgePO judge = new JudgePO(11111, 119, "Can not find any supermarket nearby the hotel", 3);
-		addJudge(judge);
-		
+//		JudgePO judge = new JudgePO(11111, 119, "Can not find any supermarket nearby the hotel", 3);
+//		addJudge(judge);
+		System.out.println(judHotelIDList(0).size());
+		System.out.println(judHotelIDList(1).size());
+		System.out.println(judHotelIDList(2).size());
 	}
 
 	

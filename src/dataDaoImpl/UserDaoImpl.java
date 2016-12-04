@@ -159,7 +159,7 @@ public class UserDaoImpl implements UserDao ,LoginDao,UserManageDao{
 	}
 	
 	/*
-	 * 
+	 * 增加用户信用值
 	 */
 	@Override
 	public boolean addUserCredit(int userID, int credit) {
@@ -173,7 +173,7 @@ public class UserDaoImpl implements UserDao ,LoginDao,UserManageDao{
 	}
 
 	/*
-	 * 
+	 *减少用户信用值 
 	 */
 	@Override
 	public boolean reduceUserCredit(int userID, int credit) {
@@ -183,7 +183,7 @@ public class UserDaoImpl implements UserDao ,LoginDao,UserManageDao{
 	
 	public static void main(String[] args) {
 		UserDaoImpl go=new UserDaoImpl();
-		
+		go.test4();
 	}
 	
 	public void test1(){
@@ -213,6 +213,15 @@ public class UserDaoImpl implements UserDao ,LoginDao,UserManageDao{
 		WebsiteAdminPO w=new WebsiteAdminPO("nswdw1ZJ...");
 		System.out.println(updateAdmin(w));
 		System.out.println(checkAdmin(w.getAdminPassword()));
+	}
+	
+	public void test4(){
+		addUserCredit(0,500);
+		addUserCredit(0,500);
+		reduceUserCredit(1, 30000);
+		reduceUserCredit(0, 300);
+		System.out.println(addUserCredit(7, 0));
+		System.out.println(reduceUserCredit(7, 0));
 	}
 
 	

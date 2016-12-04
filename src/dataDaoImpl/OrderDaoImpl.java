@@ -130,5 +130,19 @@ public class OrderDaoImpl implements OrderDao{
 		}	
 		return list;
 	}
+	
+	public static void main(String[] args) {
+		OrderDaoImpl go=new OrderDaoImpl();
+		go.test();
+	}
+	
+	public void test(){
+		System.out.println(resHotelIDList(0));
+		System.out.println(resHotelIDList(1));
+		System.out.println(resHotelIDList(2));
+		System.out.println(resHotelIDList(3));
+	}
+	
+	
 
 }

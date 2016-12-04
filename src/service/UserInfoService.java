@@ -2,6 +2,8 @@ package service;
 
 import java.rmi.Remote;
 import java.util.List;
+
+import dataDao.UserDao;
 import vo.HotelInfoVO;
 import vo.UserInfoVO;
 

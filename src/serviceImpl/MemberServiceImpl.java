@@ -1,25 +1,40 @@
 package serviceImpl;
 
+import dataDao.MemberDao;
+import dataDaoImpl.MemberDaoImpl;
+import po.MemberPO;
+import po.UserPO;
 import service.MemberService;
+import vo.UserInfoVO;
 
 public class MemberServiceImpl implements MemberService{
 
-	@Override
-	public boolean initialize(String userName, String password, String phoneNumber) {
-		// TODO Auto-generated method stub
-		return false;
+	private MemberDao memberDao;
+	
+	public MemberServiceImpl() {
+		// TODO Auto-generated constructor stub
+		memberDao=MemberDaoImpl.getInstance();
 	}
 
 	@Override
-	public boolean normalMember(String userName, String birthday) {
+	public boolean initialize(UserInfoVO user) {
 		// TODO Auto-generated method stub
-		return false;
+		UserPO u=new UserPO(0, user.getUserName(), user.getPassword(), user.getPassword(), 0);
+		return memberDao.insert(u);
 	}
 
 	@Override
-	public boolean enterpriseMember(String userName, String enterpriseName) {
+	public boolean member(int userID, String birthday, String enterpriseName) {
 		// TODO Auto-generated method stub
-		return false;
+		MemberPO m=new MemberPO(userID, birthday, enterpriseName);		
+		return memberDao.insert(m);
+	}
+
+	@Override
+	public boolean memberUpdate(int userID, String birthday, String enterpriseName) {
+		// TODO Auto-generated method stub
+		MemberPO m=new MemberPO(userID, birthday, enterpriseName);
+		return memberDao.update(m);
 	}
 
 }

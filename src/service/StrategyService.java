@@ -53,7 +53,7 @@ public interface StrategyService extends Remote{
 	 * @param BD
 	 * @return 是否制定会员相关策略成功
 	 */
-	public boolean setForVip(StrategyVO strategy,int vipGrade,String BD);
+	public boolean setForVip(StrategyVO strategy,String BD,int vipGrade);
 	
 	/**
 	 * 
@@ -68,7 +68,7 @@ public interface StrategyService extends Remote{
 	 * @param hotelName
 	 * @return 酒店策略列表
 	 */
-	public List<StrategyVO> viewHotelStrategyList(String hotelName);
+	public List<StrategyVO> viewHotelStrategyList(int hotelID);
 	
 	/**
 	 * 

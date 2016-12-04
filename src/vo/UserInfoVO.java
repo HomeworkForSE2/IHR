@@ -21,11 +21,13 @@ public class UserInfoVO {
 	private int credit;
 
 	//
-	public UserInfoVO(String userName, String password, String phoneNumber) {
+	public UserInfoVO(int userID,String userName, String password, String phoneNumber,int credit) {
 		super();
+		this.userID=userID;
 		this.userName = userName;
 		this.password = password;
 		this.phoneNumber = phoneNumber;
+		this.credit=credit;
 	}
 	
 	public UserInfoVO(UserPO user){

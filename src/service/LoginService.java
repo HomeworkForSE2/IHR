@@ -10,5 +10,12 @@ public interface LoginService extends Remote{
 	 * @return 是否登陆成功
 	 */
 	public boolean login(String userName,String password);
+	
+	/**
+	 * 
+	 * @param password
+	 * @return 管理员是否登陆成功
+	 */
+	public boolean loginAdmin(String password);
 
 }
