@@ -15,6 +15,8 @@ import vo.RoomConditionVO;
 
 public class HotelBrowseServiceImpl implements HotelBrowseService{
 
+	//是否应该持有ID
+	
 	private HotelBrowseDao hotelBrowseDao;
 	
 	private RoomDao roomDao;
@@ -32,7 +34,7 @@ public class HotelBrowseServiceImpl implements HotelBrowseService{
 		return new HotelInfoVO(hotel);
 	}
 
-	//按条件搜索酒店，条件可以同时亦可以独立，简版
+	//按条件搜索酒店，条件可以同时亦可以独立，简版（差时间逻辑）
 	@Override
 	public List<HotelInfoVO> viewHotelList(String location, String BD, RoomConditionVO condition, int star, int judgeScore) {
 		// TODO Auto-generated method stub

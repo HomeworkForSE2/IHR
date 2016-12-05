@@ -12,11 +12,11 @@ public class UserManageServiceImpl implements UserManageService{
 
 	private UserManageDao userManageDao;
 	
-	private UserDao userDao;
+	private int websiteWorkerNum;
 	
 	public UserManageServiceImpl(){
 		userManageDao=UserDaoImpl.getInstance();
-		userDao=UserDaoImpl.getInstance();
+		websiteWorkerNum=userManageDao.getWebsiteWorkerNum()+1;
 	}
 	
 	@Override
@@ -29,8 +29,8 @@ public class UserManageServiceImpl implements UserManageService{
 	@Override
 	public boolean modifyUserInfo(UserInfoVO vo) {
 		// TODO Auto-generated method stub
-		int userID=vo.getUserID();
-		UserPO user=userDao.findUser(userID);
+		String userName=vo.getUserName();
+		UserPO user=userManageDao.searchAllUser(userName);
 		user.setUserName(vo.getUserName());
 		user.setPassword(vo.getPassword());
 		user.setPhoneNumber(vo.getPhoneNumber());
@@ -41,7 +41,7 @@ public class UserManageServiceImpl implements UserManageService{
 	@Override
 	public boolean addWebsiteWorker(UserInfoVO vo) {
 		// TODO Auto-generated method stub
-		WebsiteWorkerPO websiteWorker=new WebsiteWorkerPO(vo.getUserID(), vo.getUserName(), vo.getPassword(), vo.getPassword(), 0);	
+		WebsiteWorkerPO websiteWorker=new WebsiteWorkerPO(websiteWorkerNum, vo.getUserName(), vo.getPassword(), vo.getPassword(), 0);	
 		return userManageDao.addWebsiteWorker(websiteWorker);
 	}
 

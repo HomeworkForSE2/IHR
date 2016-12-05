@@ -19,10 +19,10 @@ public interface HotelBrowseService extends Remote{
 	 * 
 	 * @param location
 	 * @param BD
-	 * @param roomType
+	 * @param RoomConditionVO
 	 * @param star
 	 * @param judgeScore
-	 * @return 酒店排序列表
+	 * @return 酒店符合列表
 	 */
 	public List<HotelInfoVO> viewHotelList(String location,String BD,RoomConditionVO condition,int star,int judgeScore);
 	

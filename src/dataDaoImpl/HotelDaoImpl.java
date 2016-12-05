@@ -143,6 +143,12 @@ public class HotelDaoImpl implements HotelDao ,HotelBrowseDao,HotelManageDao   {
 		return l;
 	}
 	
+	@Override
+	public int getHotelNum() {
+		// TODO Auto-generated method stub
+		return map.size();
+	}
+	
 	public static void main(String[] args) {
 		HotelDaoImpl go=new HotelDaoImpl();
 		go.test2();
@@ -170,6 +176,8 @@ public class HotelDaoImpl implements HotelDao ,HotelBrowseDao,HotelManageDao   {
 		System.out.println(l4.size());
 		
 	}
+
+	
 
 	
 	

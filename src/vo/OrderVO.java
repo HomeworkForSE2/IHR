@@ -16,8 +16,9 @@ import po.OrderPO;
  * 有无儿童
  */
 public class OrderVO {
-	private int price;
+	
 	private int orderId;
+	
 	private int userId;
 	
 	private int hotelId;
@@ -25,6 +26,8 @@ public class OrderVO {
 	private int state;
 	
 	private int credit;
+	
+	private int price;
 	
 	private String startTime;
 	
@@ -39,16 +42,8 @@ public class OrderVO {
 	private boolean hasChildren;
 
 	//
-	public OrderVO(int credit, String startTime, String endTime, String finishTime, int roomType, int roomNum,boolean hasChildren) {
-		super();
-		this.credit = credit;
-		this.startTime = startTime;
-		this.endTime = endTime;
-		this.finishTime = finishTime;
-		this.roomType = roomType;
-		this.roomNum = roomNum;
-		this.hasChildren=hasChildren;
-			}
+	
+	
 	
 	//
 	public OrderVO(OrderPO order){
@@ -61,6 +56,23 @@ public class OrderVO {
 		this.roomNum=order.getRoomNum();
 		this.hasChildren=order.isHasChildren();
 		
+	}
+
+	public OrderVO(int orderId, int userId, int hotelId, int state, int credit, int price, String startTime,
+			String endTime, String finishTime, int roomType, int roomNum, boolean hasChildren) {
+		super();
+		this.orderId = orderId;
+		this.userId = userId;
+		this.hotelId = hotelId;
+		this.state = state;
+		this.credit = credit;
+		this.price = price;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.finishTime = finishTime;
+		this.roomType = roomType;
+		this.roomNum = roomNum;
+		this.hasChildren = hasChildren;
 	}
 
 	public int getUserId() {

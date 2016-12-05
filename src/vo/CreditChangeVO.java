@@ -8,7 +8,7 @@ import po.CreditChangePO;
  * 用户Id
  * 初始信用值
  * 剩余信用值
- * 动作（执行、异常、撤销、充值）
+ * 动作（执行、异常、撤销、充值、恢复）
  */
 public class CreditChangeVO {
 	

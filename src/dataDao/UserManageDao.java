@@ -42,4 +42,16 @@ public interface UserManageDao {
 	 * @return 是否减少信用成功
 	 */
 	public boolean reduceUserCredit(int userID,int credit);
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public int getWebsiteWorkerNum();
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public int getUserNum();
 }

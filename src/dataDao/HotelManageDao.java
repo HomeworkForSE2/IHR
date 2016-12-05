@@ -19,5 +19,11 @@ public interface HotelManageDao {
 	 * @return 是否添加酒店工作人员成功
 	 */
 	public boolean addHotelWorker(HotelWorkerPO hotelWorker);
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public int getHotelNum();
 
 }

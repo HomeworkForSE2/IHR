@@ -1,7 +1,9 @@
 package serviceImpl;
 
 import dataDao.MemberDao;
+import dataDao.UserManageDao;
 import dataDaoImpl.MemberDaoImpl;
+import dataDaoImpl.UserDaoImpl;
 import po.MemberPO;
 import po.UserPO;
 import service.MemberService;
@@ -11,15 +13,22 @@ public class MemberServiceImpl implements MemberService{
 
 	private MemberDao memberDao;
 	
+	private UserManageDao userManageDao;
+	
+	private int userNum;
+	
 	public MemberServiceImpl() {
 		// TODO Auto-generated constructor stub
 		memberDao=MemberDaoImpl.getInstance();
+		userManageDao=UserDaoImpl.getInstance();
+		userNum=userManageDao.getUserNum()+1;
 	}
 
 	@Override
 	public boolean initialize(UserInfoVO user) {
 		// TODO Auto-generated method stub
-		UserPO u=new UserPO(0, user.getUserName(), user.getPassword(), user.getPassword(), 0);
+		//初始信用值300
+		UserPO u=new UserPO(userNum, user.getUserName(), user.getPassword(), user.getPassword(), 300);
 		return memberDao.insert(u);
 	}
 

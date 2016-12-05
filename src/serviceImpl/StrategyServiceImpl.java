@@ -24,6 +24,9 @@ import service.StrategyService;
 import vo.OrderVO;
 import vo.StrategyVO;
 
+/*
+ * 0特殊时期1生日2房间3合作企业4vip
+ */
 public class StrategyServiceImpl implements StrategyService {
 	
 	private StrategyDao strategyDao;
@@ -41,7 +44,7 @@ public class StrategyServiceImpl implements StrategyService {
 	@Override
 	public boolean setSpecialTimeByHotel(StrategyVO strategy) {
 		// TODO Auto-generated method stub
-		StrategyPO s=new StrategyPO(strategy.getOwnerId(), 1, strategy.getStrategyName(), strategy.getDiscount(), strategy.getStartTime(), strategy.getEndTime());
+		StrategyPO s=new StrategyPO(strategy.getOwnerId(), 0, strategy.getStrategyName(), strategy.getDiscount(), strategy.getStartTime(), strategy.getEndTime());
 		return strategyDao.addStrategy(s);
 	}
 
@@ -55,14 +58,14 @@ public class StrategyServiceImpl implements StrategyService {
 	@Override
 	public boolean setSpecialTimeByWeb(StrategyVO strategy) {
 		// TODO Auto-generated method stub
-		StrategyPO s=new StrategyPO(0, 1, strategy.getStrategyName(), strategy.getDiscount(), strategy.getStartTime(), strategy.getEndTime());
+		StrategyPO s=new StrategyPO(0, 0, strategy.getStrategyName(), strategy.getDiscount(), strategy.getStartTime(), strategy.getEndTime());
 		return strategyDao.addStrategy(s);
 	}
 
 	@Override
 	public boolean setBirthdayByHotel(StrategyVO strategy) {
 		// TODO Auto-generated method stub
-		StrategyPO s=new StrategyPO(strategy.getOwnerId(), 0, strategy.getStrategyName(), strategy.getDiscount(), strategy.getStartTime(), strategy.getEndTime());
+		StrategyPO s=new StrategyPO(strategy.getOwnerId(), 1, strategy.getStrategyName(), strategy.getDiscount(), strategy.getStartTime(), strategy.getEndTime());
 		return strategyDao.addStrategy(s);
 	}
 
@@ -112,24 +115,33 @@ public class StrategyServiceImpl implements StrategyService {
 		// TODO Auto-generated method stub
 		int hotelID=vo.getHotelId();
 		List <StrategyPO> list=strategyDao.findHotelStrategyList(hotelID);
+		List <StrategyPO> webList=strategyDao.findHotelStrategyList(0);
+		//得到该酒店和网站的所有策略
+		Iterator webIt=webList.iterator();
+		while(webIt.hasNext()){
+			list.add((StrategyPO)webIt.next());
+		}
+		
+		//开始遍历
 		Iterator it=list.iterator();
 		double price=vo.getPrice();
 		double discount=1;
 		while(it.hasNext()){
 			StrategyPO s=(StrategyPO)it.next();
+			//下单时间
 			Date date=new Date();
 			DateFormat format=new SimpleDateFormat("YYYYMMdd");
 			String time=format.format(date);
 			if(s.getStrategyType()==0){
-				//0特殊时期
+				//0特殊时期，看下单时间是否匹配
 				if(Integer.valueOf(s.getStartTime())<=Integer.valueOf(time)&&Integer.valueOf(time)<=Integer.valueOf(s.getEndTime())){
-					if(discount>s.getDiscount()){
+					if(discount>s.getDiscount()){//折扣略低则赋值
 						discount=s.getDiscount();
 					}
 				}
 				
 			}else if(s.getStrategyType()==1){
-				//1生日
+				//1生日，看下单时间是否匹配
 				if(memberDao.findBirthday(vo.getUserId()).equals(time)){
 					if(discount>s.getDiscount()){
 						discount=s.getDiscount();
@@ -137,7 +149,7 @@ public class StrategyServiceImpl implements StrategyService {
 				}
 				
 			}else if(s.getStrategyType()==2){
-				//2房间
+				//2房间，看房间数量是否匹配
 				StrategyRoomNumPO srn=(StrategyRoomNumPO)s;
 				if(srn.getRoomNum()==vo.getRoomNum()){
 					if(discount>s.getDiscount()){
@@ -146,7 +158,7 @@ public class StrategyServiceImpl implements StrategyService {
 				}
 				
 			}else if(s.getStrategyType()==3){
-				//3合作企业
+				//3合作企业，看企业名
 				StrategyEntPO se=(StrategyEntPO)s;
 				if(memberDao.findEnterprise(vo.getUserId()).equals(se.getEnterpriseName())){
 					if(discount>s.getDiscount()){
@@ -154,7 +166,7 @@ public class StrategyServiceImpl implements StrategyService {
 					}
 				}
 			}else if(s.getStrategyType()==4){
-				//4vip
+				//4vip，看商圈和等级
 				StrategyForVipPO sfv=(StrategyForVipPO)s;
 				if(sfv.getBD().equals(hotelDao.findHotel(vo.getHotelId()).getBD())&&sfv.getVipGrade()==strategyDao.getVipGrade(userDao.findUser(vo.getUserId()).getCredit())){
 					if(discount>s.getDiscount()){

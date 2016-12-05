@@ -181,6 +181,42 @@ public class UserDaoImpl implements UserDao ,LoginDao,UserManageDao{
 		return addUserCredit(userID, -credit);
 	}
 	
+	/*
+	 * 
+	 */
+	@Override
+	public int getWebsiteWorkerNum() {
+		// TODO Auto-generated method stub
+		int websiteWorkerNum=1000000;
+		Iterator<Map.Entry<Integer, UserPO>> it=map.entrySet().iterator();
+		while(it.hasNext()){
+			UserPO user=it.next().getValue();
+			int userID=user.getUserID();
+			if(userID>=1000000&&userID>websiteWorkerNum){
+				websiteWorkerNum=userID;
+			}
+		}
+		return websiteWorkerNum;
+	}
+
+	/*
+	 * 酒店ID从1开始，web为0,酒店工作人员ID从1开始保持和酒店一致，普通用户从10000开始，网站营销人员从1000000开始
+	 */
+	@Override
+	public int getUserNum() {
+		// TODO Auto-generated method stub
+		int userNum=10000;
+		Iterator<Map.Entry<Integer, UserPO>> it=map.entrySet().iterator();
+		while(it.hasNext()){
+			UserPO user=it.next().getValue();
+			int userID=user.getUserID();
+			if(10000<=userID&&userID<1000000&&userID>userNum){
+				userNum=userID;
+			}
+		}
+		return userNum;
+	}
+	
 	public static void main(String[] args) {
 		UserDaoImpl go=new UserDaoImpl();
 		go.test4();
@@ -223,6 +259,8 @@ public class UserDaoImpl implements UserDao ,LoginDao,UserManageDao{
 		System.out.println(addUserCredit(7, 0));
 		System.out.println(reduceUserCredit(7, 0));
 	}
+
+	
 
 	
 	

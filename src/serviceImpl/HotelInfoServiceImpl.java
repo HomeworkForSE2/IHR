@@ -9,10 +9,11 @@ import vo.HotelInfoVO;
 public class HotelInfoServiceImpl implements HotelInfoService{
 
 	private HotelDao hotelDao;
-	
+	//是否应该持有酒店ID
 	public HotelInfoServiceImpl(){
 		hotelDao=HotelDaoImpl.getInstance();
 	}
+	
 	
 	@Override
 	public boolean maintainHotelInfo(HotelInfoVO hotel) {
