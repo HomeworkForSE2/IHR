@@ -44,7 +44,7 @@ public class CreditServiceImpl implements CreditService {
 		userManageDao.addUserCredit(userID, credit);
 		
 		Date date=new Date();
-		DateFormat format=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		DateFormat format=new SimpleDateFormat("YYYYMMdd");
 		String time=format.format(date);
 		
 		int action = 3;
@@ -69,10 +69,10 @@ public class CreditServiceImpl implements CreditService {
 		userManageDao.addUserCredit(userID, credit);
 		
 		Date date=new Date();
-		DateFormat format=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		DateFormat format=new SimpleDateFormat("YYYYMMdd");
 		String time=format.format(date);
 		
-		int action = 3;
+		int action = 4;
 		
 		CreditChangePO change = new CreditChangePO(time, orderID, userID, startCredit, startCredit+credit, action);
 		
@@ -87,7 +87,7 @@ public class CreditServiceImpl implements CreditService {
 		userManageDao.reduceUserCredit(userID, credit);
 		
 		Date date=new Date();
-		DateFormat format=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		DateFormat format=new SimpleDateFormat("YYYYMMdd");
 		String time=format.format(date);
 		
 		int action = 2;
@@ -105,7 +105,7 @@ public class CreditServiceImpl implements CreditService {
 		userManageDao.addUserCredit(userID, credit);
 		
 		Date date=new Date();
-		DateFormat format=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		DateFormat format=new SimpleDateFormat("YYYYMMdd");
 		String time=format.format(date);
 		
 		int action = 0;

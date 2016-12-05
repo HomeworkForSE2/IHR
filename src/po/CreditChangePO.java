@@ -6,7 +6,7 @@ package po;
  * 用户Id
  * 初始信用值
  * 剩余信用值
- * 动作（执行0、异常1、撤销2、充值3）
+ * 动作（执行0、异常1、撤销2、充值3 恢复4）
  */
 public class CreditChangePO {
 	
