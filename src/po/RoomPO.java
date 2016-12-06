@@ -8,7 +8,6 @@ package po;
  */
 
 public class RoomPO {
-	
 	private int hotelID;
 	
 	private int roomType;
@@ -17,7 +16,7 @@ public class RoomPO {
 	
 	private double price;
 	
-	private boolean state;
+	private boolean state;//true ->已占用；false->空
 
 	//
 	public RoomPO(int hotelID, int roomType, int roomID, double price, boolean state) {
@@ -55,6 +54,7 @@ public class RoomPO {
 	
 
 	public double getPrice() {
+		
 		return price;
 	}
 

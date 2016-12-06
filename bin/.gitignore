@@ -1,6 +1,14 @@
-/vo/
-/service/
+/clientRMI/
+/clientRunner/
 /dataDao/
 /dataDaoImpl/
+/dataDataHelper/
+/dataDataHelperImpl/
+/dataTest/
 /po/
+/serverRMI/
+/serverRunner/
+/service/
 /serviceImpl/
+/serviceTest/
+/vo/

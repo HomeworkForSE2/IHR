@@ -3,8 +3,10 @@ package serviceImpl;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Timer;
 
 import dataDao.OrderDao;
 import dataDaoImpl.OrderDaoImpl;
@@ -184,21 +186,40 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public boolean createOrder(OrderVO order) {
 		//根据各种策略计算订单价格的方法在orderPO写吗？？
+		//创建订单时需要同时创建房间
+		//创建订单方法暂停
 		int orderID=order.getOrderID();
 		OrderPO orderPO=orderDao.getOrder(orderID);
 		if(orderPO.getCredit()<0){
 			return false;
 		}else{
+			Timer timer=new Timer();
 			orderPO.setCredit(order.getCredit());
 			orderPO.setEndTime(order.getEndTime());
-			orderPO.setFinishTime(order.getEndTime());
-			orderPO.setHotelID(order.getCredit());
-			orderPO.setPrice(order.getCredit());
-			orderPO.setRoomNum(order.getCredit());
-			orderPO.setRoomType(order.getCredit());
-			orderPO.setStartTime(order.getEndTime());
-			orderPO.setState(order.getCredit());
-			orderPO.setUserID(order.getCredit());
+			orderPO.setFinishTime(order.getFinishTime());
+			orderPO.setHotelID(order.getHotelId());
+			orderPO.setRoomNum(order.getRoomNum());
+			orderPO.setRoomType(order.getRoomType());
+			orderPO.setStartTime(order.getStartTime());
+			orderPO.setState(order.getState());
+			orderPO.setUserID(order.getUserId());
+			RoomServiceImpl createRoom=new RoomServiceImpl();
+			double initialPrice=order.getRoomNum()*order.getPrice();
+			StrategyServiceImpl calculate=new StrategyServiceImpl();
+			initialPrice=calculate.calcute(order);
+			orderPO.setPrice((int)initialPrice);
+			int year=Integer.parseInt(order.getStartTime().substring(0,4));
+			int month=Integer.parseInt(order.getStartTime().substring(4,6));
+			int day=Integer.parseInt(order.getStartTime().substring(6,8));
+			int hour=Integer.parseInt(order.getStartTime().substring(8));
+			Calendar calendar=Calendar.getInstance();
+			calendar.set(Calendar.YEAR,year);
+			calendar.set(Calendar.MONTH, month);
+			calendar.set(Calendar.DAY_OF_MONTH, day);
+			calendar.set(Calendar.HOUR, hour);
+			Date  date=calendar.getTime();
+		//	timer.schedule( createRoom.creatRoom(order.getHotelId(), order.getRoomType(), true),date);
+			createRoom.creatRoom(order.getHotelId(), order.getRoomType(), true);
 			return orderDao.updateOrder(orderPO);
 		}
 	}
