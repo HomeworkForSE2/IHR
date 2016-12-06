@@ -1,6 +1,5 @@
 package serviceImpl;
 
-import dataDao.UserDao;
 import dataDao.UserManageDao;
 import dataDaoImpl.UserDaoImpl;
 import po.UserPO;
@@ -42,6 +41,7 @@ public class UserManageServiceImpl implements UserManageService{
 	public boolean addWebsiteWorker(UserInfoVO vo) {
 		// TODO Auto-generated method stub
 		WebsiteWorkerPO websiteWorker=new WebsiteWorkerPO(websiteWorkerNum, vo.getUserName(), vo.getPassword(), vo.getPassword(), 0);	
+		websiteWorkerNum++;
 		return userManageDao.addWebsiteWorker(websiteWorker);
 	}
 

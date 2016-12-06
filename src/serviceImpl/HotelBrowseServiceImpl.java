@@ -61,6 +61,8 @@ public class HotelBrowseServiceImpl implements HotelBrowseService{
 				}
 			}
 		}
+		
+		//时间上再根据roomID去查orderList看时间
 		return hotelList;
 	}
 	

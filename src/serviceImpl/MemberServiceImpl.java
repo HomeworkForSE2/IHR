@@ -28,7 +28,8 @@ public class MemberServiceImpl implements MemberService{
 	public boolean initialize(UserInfoVO user) {
 		// TODO Auto-generated method stub
 		//初始信用值300
-		UserPO u=new UserPO(userNum, user.getUserName(), user.getPassword(), user.getPassword(), 300);
+		UserPO u=new UserPO(userNum, user.getUserName(), user.getPassword(), user.getPhoneNumber(), 300);
+		userNum++;
 		return memberDao.insert(u);
 	}
 

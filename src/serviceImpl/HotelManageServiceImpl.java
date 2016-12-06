@@ -24,7 +24,6 @@ public class HotelManageServiceImpl implements HotelManageService{
 	public boolean addHotel(HotelInfoVO hotel) {
 		// TODO Auto-generated method stub
 		HotelPO h=new HotelPO(hotelNum, hotel.getHotelName(), hotel.getLocation(), hotel.getBD(), hotel.getStarNum(), hotel.getIntroduction(), hotel.getDevice(), 0);
-		hotelNum++;
 		return hotelManageDao.addHotel(h);
 	}
 
@@ -33,6 +32,7 @@ public class HotelManageServiceImpl implements HotelManageService{
 	public boolean addHotelworker(UserInfoVO vo) {
 		// TODO Auto-generated method stub
 		HotelWorkerPO hw=new HotelWorkerPO(hotelNum, vo.getUserName(), vo.getPassword(), vo.getPhoneNumber(), 0);
+		hotelNum++;
 		return hotelManageDao.addHotelWorker(hw);
 	}
 
