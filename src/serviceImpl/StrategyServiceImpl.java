@@ -51,7 +51,7 @@ public class StrategyServiceImpl implements StrategyService {
 	@Override
 	public boolean setResRoomNumByHotel(StrategyVO strategy, int roomNum) {
 		// TODO Auto-generated method stub
-		StrategyRoomNumPO s=new StrategyRoomNumPO(strategy.getOwnerId(), 2, strategy.getStrategyName(), strategy.getDiscount(), strategy.getStartTime(), strategy.getEndTime(), roomNum);
+		StrategyRoomNumPO s=new StrategyRoomNumPO(strategy.getOwnerId(), 2, "", strategy.getDiscount(), strategy.getStartTime(), strategy.getEndTime(), roomNum);
 		return strategyDao.addStrategy(s);
 	}
 
@@ -65,21 +65,21 @@ public class StrategyServiceImpl implements StrategyService {
 	@Override
 	public boolean setBirthdayByHotel(StrategyVO strategy) {
 		// TODO Auto-generated method stub
-		StrategyPO s=new StrategyPO(strategy.getOwnerId(), 1, strategy.getStrategyName(), strategy.getDiscount(), strategy.getStartTime(), strategy.getEndTime());
+		StrategyPO s=new StrategyPO(strategy.getOwnerId(), 1, "生日优惠策略", strategy.getDiscount(), strategy.getStartTime(), strategy.getEndTime());
 		return strategyDao.addStrategy(s);
 	}
 
 	@Override
 	public boolean setEnterpriseByHotel(StrategyVO strategy, String enterpriseName) {
 		// TODO Auto-generated method stub
-		StrategyEntPO s=new StrategyEntPO(strategy.getOwnerId(), 3, strategy.getStrategyName(), strategy.getDiscount(), strategy.getStartTime(), strategy.getEndTime(), enterpriseName);
+		StrategyEntPO s=new StrategyEntPO(strategy.getOwnerId(), 3, "", strategy.getDiscount(), strategy.getStartTime(), strategy.getEndTime(), enterpriseName);
 		return strategyDao.addStrategy(s);
 	}
 
 	@Override
 	public boolean setForVip(StrategyVO strategy,String BD,int vipGrade) {
 		// TODO Auto-generated method stub
-		StrategyForVipPO s=new StrategyForVipPO(0, 4, strategy.getStrategyName(), strategy.getDiscount(), strategy.getStartTime(), strategy.getEndTime(), BD, vipGrade);
+		StrategyForVipPO s=new StrategyForVipPO(0, 4, "", strategy.getDiscount(), strategy.getStartTime(), strategy.getEndTime(), BD, vipGrade);
 		return strategyDao.addStrategy(s);
 	}
 
@@ -90,6 +90,7 @@ public class StrategyServiceImpl implements StrategyService {
 		return strategyDao.addVip(vip);
 	}
 
+	//文件里要初始化vip00
 	@Override
 	public List<StrategyVO> viewHotelStrategyList(int hotelID) {
 		// TODO Auto-generated method stub
@@ -142,7 +143,7 @@ public class StrategyServiceImpl implements StrategyService {
 				
 			}else if(s.getStrategyType()==1){
 				//1生日，看下单时间是否匹配
-				if(memberDao.findBirthday(vo.getUserId()).equals(time)){
+				if(memberDao.findBirthday(vo.getUserId()).substring(4).equals(time.substring(4))){
 					if(discount>s.getDiscount()){
 						discount=s.getDiscount();
 					}

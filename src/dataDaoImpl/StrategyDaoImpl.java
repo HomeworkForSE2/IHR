@@ -35,7 +35,7 @@ public class StrategyDaoImpl implements StrategyDao{
 		if(list==null&&map==null){
 			dataFactory=new DataFactoryImpl();
 			strategyDataHelper=dataFactory.getStrategyDataHelper();
-			list=strategyDataHelper.getStrategyData();
+			list=strategyDataHelper.getStrategyData();	
 			map=strategyDataHelper.getVipData();
 		}
 	}
@@ -71,12 +71,20 @@ public class StrategyDaoImpl implements StrategyDao{
 	public boolean addVip(VipPO vip) {
 		// TODO Auto-generated method stub
 		int vipGrade=vip.getVipGrade();
+		if(map.size()==0){
+			VipPO vip0=new VipPO(0, 0);
+			map.put(0, vip0);
+		}
+		
 		if(map.get(vipGrade)==null){
-			if(map.get(vipGrade+1)==null||map.get(vipGrade+1).getVipGradeCredit()>vip.getVipGradeCredit()){
+			if(map.get(vipGrade+1)==null&&map.get(vipGrade-1)!=null&&map.get(vipGrade-1).getVipGradeCredit()<vip.getVipGradeCredit()){
 				map.put(vipGrade, vip);
 				strategyDataHelper.updateVipData(map);
 				return true;
 			}
+			
+			
+			
 		}
 		return false;
 	}

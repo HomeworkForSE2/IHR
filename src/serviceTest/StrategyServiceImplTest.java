@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import serviceImpl.StrategyServiceImpl;
+import vo.OrderVO;
 import vo.StrategyVO;
 
 
@@ -75,24 +76,61 @@ public class StrategyServiceImplTest {
 		StrategyVO strategy0=new StrategyVO(1, "", 0.9, "20161001", "20161211");
 		StrategyVO strategy1=new StrategyVO(2, "", 0.91, "20161001", "20161211");
 		boolean a=test.setEnterpriseByHotel(strategy0, "华为");
-		boolean b=test.setEnterpriseByHotel(strategy0, "小米");
+		boolean b=test.setEnterpriseByHotel(strategy1, "小米");
 		assertEquals(a, true);
 		assertEquals(b, true);
 	}
 
 	@Test
 	public void testSetForVip() {
-		
+		StrategyServiceImpl test=new StrategyServiceImpl();
+		StrategyVO strategy0=new StrategyVO(1, "", 0.9, "20161001", "20161211");
+		StrategyVO strategy1=new StrategyVO(1, "", 0.8, "20161001", "20161211");
+		StrategyVO strategy2=new StrategyVO(1, "", 0.7, "20161001", "20161211");
+		StrategyVO strategy3=new StrategyVO(1, "", 0.6, "20161001", "20161211");
+		boolean a=test.setForVip(strategy0, "栖霞区", 2);
+		boolean b=test.setForVip(strategy1, "栖霞区", 3);
+		boolean c=test.setForVip(strategy2, "秦淮区", 4);
+		boolean d=test.setForVip(strategy3, "秦淮区", 5);
+		assertEquals(a,true);
+		assertEquals(b,true);
+		assertEquals(c,true);
+		assertEquals(d,true);
 	}
 
 	@Test
 	public void testSetVipGrade() {
-		fail("Not yet implemented");
+		StrategyServiceImpl test=new StrategyServiceImpl();
+		boolean a=test.setVipGrade(1, 500);
+		boolean b=test.setVipGrade(2, 800);
+		boolean c=test.setVipGrade(3, 1200);
+		boolean d=test.setVipGrade(4, 2400);
+		boolean e=test.setVipGrade(5, 5600);
+		boolean f=test.setVipGrade(5, 600);
+		boolean g=test.setVipGrade(6, 600);
+		boolean h=test.setVipGrade(7, 600);
+		assertEquals(a,true);
+		assertEquals(b,true);
+		assertEquals(c,true);
+		assertEquals(d,true);
+		assertEquals(e,true);
+		assertEquals(f,false);
+		assertEquals(g,false);
+		assertEquals(h,false);
+		
 	}
 
 	@Test
 	public void testViewHotelStrategyList() {
-		fail("Not yet implemented");
+		StrategyServiceImpl test=new StrategyServiceImpl();
+		int a=test.viewHotelStrategyList(1).size();
+		int b=test.viewHotelStrategyList(2).size();
+		int c=test.viewHotelStrategyList(3).size();
+		int d=test.viewHotelStrategyList(0).size();
+		assertEquals(a, 4);
+		assertEquals(b, 6);
+		assertEquals(c, 0);
+		assertEquals(d, 5);
 	}
 
 	@Test
@@ -100,9 +138,13 @@ public class StrategyServiceImplTest {
 		fail("Not yet implemented");
 	}
 
+	//初测
 	@Test
 	public void testCalcute() {
-		fail("Not yet implemented");
+		StrategyServiceImpl test=new StrategyServiceImpl();
+		OrderVO order=new OrderVO(1, 1, 1, 0, 300, 1000, "20161101", "20161102", "", 2, 3, true);
+	
+		System.out.println(test.calcute(order));
 	}
 
 }
