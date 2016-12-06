@@ -32,13 +32,13 @@ public class OrderPO {
 	private String endTime;
 	
 	private String finishTime;
-	
+	private String cancelTime;
 	private int roomType;
 	
 	private int roomNum;
 	
 	private boolean hasChildren;
-
+	
 	//
 	public OrderPO(int userID,int hotelID,int state, int credit, int price,String startTime, String endTime, String finishTime, int roomType,
 			int roomNum,boolean hasChildren,int orderID) {
@@ -154,6 +154,13 @@ public class OrderPO {
 		return orderID;
 	}
 
+	public void setCancelTime(String cancelTime) {
+		// TODO Auto-generated method stub
+		this.cancelTime=cancelTime;
+	}
+	public String getCancelTime(int orderID){
+		return cancelTime;
+	}
 	
 	
 	

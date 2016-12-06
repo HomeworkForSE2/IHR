@@ -104,7 +104,7 @@ public interface OrderService extends Remote{
 	
 	/**
 	 * 
-	 * @return 延迟入住，是否将异常订单置为撤销成功
+	 * @return 撤销订单（一为营销人员将异常订单置为撤销订单；二为用户将未执行订单置为撤销）
 	 */
 	public boolean setOrderUnusualToCancel(int orderID);
 	

@@ -15,11 +15,12 @@ import vo.OrderVO;
 
 
 public class OrderServiceImpl implements OrderService{
-
+	private static final int decision=1;//1 ->recover half ;0->recover everything
 	private static final int NotExecute = 0;
 	private static final int Execute = 1;
 	private static final int Unusual = 2;
 	private static final int Cancel = 3;
+	private static final int cancelTofinish=6;//距离最晚执行时间小于六小时时，用户撤销订单需要扣除信用值
 	private OrderDao orderDao;
 	private List<OrderPO> hotelOrderList;
 	private List<OrderPO> userOrderList;
@@ -31,7 +32,7 @@ public class OrderServiceImpl implements OrderService{
 	}
 	
 	@Override
-	//订单价值暂定为订单价格
+	//订单价值暂定为订单价格，信用值为订单价值的一半
 	public int getValue(int orderID) {
 		// TODO Auto-generated method stub
 		OrderPO orderPO=orderDao.getOrder(orderID);
@@ -171,6 +172,7 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
+	//感觉和上面cancel的方法重合了
 	public boolean cancelOrder(int orderID) {
 		// TODO Auto-generated method stub
 		if(orderDao.getOrder(orderID)==null){
@@ -181,42 +183,79 @@ public class OrderServiceImpl implements OrderService{
 
 	@Override
 	public boolean createOrder(OrderVO order) {
+		//根据各种策略计算订单价格的方法在orderPO写吗？？
 		int orderID=order.getOrderID();
 		OrderPO orderPO=orderDao.getOrder(orderID);
-		orderPO.setCredit(order.getCredit());
-		orderPO.setEndTime(order.getEndTime());
-		orderPO.setFinishTime(order.getEndTime());
-		orderPO.setHotelID(order.getCredit());
-		orderPO.setPrice(order.getCredit());
-		orderPO.setRoomNum(order.getCredit());
-		orderPO.setRoomType(order.getCredit());
-		orderPO.setStartTime(order.getEndTime());
-		orderPO.setState(order.getCredit());
-		orderPO.setUserID(order.getCredit());
-		return orderDao.updateOrder(orderPO);
+		if(orderPO.getCredit()<0){
+			return false;
+		}else{
+			orderPO.setCredit(order.getCredit());
+			orderPO.setEndTime(order.getEndTime());
+			orderPO.setFinishTime(order.getEndTime());
+			orderPO.setHotelID(order.getCredit());
+			orderPO.setPrice(order.getCredit());
+			orderPO.setRoomNum(order.getCredit());
+			orderPO.setRoomType(order.getCredit());
+			orderPO.setStartTime(order.getEndTime());
+			orderPO.setState(order.getCredit());
+			orderPO.setUserID(order.getCredit());
+			return orderDao.updateOrder(orderPO);
 		}
-
+	}
+	//这个方法不是由界面发起的，怎么做到系统自动更新？？
 	@Override
 	public boolean setOrderUnusual(int orderID) {
 		// TODO Auto-generated method stub
 		OrderPO orderPO=orderDao.getOrder(orderID);
 		orderPO.setState(Unusual);
+		CreditServiceImpl creditDeduce=new CreditServiceImpl();
+		creditDeduce.deduceCredit(orderPO.getOrderID(), orderPO.getCredit(), orderID);
 		return orderDao.updateOrder(orderPO);
 	}
 
 	@Override
 	public boolean setOrderUnusualToCancel(int orderID) {
 		// TODO Auto-generated method stub
+		
 		OrderPO orderPO=orderDao.getOrder(orderID);
-		orderPO.setState(Cancel);
-		return orderDao.updateOrder(orderPO);
+		//营销人员撤销异常订单
+		if(orderPO.getState()==Unusual){
+			orderPO.setState(Cancel);
+			Date date=new Date();
+			DateFormat format=new SimpleDateFormat("YYYYMMDDHH");//时间格式2016120609
+			String cancelTime=format.format(date);
+			orderPO.setCancelTime(cancelTime);
+			CreditServiceImpl creditRecover=new CreditServiceImpl();
+			creditRecover.recoverCredit(orderPO.getUserID(), decision, orderID);
+			return orderDao.updateOrder(orderPO);
+		}
+		//用户撤销未执行订单
+		if(orderPO.getState()==NotExecute){
+			orderPO.setState(Cancel);
+			Date date=new Date();
+			DateFormat format=new SimpleDateFormat("YYYYMMDDHH");//时间格式2016120609
+			String cancelTime=format.format(date);
+			orderPO.setCancelTime(cancelTime);
+			int cancel=Integer.parseInt(cancelTime);
+			int finish=Integer.parseInt(orderPO.getFinishTime());
+			//时间太短要扣除信用值
+			if(finish-cancel<cancelTofinish){
+				CreditServiceImpl creditDeduce=new CreditServiceImpl();
+				creditDeduce.deduceCredit(orderPO.getOrderID(), orderPO.getCredit(), orderID);
+			}
+			return orderDao.updateOrder(orderPO);
+		}
+		return false;
 	}
 
 	@Override
+	//延迟入住，订单状态变为已执行，恢复扣除的信用值
 	public boolean setOrderUnusualToExecute(int orderID) {
 		// TODO Auto-generated method stub
 		OrderPO orderPO=orderDao.getOrder(orderID);
 		orderPO.setState(Execute);
+		CreditServiceImpl creditRecover=new CreditServiceImpl();
+		creditRecover.recoverCredit(orderPO.getUserID(),decision, orderID);
 		return orderDao.updateOrder(orderPO);
 	}
 
@@ -225,6 +264,8 @@ public class OrderServiceImpl implements OrderService{
 		// TODO Auto-generated method stub
 		OrderPO orderPO=orderDao.getOrder(orderID);
 		orderPO.setState(Execute);
+		CreditServiceImpl creditAdd=new CreditServiceImpl();
+		creditAdd.addOrderFinishCredit(orderPO.getOrderID(), orderPO.getCredit(), orderID);
 		return orderDao.updateOrder(orderPO);
 	}
 
