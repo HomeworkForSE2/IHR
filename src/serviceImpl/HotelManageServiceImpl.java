@@ -32,8 +32,11 @@ public class HotelManageServiceImpl implements HotelManageService{
 	public boolean addHotelworker(UserInfoVO vo) {
 		// TODO Auto-generated method stub
 		HotelWorkerPO hw=new HotelWorkerPO(hotelNum, vo.getUserName(), vo.getPassword(), vo.getPhoneNumber(), 0);
-		hotelNum++;
-		return hotelManageDao.addHotelWorker(hw);
+		boolean result=hotelManageDao.addHotelWorker(hw);
+		if(result){
+			hotelNum++;
+		}
+		return result;
 	}
 
 }

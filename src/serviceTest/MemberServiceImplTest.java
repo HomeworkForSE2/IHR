@@ -7,6 +7,9 @@ import org.junit.Test;
 import serviceImpl.MemberServiceImpl;
 import vo.UserInfoVO;
 
+/*
+ * 已经测试完成
+ */
 public class MemberServiceImplTest {
 
 	@Before
@@ -20,10 +23,14 @@ public class MemberServiceImplTest {
 		UserInfoVO user2=new UserInfoVO(0, "宋吉哉", "nswdw1SJZ...", "1", 1);
 		UserInfoVO user3=new UserInfoVO(0, "单苏婉", "nswdw1SSW...", "1", 1);
 		MemberServiceImpl test=new MemberServiceImpl();
-		test.initialize(user0);	
-		test.initialize(user1);	
-		test.initialize(user2);	
-		test.initialize(user3);	
+		boolean a=test.initialize(user0);	
+		boolean b=test.initialize(user1);	
+		boolean c=test.initialize(user2);	
+		boolean d=test.initialize(user3);	
+		assertEquals(a, false);
+		assertEquals(b, false);
+		assertEquals(c, false);
+		assertEquals(d, false);
 	}
 
 	@Test

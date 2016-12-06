@@ -29,8 +29,11 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		//初始信用值300
 		UserPO u=new UserPO(userNum, user.getUserName(), user.getPassword(), user.getPhoneNumber(), 300);
-		userNum++;
-		return memberDao.insert(u);
+		boolean result=memberDao.insert(u);
+		if(result){
+			userNum++;
+		}
+		return result;
 	}
 
 	@Override

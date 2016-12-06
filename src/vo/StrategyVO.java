@@ -21,8 +21,9 @@ public class StrategyVO {
 	private String endTime;
 
 	//
-	public StrategyVO(String strategyName, double discount, String startTime, String endTime) {
+	public StrategyVO(int ownerId,String strategyName, double discount, String startTime, String endTime) {
 		super();
+		this.ownerId=ownerId;
 		this.strategyName = strategyName;
 		this.discount = discount;
 		this.startTime = startTime;

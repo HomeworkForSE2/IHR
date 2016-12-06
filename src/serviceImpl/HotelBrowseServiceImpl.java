@@ -14,8 +14,7 @@ import vo.HotelInfoVO;
 import vo.RoomConditionVO;
 
 public class HotelBrowseServiceImpl implements HotelBrowseService{
-
-	//是否应该持有ID
+	
 	
 	private HotelBrowseDao hotelBrowseDao;
 	
@@ -31,6 +30,9 @@ public class HotelBrowseServiceImpl implements HotelBrowseService{
 	public HotelInfoVO searchHotel(String hotelName) {
 		// TODO Auto-generated method stub
 		HotelPO hotel=hotelBrowseDao.searchHotel(hotelName);
+		if(hotel==null){
+			return null;
+		}
 		return new HotelInfoVO(hotel);
 	}
 

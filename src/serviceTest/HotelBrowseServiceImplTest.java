@@ -5,6 +5,11 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import serviceImpl.HotelBrowseServiceImpl;
+
+/*
+ * 还未写完
+ */
 public class HotelBrowseServiceImplTest {
 
 	@Before
@@ -13,7 +18,11 @@ public class HotelBrowseServiceImplTest {
 
 	@Test
 	public void testSearchHotel() {
-		fail("Not yet implemented");
+		HotelBrowseServiceImpl test=new HotelBrowseServiceImpl();
+		assertEquals(1,test.searchHotel("格林豪泰").getHotelID());
+		assertEquals(2,test.searchHotel("南大3栋").getHotelID());
+		assertEquals(3,test.searchHotel("南大2栋").getHotelID());
+		assertEquals(null,test.searchHotel("南大4栋"));
 	}
 
 	@Test
