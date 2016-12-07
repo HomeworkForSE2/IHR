@@ -176,5 +176,14 @@ public class OrderDaoImpl implements OrderDao{
 		// TODO Auto-generated method stub
 		return map.size();
 	}
+	
+	public static void main(String[] args) {
+		OrderDaoImpl go=new OrderDaoImpl();
+		
+		go.addOrder(new OrderPO(1, 1, 1, 1, 0, "20161111", "20161112", "20161112", 2, 2, false, "1,2"));
+		go.addOrder(new OrderPO(2, 1, 2, 1, 0, "20161111", "20161112", "20161112", 2, 2, false, "1,2"));
+		go.addOrder(new OrderPO(3, 1, 3, 1, 0, "20161111", "20161112", "20161112", 2, 2, false, "1,2"));
+		go.addOrder(new OrderPO(4, 1, 4, 1, 0, "20161111", "20161112", "20161112", 2, 2, false, "1,2"));
+	}
 
 }

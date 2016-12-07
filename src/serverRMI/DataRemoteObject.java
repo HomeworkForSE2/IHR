@@ -13,7 +13,7 @@ import service.HotelManageService;
 import service.JudgeService;
 import service.LoginService;
 import service.MemberService;
-import service.OrderServiceXX;
+import service.OrderService;
 import service.RoomService;
 import service.StrategyService;
 import service.UserInfoService;
@@ -25,7 +25,9 @@ import serviceImpl.HotelManageServiceImpl;
 import serviceImpl.JudgeServiceImpl;
 import serviceImpl.LoginServiceImpl;
 import serviceImpl.MemberServiceImpl;
-import serviceImpl.OrderServiceImpl;
+import serviceImpl.OrderByHotelServiceImpl;
+import serviceImpl.OrderByUserServiceImpl;
+import serviceImpl.OrderByWebServiceImpl;
 import serviceImpl.RoomServiceImpl;
 import serviceImpl.StrategyServiceImpl;
 import serviceImpl.UserInfoServiceImpl;
@@ -47,13 +49,13 @@ public class DataRemoteObject extends UnicastRemoteObject implements CreditServi
 	private JudgeService judgeService;
 	private LoginService loginService;
 	private MemberService memberService;
-	private OrderServiceXX orderService;
+	private OrderService orderService;
 	private RoomService roomService;
 	private StrategyService strategyService;
 	private UserInfoService userInfoService;
 	private UserManageService userManageService;
 	
-	protected DataRemoteObject(int hotelID) throws RemoteException, FileNotFoundException {
+	protected DataRemoteObject(int userID,int hotelID) throws RemoteException, FileNotFoundException {
 		creditService=new CreditServiceImpl();
 		hotelBrowseService=new HotelBrowseServiceImpl();
 		hotelInfoService=new HotelInfoServiceImpl();
@@ -61,7 +63,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements CreditServi
 		judgeService=new JudgeServiceImpl();
 		loginService=new LoginServiceImpl();
 		memberService=new MemberServiceImpl();
-		orderService=new OrderServiceImpl(hotelID);
+		
 		roomService=new RoomServiceImpl();
 		strategyService=new StrategyServiceImpl();
 		userInfoService=new UserInfoServiceImpl();

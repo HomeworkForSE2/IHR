@@ -81,7 +81,7 @@ public interface StrategyService extends Remote{
 	 * @param vo
 	 * @return 订单最低价格
 	 */
-	public double calcute(OrderVO vo);
+	public double calcute(int userID,int hotelID,double price,int roomNum);
 	
 	
 	

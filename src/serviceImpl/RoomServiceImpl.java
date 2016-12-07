@@ -27,12 +27,12 @@ public class RoomServiceImpl implements RoomService{
 	 * 具体实现为已roomNum循环创建，对应酒店ID、房间类型和价格的roomPO，并调用dao层的add方法	
 	 */
 	@Override
-	public boolean creatRoom(int hotelID, int roomType, int roomNum,int price) {
+	public boolean creatRoom(int hotelID, int roomType, int roomNum,double price) {
 		// TODO Auto-generated method stub
 		for(int i=0;i<roomNum;i++){
-			RoomPO room=new RoomPO(hotelID, roomType, roomNum, price, false);
+			RoomPO room=new RoomPO(this.roomNum, hotelID,roomType, price, false);
 			roomDao.addRoom(room);
-			roomNum++;
+			this.roomNum++;
 		}
 		return true;
 	}

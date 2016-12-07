@@ -60,7 +60,7 @@ public class OrderDataTxtHelper implements OrderDataHelper{
 				int userID=Integer.valueOf(data[1]);
 				int hotelID=Integer.valueOf(data[2]);
 				int state=Integer.valueOf(data[3]);
-				int price=Integer.valueOf(data[4]);
+				double price=Double.valueOf(data[4]);
 				String startTime=data[5];
 				String endTime=data[6];
 				String finishTime=data[7];

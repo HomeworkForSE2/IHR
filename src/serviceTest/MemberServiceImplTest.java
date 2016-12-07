@@ -36,7 +36,7 @@ public class MemberServiceImplTest {
 	@Test
 	public void testMember() {
 		MemberServiceImpl test=new MemberServiceImpl();
-		test.member(10001, "19970418", "华为");
+		test.member(10001, "", "华为");
 		test.member(10002, "19970419", "百度");
 		test.member(10003, "19970420", "阿里巴巴");
 		test.member(10004, "19970421", "腾讯");

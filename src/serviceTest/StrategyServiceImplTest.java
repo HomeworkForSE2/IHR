@@ -138,13 +138,13 @@ public class StrategyServiceImplTest {
 		fail("Not yet implemented");
 	}
 
-	//初测
+	//核心方法，初测成功
 	@Test
 	public void testCalcute() {
 		StrategyServiceImpl test=new StrategyServiceImpl();
-//		OrderVO order=new OrderVO(1, 1, 1, 0, 300, 1000, "20161101", "20161102", "", 2, 3, true);
-	
-//		System.out.println(test.calcute(order));
+		System.out.println(test.calcute(1, 2, 1000, 4));
+		System.out.println(test.calcute(1, 1, 1000, 4));
+		System.out.println(test.calcute(1, 1, 1000, 2));
 	}
 
 }

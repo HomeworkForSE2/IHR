@@ -88,6 +88,7 @@ public class OrderByUserServiceImpl extends OrderService{
 	 * num++
 	 */
 	public boolean createOrder(OrderVO order){
+		int userID=order.getUserId();
 		int hotelID=order.getHotelId();
 		int roomNum=order.getRoomNum();
 		int roomType=order.getRoomType();
@@ -135,9 +136,15 @@ public class OrderByUserServiceImpl extends OrderService{
 		if(roomList.size()<roomNum){
 			return false;
 		}
+		
 		//计算总价，记录房间号，生成PO
-		//少策略计算价格
 		double price=roomNum*roomList.get(0).getPrice();
+		
+		//策略计算总价
+		StrategyServiceImpl strategy=new StrategyServiceImpl();
+		price=strategy.calcute(userID, hotelID, price, roomNum);
+		
+		//写房间号
 		String roomID="";
 		for(int i=0;i<roomNum-1;i++){
 			roomID+=roomList.get(i).getRoomID()+",";

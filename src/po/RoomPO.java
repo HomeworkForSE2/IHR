@@ -2,7 +2,7 @@ package po;
 /*
  * roomID
  * 酒店ID
- * 房间类型
+ * 房间类型1单人房2双人房3三人房
  * 原始价格
  * 状态
  */
@@ -66,11 +66,6 @@ public class RoomPO {
 		this.state = state;
 	}
 
-	public void setRoomID(int roomID2) {
-		// TODO Auto-generated method stub
-		this.roomID=roomID;
-	}
-	
 	
 
 }

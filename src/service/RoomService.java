@@ -10,7 +10,7 @@ public interface RoomService extends Remote{
 	 * @param price
 	 * @return 是否创建房间成功
 	 */
-	public boolean creatRoom(int hotelID,int roomType,int roomNum,int price);
+	public boolean creatRoom(int hotelID,int roomType,int roomNum,double price);
 	/**
 	 * 
 	 * @param roomID
