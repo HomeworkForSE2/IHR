@@ -9,9 +9,9 @@ package po;
  * 退房时间
  * 房间类型
  * 数量
- * 房间号
  * 入住人数
  * 有无儿童
+ * 房间号
  */
 
 public class OrderPO {
@@ -24,7 +24,7 @@ public class OrderPO {
 	
 	private int state;
 	
-	private int price;
+	private double price;
 	
 	private String startTime;
 	
@@ -40,7 +40,7 @@ public class OrderPO {
 	
 	private String roomID;
 	
-	public OrderPO(int orderID, int userID, int hotelID, int state,int price, String startTime,
+	public OrderPO(int orderID, int userID, int hotelID, int state,double price, String startTime,
 			String endTime, String finishTime, int roomType, int roomNum, boolean hasChildren,String roomID) {
 		super();
 		this.orderID = orderID;
@@ -73,11 +73,11 @@ public class OrderPO {
 	}
 
 
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
@@ -158,6 +158,15 @@ public class OrderPO {
 		return orderID;
 	}
 
+	public boolean contains(int roomID){
+		String []data=this.roomID.split(",");
+		for(int i=0;i<data.length;i++){
+			if(roomID==Integer.valueOf(data[i])){
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	
 	

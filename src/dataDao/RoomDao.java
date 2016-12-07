@@ -33,7 +33,19 @@ public interface RoomDao {
 	 */
 	public int getRoomNum();
 
+	/**
+	 * 
+	 * @param hotelID
+	 * @return
+	 */
+	public List<RoomPO> getAllRoom(int hotelID);
 	
-	
+	/**
+	 * 
+	 * @param roomType
+	 * @param price
+	 * @param roomNum
+	 * @return
+	 */
 	public List<Integer> suitableHotelIDList(int roomType, int price, int roomNum);
 }

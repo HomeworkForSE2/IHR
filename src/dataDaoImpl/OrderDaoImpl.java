@@ -171,4 +171,10 @@ public class OrderDaoImpl implements OrderDao{
 		return list;
 	}
 
+	@Override
+	public int getOrderNum() {
+		// TODO Auto-generated method stub
+		return map.size();
+	}
+
 }

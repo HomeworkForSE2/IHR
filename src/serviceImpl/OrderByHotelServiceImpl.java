@@ -77,13 +77,33 @@ public class OrderByHotelServiceImpl extends OrderService{
 			roomDao.updateRoom(room);
 		}
 		
+		//增加用户信用值
+		CreditServiceImpl credit=new CreditServiceImpl();
+		credit.addOrderFinishCredit(order.getUserID(),(int) order.getPrice(), orderID);
 		return true;
 		
 	}
 	
 	//用户完成订单,包括更新房间信息
 	public boolean finishOrder(int orderID){
-		return false;
+		Date date=new Date();
+		DateFormat format=new SimpleDateFormat("yyyyMMddHH");
+		String time=format.format(date);
+		//订单完成时间
+		OrderPO order=orderDao.getOrder(orderID);
+		order.setFinishTime(time);
+		orderDao.updateOrder(order);
+		
+		//将房间状态置为false
+		List<Integer> roomList=orderDao.getRoomIDByOrder(orderID);
+		Iterator it=roomList.iterator();
+		while(it.hasNext()){
+			RoomPO room=roomDao.getRoom((int)it.next());
+			room.setState(false);
+			roomDao.updateRoom(room);
+		}
+		
+		return true;
 		
 	}
 	
@@ -101,7 +121,7 @@ public class OrderByHotelServiceImpl extends OrderService{
 			String startTime=order.getStartTime();
 			if(order.getState()==1&&Integer.valueOf(time)>Integer.valueOf(startTime)){
 				order.setState(3);
-				credit.deduceCredit(order.getUserID(), order.getPrice(), order.getOrderID());
+				credit.deduceCredit(order.getUserID(), (int)order.getPrice(), order.getOrderID());
 			}
 		}
 		
@@ -116,12 +136,12 @@ public class OrderByHotelServiceImpl extends OrderService{
 		
 		OrderPO order=orderDao.getOrder(orderID);
 		CreditServiceImpl credit=new CreditServiceImpl();
-		credit.recoverCredit(orderID, 1, orderID);
+		credit.recoverCredit(order.getUserID(), 1, orderID);
 		
 		order.setFinishTime(time);
 		order.setState(2);
 		orderDao.updateOrder(order);
-		return false;
+		return true;
 		
 	}
 	

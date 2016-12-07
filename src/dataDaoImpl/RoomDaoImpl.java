@@ -100,4 +100,16 @@ public class RoomDaoImpl implements RoomDao {
 		return map.size();
 	}
 
+	@Override
+	public List<RoomPO> getAllRoom(int hotelID) {
+		// TODO Auto-generated method stub
+		List<RoomPO> list=new ArrayList<>();
+		Iterator<Map.Entry<Integer,RoomPO>> it=map.entrySet().iterator();
+		while(it.hasNext()){
+			RoomPO room=(RoomPO)it.next();
+			list.add(room);
+		}
+		return list;
+	}
+
 }

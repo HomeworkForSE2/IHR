@@ -68,6 +68,16 @@ public interface OrderDao {
 	 */
 	public List<Integer> resHotelIDList(int userID);
 
+	/**
+	 * 
+	 * @return
+	 */
+	public int getOrderNum();
 	
+	/**
+	 * 
+	 * @param roomID
+	 * @return
+	 */
 	public int getUFRoomID(int roomID);
 }
