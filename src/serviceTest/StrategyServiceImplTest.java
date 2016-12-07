@@ -142,9 +142,9 @@ public class StrategyServiceImplTest {
 	@Test
 	public void testCalcute() {
 		StrategyServiceImpl test=new StrategyServiceImpl();
-		OrderVO order=new OrderVO(1, 1, 1, 0, 300, 1000, "20161101", "20161102", "", 2, 3, true);
+//		OrderVO order=new OrderVO(1, 1, 1, 0, 300, 1000, "20161101", "20161102", "", 2, 3, true);
 	
-		System.out.println(test.calcute(order));
+//		System.out.println(test.calcute(order));
 	}
 
 }

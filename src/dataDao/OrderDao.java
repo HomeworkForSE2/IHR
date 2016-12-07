@@ -16,9 +16,15 @@ public interface OrderDao {
 	/**
 	 * 
 	 * @param userID
-	 * @return 用户订单列表
+	 * @return
 	 */
 	public List<OrderPO> getUserOrderList(int userID);
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public List<OrderPO> getAllOrderList();
 	
 	/**
 	 * 
@@ -26,12 +32,14 @@ public interface OrderDao {
 	 * @return 订单信息
 	 */
 	public OrderPO getOrder(int orderID);
+	
 	/**
 	 * 
-	 * @param roomID
-	 * @return 订单信息
+	 * @param orderID
+	 * @return
 	 */
-	public OrderPO getOrderByRoomID(int roomID);
+	public List<Integer> getRoomIDByOrder(int orderID);
+	
 	/**
 	 * 
 	 * @param order
@@ -53,6 +61,13 @@ public interface OrderDao {
 	 */
 	public boolean updateOrder(OrderPO order);
 	
+	/**
+	 * 
+	 * @param userID
+	 * @return
+	 */
 	public List<Integer> resHotelIDList(int userID);
 
+	
+	public int getUFRoomID(int roomID);
 }

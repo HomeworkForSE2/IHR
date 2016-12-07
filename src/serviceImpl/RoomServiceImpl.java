@@ -1,7 +1,5 @@
 package serviceImpl;
 
-import java.awt.List;
-
 import dataDao.OrderDao;
 import dataDao.RoomDao;
 import dataDaoImpl.OrderDaoImpl;
@@ -11,59 +9,54 @@ import po.RoomPO;
 import service.RoomService;
 
 public class RoomServiceImpl implements RoomService{
-		private RoomDao roomDao;
-		public int  singleRoomPrice;
-		public int  doubleRoomPrice;
-		public int  tripleRoomPrice;
+	
+	private RoomDao roomDao;
 		
-		public RoomServiceImpl(){
-			roomDao=RoomDaoImpl.getInstance();
-			
-		}
-		public boolean initialRoomPrice(int hotelID,int roomType,int roomNum,int price){
-				switch(roomType){
-					case 1:singleRoomPrice=price;break;
-					case 2:doubleRoomPrice=price;break;
-					case 3:tripleRoomPrice=price;break;
-					default:return false;
-				}
-			return true;
-		}
-	@Override
-	public boolean creatRoom(int hotelID, int roomType, boolean state) {
-		// TODO Auto-generated method stub
-		int roomID=roomDao.getRoomID();
-		int price=0;
-		switch(roomType){
-		case 1:price=singleRoomPrice;break;
-		case 2:price=doubleRoomPrice;break;
-		case 3:price=tripleRoomPrice;break;
-		}
-		RoomPO roomPO=new RoomPO(hotelID, roomType, roomID,  price,  state);
-		return roomDao.addRoom(roomPO);
+	private OrderDao orderDao;
+		
+	private int roomNum;//这个在初始化时，通过调用dao层来获得
+		
+	public RoomServiceImpl(){
+		roomDao=RoomDaoImpl.getInstance();
+		orderDao=OrderDaoImpl.getInstance();
+		roomNum=roomDao.getRoomNum()+1;
 	}
-
+	
+	/*
+	 * 这个方法为创建房间方法，可以用来初始化，也可以后来添加房间
+	 * 具体实现为已roomNum循环创建，对应酒店ID、房间类型和价格的roomPO，并调用dao层的add方法	
+	 */
 	@Override
-	public boolean checkInRoom(int roomID, String startTime, String endTime) {
+	public boolean creatRoom(int hotelID, int roomType, int roomNum,int price) {
 		// TODO Auto-generated method stub
-		RoomPO room=roomDao.getRoomPO(roomID);
+		for(int i=0;i<roomNum;i++){
+			RoomPO room=new RoomPO(hotelID, roomType, roomNum, price, false);
+			roomDao.addRoom(room);
+			roomNum++;
+		}
+		return true;
+	}
+	
+	/*
+	 * 更新入住
+	 */
+	@Override
+	public boolean checkInRoom(int roomID) {
+		// TODO Auto-generated method stub
+		RoomPO room=roomDao.getRoom(roomID);
 		room.setState(true);
-		OrderDao orderDao=OrderDaoImpl.getInstance();
-		OrderPO order=orderDao.getOrderByRoomID(roomID);
-		order.setStartTime(startTime);
-		order.setEndTime(endTime);
-		return orderDao.updateOrder(order);
+		return roomDao.updateRoom(room);
 	}
 
+	/*
+	 * 更新退房
+	 */
 	@Override
-	public boolean checkOutRoom(int roomID, String finshTime) {
+	public boolean checkOutRoom(int roomID) {
 		// TODO Auto-generated method stub
-		RoomPO room=roomDao.getRoomPO(roomID);
+		RoomPO room=roomDao.getRoom(roomID);
 		room.setState(false);
-		OrderDao orderDao=OrderDaoImpl.getInstance();
-		OrderPO order=orderDao.getOrderByRoomID(roomID);
-		order.setFinishTime(finshTime);
-		return orderDao.updateOrder(order);
+		return roomDao.updateRoom(room);
 	}
 
 }

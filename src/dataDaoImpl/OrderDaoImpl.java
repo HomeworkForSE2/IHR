@@ -74,20 +74,18 @@ public class OrderDaoImpl implements OrderDao{
 		// TODO Auto-generated method stub
 		return map.get(orderID);
 	}
-	public OrderPO getOrderByRoomID(int roomID){
-		return map.get(roomID);
-	}
+	
 	@Override
 	public boolean addOrder(OrderPO order) {
 		// TODO Auto-generated method stub
 		
-		//int orderID=map.size();
 		int orderID=order.getOrderID();
 		map.put(orderID,order);
 		orderDataHelper.updateOrderData(map);
 		return true;
 	}
 
+	//删除订单操作是否有问题
 	@Override
 	public boolean deleteOrder(int orderID) {
 		// TODO Auto-generated method stub
@@ -133,19 +131,44 @@ public class OrderDaoImpl implements OrderDao{
 		}	
 		return list;
 	}
+
 	
-	public static void main(String[] args) {
-		OrderDaoImpl go=new OrderDaoImpl();
-		go.test();
+	//订单里记录房间号
+	@Override
+	public int getUFRoomID(int roomID) {
+		// TODO Auto-generated method stub
+		Iterator<Map.Entry<Integer, OrderPO>> it=map.entrySet().iterator();
+		while(it.hasNext()){
+			OrderPO order=it.next().getValue();
+			
+		}
+		return 0;
 	}
-	
-	public void test(){
-		System.out.println(resHotelIDList(0));
-		System.out.println(resHotelIDList(1));
-		System.out.println(resHotelIDList(2));
-		System.out.println(resHotelIDList(3));
+
+	@Override
+	public List<OrderPO> getAllOrderList() {
+		// TODO Auto-generated method stub
+		List<OrderPO>list=new ArrayList<OrderPO>();
+		Iterator<Map.Entry<Integer,OrderPO>> it=map.entrySet().iterator();
+		while(it.hasNext()){
+			Map.Entry<Integer,OrderPO> entry=it.next();
+			OrderPO order=entry.getValue();
+			list.add(order);
+			
+		}
+		return list;
 	}
-	
-	
+
+	@Override
+	public List<Integer> getRoomIDByOrder(int orderID) {
+		// TODO Auto-generated method stub
+		String roomID=map.get(orderID).getRoomID();
+		List<Integer> list=new ArrayList<>();
+		String[]data=roomID.split(",");
+		for(int i=0;i<data.length;i++){
+			list.add(Integer.valueOf(data[i]));
+		}
+		return list;
+	}
 
 }

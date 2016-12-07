@@ -9,7 +9,7 @@ import service.HotelManageService;
 import service.JudgeService;
 import service.LoginService;
 import service.MemberService;
-import service.OrderService;
+import service.OrderServiceXX;
 import service.RoomService;
 import service.StrategyService;
 import service.UserInfoService;
@@ -59,8 +59,8 @@ public class RemoteHelper {
 		return (MemberService)remote;
 	}
 	
-	public OrderService getOrderService(){
-		return (OrderService)remote;
+	public OrderServiceXX getOrderService(){
+		return (OrderServiceXX)remote;
 	}
 	
 	public RoomService getRoomService(){

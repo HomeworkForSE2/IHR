@@ -37,7 +37,7 @@ public class CreditServiceImpl implements CreditService {
 	}
 
 	@Override
-	public boolean addRechargeCredit(int userID, int credit, int orderID) {
+	public boolean addRechargeCredit(int userID, int credit,int orderID) {
 		UserPO user = userDao.findUser(userID);
 		int startCredit = user.getCredit();
 		
@@ -60,7 +60,7 @@ public class CreditServiceImpl implements CreditService {
 		int startCredit = user.getCredit();
 		
 		OrderPO order = orderDao.getOrder(orderID);
-		int credit = order.getCredit(); //decision==0 -> recover everything
+		int credit = order.getPrice(); //decision==0 -> recover everything
 		
 		if(dicision==1){ // dicision==1 -> recover half 
 			credit = (int) (credit*0.5);

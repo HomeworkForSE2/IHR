@@ -1,35 +1,33 @@
 package po;
 /*
- * 酒店
+ * roomID
+ * 酒店ID
  * 房间类型
- * 房间号
  * 原始价格
  * 状态
  */
 
 public class RoomPO {
-	private int hotelID;
-	
-	private int roomType;
 	
 	private int roomID;
 	
+	private int hotelID;
+	
+	private int roomType;
+		
 	private double price;
 	
 	private boolean state;//true ->已占用；false->空
 
 	//
-	public RoomPO(int hotelID, int roomType, int roomID, double price, boolean state) {
+	public RoomPO(int roomID, int roomType, int hotelID, double price, boolean state) {
 		super();
-		this.hotelID = hotelID;
-		this.roomType = roomType;
 		this.roomID = roomID;
+		this.roomType = roomType;
+		this.hotelID = hotelID;
 		this.price = price;
 		this.state = state;
 	}
-
-	//
-	
 
 	public int getRoomID() {
 		return roomID;
@@ -50,8 +48,6 @@ public class RoomPO {
 	public void setRoomType(int roomType) {
 		this.roomType = roomType;
 	}
-
-	
 
 	public double getPrice() {
 		

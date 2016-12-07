@@ -25,8 +25,6 @@ public class OrderVO {
 	
 	private int state;
 	
-	private int credit;
-	
 	private int price;
 	
 	private String startTime;
@@ -41,6 +39,7 @@ public class OrderVO {
 	
 	private boolean hasChildren;
 
+	private String roomID;
 	//
 	
 	
@@ -48,24 +47,23 @@ public class OrderVO {
 	//
 	public OrderVO(OrderPO order){
 		this.state=order.getState();
-		this.credit=order.getCredit();
 		this.startTime=order.getStartTime();
 		this.endTime=order.getEndTime();
 		this.finishTime=order.getFinishTime();
 		this.roomType=order.getRoomType();
 		this.roomNum=order.getRoomNum();
 		this.hasChildren=order.isHasChildren();
+		this.roomID=order.getRoomID();
 		
 	}
 
-	public OrderVO(int orderId, int userId, int hotelId, int state, int credit, int price, String startTime,
+	public OrderVO(int orderId, int userId, int hotelId, int state,int price, String startTime,
 			String endTime, String finishTime, int roomType, int roomNum, boolean hasChildren) {
 		super();
 		this.orderId = orderId;
 		this.userId = userId;
 		this.hotelId = hotelId;
 		this.state = state;
-		this.credit = credit;
 		this.price = price;
 		this.startTime = startTime;
 		this.endTime = endTime;
@@ -97,14 +95,6 @@ public class OrderVO {
 
 	public void setState(int state) {
 		this.state = state;
-	}
-
-	public int getCredit() {
-		return credit;
-	}
-
-	public void setCredit(int credit) {
-		this.credit = credit;
 	}
 
 	public String getStartTime() {
@@ -169,9 +159,4 @@ public class OrderVO {
 	}
 	
 	
-	
-	
-	
-	
-
 }

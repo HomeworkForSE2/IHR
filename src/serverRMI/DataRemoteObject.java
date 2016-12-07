@@ -13,7 +13,7 @@ import service.HotelManageService;
 import service.JudgeService;
 import service.LoginService;
 import service.MemberService;
-import service.OrderService;
+import service.OrderServiceXX;
 import service.RoomService;
 import service.StrategyService;
 import service.UserInfoService;
@@ -37,7 +37,7 @@ import vo.RoomConditionVO;
 import vo.StrategyVO;
 import vo.UserInfoVO;
 
-public class DataRemoteObject extends UnicastRemoteObject implements CreditService,HotelBrowseService,HotelInfoService,HotelManageService,JudgeService,LoginService,MemberService,OrderService,RoomService,StrategyService,UserInfoService,UserManageService{
+public class DataRemoteObject extends UnicastRemoteObject implements CreditService,HotelBrowseService,HotelInfoService,HotelManageService,JudgeService,LoginService,MemberService,OrderServiceXX,RoomService,StrategyService,UserInfoService,UserManageService{
 	private static final long serialVersionUID = 4029039744279087114L;
 	
 	private CreditService creditService;
@@ -47,7 +47,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements CreditServi
 	private JudgeService judgeService;
 	private LoginService loginService;
 	private MemberService memberService;
-	private OrderService orderService;
+	private OrderServiceXX orderService;
 	private RoomService roomService;
 	private StrategyService strategyService;
 	private UserInfoService userInfoService;

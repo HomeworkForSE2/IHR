@@ -16,8 +16,6 @@ import po.UserPO;
 
 public class OrderDataTxtHelper implements OrderDataHelper{
 
-	
-
 	@Override
 	public void updateOrderData(Map<Integer, OrderPO> map) {
 		// TODO Auto-generated method stub
@@ -32,7 +30,7 @@ public class OrderDataTxtHelper implements OrderDataHelper{
 					while(it.hasNext()){
 						Map.Entry<Integer,OrderPO> entry=it.next();
 						OrderPO order=entry.getValue();
-						String str=order.getUserID()+";"+order.getHotelID()+";"+order.getState()+";"+order.getCredit()+";"+order.getPrice()+";"+order.getStartTime()+";"+order.getEndTime()+";"+order.getFinishTime()+";"+order.getRoomType()+";"+order.getRoomNum()+";"+order.isHasChildren()+";"+order.getOrderID();
+						String str=order.getOrderID()+";"+order.getUserID()+";"+order.getHotelID()+";"+order.getState()+";"+order.getPrice()+";"+order.getStartTime()+";"+order.getEndTime()+";"+order.getFinishTime()+";"+order.getRoomType()+";"+order.getRoomNum()+";"+order.isHasChildren()+";"+order.getRoomID();
 						bw.write(str);
 						bw.newLine();
 					}
@@ -58,19 +56,20 @@ public class OrderDataTxtHelper implements OrderDataHelper{
 			
 			while(str!=null){
 				String []data=str.split(";");
-				int userID=Integer.valueOf(data[0]);
-				int hotelID=Integer.valueOf(data[1]);
-				int state=Integer.valueOf(data[2]);
-				int credit=Integer.valueOf(data[3]);
+				int orderID=Integer.valueOf(data[0]);
+				int userID=Integer.valueOf(data[1]);
+				int hotelID=Integer.valueOf(data[2]);
+				int state=Integer.valueOf(data[3]);
 				int price=Integer.valueOf(data[4]);
 				String startTime=data[5];
 				String endTime=data[6];
 				String finishTime=data[7];
 				int roomType=Integer.valueOf(data[8]);
 				int roomNum=Integer.valueOf(data[9]);
-				boolean isHasChildren =Boolean.getBoolean(data[10]);
-				int orderID=Integer.valueOf(data[11]);
-				OrderPO order=new OrderPO(userID, hotelID,state,credit,price,startTime,endTime,finishTime,roomType,roomNum,isHasChildren,orderID);
+				boolean isHasChildren =Boolean.valueOf(data[10]);
+				String roomID=data[11];
+				
+				OrderPO order=new OrderPO(orderID,userID, hotelID,state,price,startTime,endTime,finishTime,roomType,roomNum,isHasChildren,roomID);
 				map.put(orderID,order);
 				
 				str=br.readLine();				

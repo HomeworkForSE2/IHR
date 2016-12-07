@@ -19,18 +19,21 @@ public interface RoomDao {
 	 * @return 是否更新房间成功
 	 */
 	public boolean updateRoom(RoomPO room);
-	/**
-	 * 
-	 * 
-	 * @return 获得房间的ID
-	 */
-	public  int getRoomID();
+	
 	/**
 	 * 
 	 * @param roomID
-	 * @return 获得roomPO
+	 * @return
 	 */
-	public  RoomPO getRoomPO(int roomID);
+	public  RoomPO getRoom(int roomID);
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public int getRoomNum();
 
+	
+	
 	public List<Integer> suitableHotelIDList(int roomType, int price, int roomNum);
 }

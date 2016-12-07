@@ -1,20 +1,21 @@
 package po;
-/* 
- * 用户Id
- * 酒店Id
- * 状态（已执行、未执行正常、已撤销、异常）
- * 价值（信用值）
+/* 订单ID
+ * 用户ID
+ * 酒店ID
+ * 状态（1未执行、2已执行、3异常、4撤销）
  * 价格
  * 开始时间
- * 最晚订单执行时间
+ * 结束时间
  * 退房时间
  * 房间类型
  * 数量
+ * 房间号
  * 入住人数
  * 有无儿童
  */
 
 public class OrderPO {
+	
 	private int orderID;
 	
 	private int userID;
@@ -23,8 +24,6 @@ public class OrderPO {
 	
 	private int state;
 	
-	private int credit;
-	
 	private int price;
 	
 	private String startTime;
@@ -32,34 +31,47 @@ public class OrderPO {
 	private String endTime;
 	
 	private String finishTime;
-	private String cancelTime;
+	
 	private int roomType;
 	
 	private int roomNum;
 	
 	private boolean hasChildren;
 	
-	//
-	public OrderPO(int userID,int hotelID,int state, int credit, int price,String startTime, String endTime, String finishTime, int roomType,
-			int roomNum,boolean hasChildren,int orderID) {
+	private String roomID;
+	
+	public OrderPO(int orderID, int userID, int hotelID, int state,int price, String startTime,
+			String endTime, String finishTime, int roomType, int roomNum, boolean hasChildren,String roomID) {
 		super();
-		this.userID=userID;
-		this.hotelID=hotelID;
+		this.orderID = orderID;
+		this.userID = userID;
+		this.hotelID = hotelID;
 		this.state = state;
-		this.credit = credit;
-		this.price=price;
+		this.price = price;
 		this.startTime = startTime;
 		this.endTime = endTime;
 		this.finishTime = finishTime;
 		this.roomType = roomType;
+		this.roomID=roomID;
 		this.roomNum = roomNum;
-		this.hasChildren=hasChildren;
-		this.orderID=orderID;
+		this.hasChildren = hasChildren;
+	}
+	
+	
+	public String getRoomID() {
+		return roomID;
 	}
 
-	//
-	
-	
+
+	public void setRoomID(String roomID) {
+		this.roomID = roomID;
+	}
+
+
+	public void setOrderID(int orderID) {
+		this.orderID = orderID;
+	}
+
 
 	public int getPrice() {
 		return price;
@@ -91,14 +103,6 @@ public class OrderPO {
 
 	public void setState(int state) {
 		this.state = state;
-	}
-
-	public int getCredit() {
-		return credit;
-	}
-
-	public void setCredit(int credit) {
-		this.credit = credit;
 	}
 
 	public String getStartTime() {
@@ -154,13 +158,6 @@ public class OrderPO {
 		return orderID;
 	}
 
-	public void setCancelTime(String cancelTime) {
-		// TODO Auto-generated method stub
-		this.cancelTime=cancelTime;
-	}
-	public String getCancelTime(int orderID){
-		return cancelTime;
-	}
 	
 	
 	

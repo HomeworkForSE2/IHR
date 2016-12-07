@@ -60,14 +60,12 @@ public class RoomDaoImpl implements RoomDao {
 		
 		return false;
 	}
-	//获得订单的ID
-	public int getRoomID(){
-		return map.size();
-	}
+	
 	//根据roomID获得roomPO
-	public  RoomPO getRoomPO(int roomID){
+	public  RoomPO getRoom(int roomID){
 		return map.get(roomID);
 	}
+	
 	@Override
 	public List<Integer> suitableHotelIDList(int roomType,int price,int roomNum) {
 		// TODO Auto-generated method stub
@@ -94,6 +92,12 @@ public class RoomDaoImpl implements RoomDao {
 			count=0;
 		}
 		return hotelIDList;
+	}
+
+	@Override
+	public int getRoomNum() {
+		// TODO Auto-generated method stub
+		return map.size();
 	}
 
 }
