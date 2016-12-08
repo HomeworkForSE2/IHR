@@ -9,7 +9,9 @@ import java.util.List;
 
 import dataDao.OrderDao;
 import dataDao.RoomDao;
+import dataDao.UserDao;
 import dataDaoImpl.OrderDaoImpl;
+import dataDaoImpl.UserDaoImpl;
 import po.OrderPO;
 import po.RoomPO;
 import service.OrderService;
@@ -21,6 +23,8 @@ public class OrderByUserServiceImpl extends OrderService{
 	
 	private RoomDao roomDao;
 	
+	private UserDao userDao;
+	
 	private List<OrderPO> list;
 	
 	private int userID;
@@ -30,6 +34,7 @@ public class OrderByUserServiceImpl extends OrderService{
 	public OrderByUserServiceImpl(int userID) {
 		// TODO Auto-generated constructor stub
 		orderDao=OrderDaoImpl.getInstance();
+		userDao=UserDaoImpl.getInstance();
 		list=orderDao.getUserOrderList(userID);
 		this.userID=userID;
 		this.orderNum=orderDao.getOrderNum()+1;
@@ -59,19 +64,19 @@ public class OrderByUserServiceImpl extends OrderService{
 	}
 
 	@Override
-	public List<OrderVO> getNotExecuteOredr() {
+	public List<OrderVO> getNotExecuteOrder() {
 		// TODO Auto-generated method stub
 		return filter(list,1);
 	}
 
 	@Override
-	public List<OrderVO> getExecuteOredr() {
+	public List<OrderVO> getExecuteOrder() {
 		// TODO Auto-generated method stub
 		return filter(list,2);
 	}
 
 	@Override
-	public List<OrderVO> getUnusualOredr() {
+	public List<OrderVO> getUnusualOrder() {
 		// TODO Auto-generated method stub
 		return filter(list,3);
 	}
@@ -97,6 +102,11 @@ public class OrderByUserServiceImpl extends OrderService{
 		boolean hasChildren=order.isHasChildren();
 		int st=Integer.valueOf(startTime);
 		int et=Integer.valueOf(endTime);
+		
+		//小于0是在生成订单是阻止，还是阻止生成订单？
+		if(userDao.findUser(userID).getCredit()<0){
+			return false;
+		}
 		
 		//得到该酒店房间列表，删除不符合房型的房间
 		List<RoomPO> roomList=roomDao.getAllRoom(hotelID);
@@ -161,7 +171,6 @@ public class OrderByUserServiceImpl extends OrderService{
 		Date date=new Date();
 		DateFormat format=new SimpleDateFormat("yyyyMMddHH");
 		String time=format.format(date);
-		
 		OrderPO order=orderDao.getOrder(orderID);
 		String lastTime=order.getStartTime();
 		

@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import serviceImpl.OrderByWebServiceImpl;
+
 public class OrderByWebServiceImplTest {
 
 	@Before
@@ -13,37 +15,42 @@ public class OrderByWebServiceImplTest {
 
 	@Test
 	public void testGetAllOrder() {
-		fail("Not yet implemented");
+		OrderByWebServiceImpl test=new OrderByWebServiceImpl();
+		assertEquals(test.getAllOrder().size(),10);
+		
 	}
 
 	@Test
-	public void testGetNotExecuteOredr() {
-		fail("Not yet implemented");
+	public void testGetNotExecuteOrder() {
+		OrderByWebServiceImpl test=new OrderByWebServiceImpl();
+		assertEquals(test.getNotExecuteOrder().size(), 4);
 	}
 
 	@Test
-	public void testGetExecuteOredr() {
-		fail("Not yet implemented");
+	public void testGetExecuteOrder() {
+		OrderByWebServiceImpl test=new OrderByWebServiceImpl();
+		assertEquals(test.getExecuteOrder().size(), 2);
 	}
 
 	@Test
-	public void testGetUnusualOredr() {
-		fail("Not yet implemented");
+	public void testGetUnusualOrder() {
+		OrderByWebServiceImpl test=new OrderByWebServiceImpl();
+		assertEquals(test.getUnusualOrder().size(), 1);
 	}
 
 	@Test
 	public void testGetCancelOrder() {
-		fail("Not yet implemented");
+		OrderByWebServiceImpl test=new OrderByWebServiceImpl();
+		assertEquals(test.getCancelOrder().size(), 3);
 	}
-
-	@Test
-	public void testOrderByWebServiceImpl() {
-		fail("Not yet implemented");
-	}
-
+	
+	//初测成功
 	@Test
 	public void testCancelUnusualOrder() {
-		fail("Not yet implemented");
+		OrderByWebServiceImpl test=new OrderByWebServiceImpl();
+		test.cancelUnusualOrder(1, 0);
+		test.cancelUnusualOrder(4, 1);
+		test.cancelUnusualOrder(7, 0);
 	}
 
 }

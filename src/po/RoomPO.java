@@ -20,11 +20,11 @@ public class RoomPO {
 	private boolean state;//true ->已占用；false->空
 
 	//
-	public RoomPO(int roomID, int roomType, int hotelID, double price, boolean state) {
+	public RoomPO(int roomID, int hotelID, int roomType, double price, boolean state) {
 		super();
 		this.roomID = roomID;
-		this.roomType = roomType;
 		this.hotelID = hotelID;
+		this.roomType = roomType;
 		this.price = price;
 		this.state = state;
 	}

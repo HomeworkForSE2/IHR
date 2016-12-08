@@ -74,10 +74,4 @@ public interface OrderDao {
 	 */
 	public int getOrderNum();
 	
-	/**
-	 * 
-	 * @param roomID
-	 * @return
-	 */
-	public int getUFRoomID(int roomID);
 }

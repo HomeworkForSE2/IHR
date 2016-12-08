@@ -19,14 +19,14 @@ public abstract class OrderService implements Remote{
 	 * @param ID
 	 * @return 未执行订单
 	 */
-	public abstract List<OrderVO> getNotExecuteOredr();
+	public abstract List<OrderVO> getNotExecuteOrder();
 	
 	/**
 	 * 
 	 * @param ID
 	 * @return 已经执行订单
 	 */
-	public abstract List<OrderVO> getExecuteOredr();
+	public abstract List<OrderVO> getExecuteOrder();
 	
 	
 	/**
@@ -34,7 +34,7 @@ public abstract class OrderService implements Remote{
 	 * @param ID
 	 * @return 异常订单
 	 */
-	public abstract List<OrderVO> getUnusualOredr();
+	public abstract List<OrderVO> getUnusualOrder();
 	
 	/**
 	 * 

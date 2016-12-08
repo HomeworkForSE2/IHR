@@ -32,11 +32,11 @@ public class RoomDataTxtHelper implements RoomDataHelper{
 			while(str!=null){
 				String []data=str.split(";");
 				int roomID=Integer.valueOf(data[0]);
-				int roomType=Integer.valueOf(data[1]);
-				int hotelID=Integer.valueOf(data[2]);
+				int hotelID=Integer.valueOf(data[1]);
+				int roomType=Integer.valueOf(data[2]);
 				double price=Double.valueOf(data[3]);
-				boolean state=Boolean.getBoolean(data[4]);
-				RoomPO room=new RoomPO(roomID,roomType,hotelID,price,state);
+				boolean state=Boolean.valueOf(data[4]);
+				RoomPO room=new RoomPO(roomID,hotelID,roomType,price,state);
 				map.put(roomID, room);
 				
 				str=br.readLine();				
@@ -67,7 +67,7 @@ public class RoomDataTxtHelper implements RoomDataHelper{
 					while(it.hasNext()){
 						Map.Entry<Integer, RoomPO> entry=it.next();
 						RoomPO room=entry.getValue();
-						String str=room.getRoomID()+";"+room.getRoomType()+";"+room.getHotelID()+";"+room.getPrice()+";"+room.isState();
+						String str=room.getRoomID()+";"+room.getHotelID()+";"+room.getRoomType()+";"+room.getPrice()+";"+room.isState();
 						bw.write(str);
 						bw.newLine();
 					}

@@ -38,19 +38,19 @@ public class OrderByHotelServiceImpl extends OrderService{
 	}
 
 	@Override
-	public List<OrderVO> getNotExecuteOredr() {
+	public List<OrderVO> getNotExecuteOrder() {
 		// TODO Auto-generated method stub
 		return OrderByUserServiceImpl.filter(list, 1);
 	}
 
 	@Override
-	public List<OrderVO> getExecuteOredr() {
+	public List<OrderVO> getExecuteOrder() {
 		// TODO Auto-generated method stub
 		return OrderByUserServiceImpl.filter(list, 2);
 	}
 
 	@Override
-	public List<OrderVO> getUnusualOredr() {
+	public List<OrderVO> getUnusualOrder() {
 		// TODO Auto-generated method stub
 		return OrderByUserServiceImpl.filter(list, 3);
 	}
@@ -62,7 +62,7 @@ public class OrderByHotelServiceImpl extends OrderService{
 	}
 	
 	//用户入住开始执行订单,修改订单信息和房间信息
-	public boolean executeOredr(int orderID){
+	public boolean executeOrder(int orderID){
 		//订单置为已执行
 		OrderPO order=orderDao.getOrder(orderID);
 		order.setState(2);
@@ -107,7 +107,7 @@ public class OrderByHotelServiceImpl extends OrderService{
 		
 	}
 	
-	//自动,每小时遍历一次(还未实现),对所有的订单进行遍历
+	//自动,每小时遍历一次,对所有的订单进行遍历(原型)，已经写了时间器来实现
 	public boolean setNotExecuteToUnusual(){
 		Date date=new Date();
 		DateFormat format=new SimpleDateFormat("yyyyMMddHH");
@@ -128,7 +128,11 @@ public class OrderByHotelServiceImpl extends OrderService{
 		return true;
 		
 	}
-	//情况（即延迟入住），该订单置为已执行订单，恢复扣除的信用
+	
+	
+	/* 情况（即延迟入住），将异常订单置为已执行订单，恢复用户扣除的信用
+	 * 缺少对orderID的限制
+	 */
 	public boolean setUnusualToExecute(int orderID){
 		Date date=new Date();
 		DateFormat format=new SimpleDateFormat("yyyyMMddHH");
@@ -136,7 +140,7 @@ public class OrderByHotelServiceImpl extends OrderService{
 		
 		OrderPO order=orderDao.getOrder(orderID);
 		CreditServiceImpl credit=new CreditServiceImpl();
-		credit.recoverCredit(order.getUserID(), 1, orderID);
+		credit.recoverCredit(order.getUserID(), 0, orderID);
 		
 		order.setFinishTime(time);
 		order.setState(2);

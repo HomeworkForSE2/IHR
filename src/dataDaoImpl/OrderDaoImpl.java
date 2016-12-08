@@ -133,17 +133,6 @@ public class OrderDaoImpl implements OrderDao{
 	}
 
 	
-	//订单里记录房间号
-	@Override
-	public int getUFRoomID(int roomID) {
-		// TODO Auto-generated method stub
-		Iterator<Map.Entry<Integer, OrderPO>> it=map.entrySet().iterator();
-		while(it.hasNext()){
-			OrderPO order=it.next().getValue();
-			
-		}
-		return 0;
-	}
 
 	@Override
 	public List<OrderPO> getAllOrderList() {
@@ -179,11 +168,18 @@ public class OrderDaoImpl implements OrderDao{
 	
 	public static void main(String[] args) {
 		OrderDaoImpl go=new OrderDaoImpl();
+//		go.addOrder(new OrderPO(orderID, userID, hotelID, state, price, startTime, endTime, finishTime, roomType, roomNum, hasChildren, roomID))
+//		go.addOrder(new OrderPO(1, 1, 1, 1, 400, "20161111", "20161112", "20161111", 1, 2, false, "11,12"));//1号用户分别在1、2、3、4、5号酒店的未执行、已执行、未执行、异常、撤销订单
+//		go.addOrder(new OrderPO(2, 1, 2, 2, 600, "20161111", "20161112", "20161111", 2, 2, false, "21,22"));
+//		go.addOrder(new OrderPO(3, 1, 3, 1, 1000, "20161111", "20161112", "20161111", 3, 2, false, "31,32"));
+//		go.addOrder(new OrderPO(4, 1, 4, 3, 400, "20161111", "20161112", "20161113", 2, 2, false, "41,42"));
+//		go.addOrder(new OrderPO(5, 1, 5, 4, 400, "20161111", "20161112", "20161113", 2, 2, false, "51,52"));
+//		go.addOrder(new OrderPO(6, 2, 1, 1, 400, "20161111", "20161112", "20161113", 2, 2, false, "11,12"));//2号用户在1号酒店的未执行和2号酒店已执行
+//		go.addOrder(new OrderPO(7, 2, 1, 1, 600, "20161111", "20161112", "20161113", 3, 2, false, "13,14"));
+//		go.addOrder(new OrderPO(8, 2, 2, 2, 300, "20161111", "20161112", "20161113", 3, 1, false, "23"));
+//		go.addOrder(new OrderPO(9, 3, 4, 3, 300, "20161111", "20161112", "20161113", 3, 1, false, "43"));//3号用户在4号酒店的异常、5号的撤销
+//		go.addOrder(new OrderPO(10, 3, 5, 4, 300, "20161111", "20161112", "20161113", 3, 1, false, "53"));
 		
-		go.addOrder(new OrderPO(1, 1, 1, 1, 0, "20161111", "20161112", "20161112", 2, 2, false, "1,2"));
-		go.addOrder(new OrderPO(2, 1, 2, 1, 0, "20161111", "20161112", "20161112", 2, 2, false, "1,2"));
-		go.addOrder(new OrderPO(3, 1, 3, 1, 0, "20161111", "20161112", "20161112", 2, 2, false, "1,2"));
-		go.addOrder(new OrderPO(4, 1, 4, 1, 0, "20161111", "20161112", "20161112", 2, 2, false, "1,2"));
 	}
 
 }

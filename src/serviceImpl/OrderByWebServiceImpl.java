@@ -29,19 +29,19 @@ public class OrderByWebServiceImpl extends OrderService{
 	}
 
 	@Override
-	public List<OrderVO> getNotExecuteOredr() {
+	public List<OrderVO> getNotExecuteOrder() {
 		// TODO Auto-generated method stub
 		return OrderByUserServiceImpl.filter(list, 1);
 	}
 
 	@Override
-	public List<OrderVO> getExecuteOredr() {
+	public List<OrderVO> getExecuteOrder() {
 		// TODO Auto-generated method stub
 		return OrderByUserServiceImpl.filter(list, 2);
 	}
 
 	@Override
-	public List<OrderVO> getUnusualOredr() {
+	public List<OrderVO> getUnusualOrder() {
 		// TODO Auto-generated method stub
 		return OrderByUserServiceImpl.filter(list, 3);
 	}
@@ -61,7 +61,7 @@ public class OrderByWebServiceImpl extends OrderService{
 		OrderPO order=orderDao.getOrder(orderID);
 		
 		CreditServiceImpl credit=new CreditServiceImpl();
-		credit.recoverCredit(orderID, dec, orderID);//这个方法有无问题？
+		credit.recoverCredit(order.getUserID(), dec, orderID);//这个方法有无问题？
 		
 		order.setFinishTime(time);
 		order.setState(4);
