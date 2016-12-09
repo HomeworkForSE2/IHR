@@ -12,10 +12,10 @@ import dataDaoImpl.OrderDaoImpl;
 import dataDaoImpl.RoomDaoImpl;
 import po.OrderPO;
 import po.RoomPO;
-import service.OrderService;
+import service.OrderByHotelService;
 import vo.OrderVO;
 
-public class OrderByHotelServiceImpl extends OrderService{
+public class OrderByHotelServiceImpl implements OrderByHotelService{
 
 	private OrderDao orderDao;
 	
@@ -23,40 +23,46 @@ public class OrderByHotelServiceImpl extends OrderService{
 	
 	private List<OrderPO> list;
 	
-	public OrderByHotelServiceImpl(int hotelID) {
+	public OrderByHotelServiceImpl() {
 		// TODO Auto-generated constructor stub
 		orderDao=OrderDaoImpl.getInstance();
 		roomDao=RoomDaoImpl.getInstance();
+	}
+	
+	@Override
+	public boolean initHotel(int hotelID) {
+		// TODO Auto-generated method stub
 		list=orderDao.getHotelOrderList(hotelID);
+		return true;
 	}
 	
 	
 	@Override
-	public List<OrderVO> getAllOrder() {
+	public List<OrderVO> getAllHotelOrder() {
 		// TODO Auto-generated method stub
 		return OrderByUserServiceImpl.filter(list, 0);
 	}
 
 	@Override
-	public List<OrderVO> getNotExecuteOrder() {
+	public List<OrderVO> getHotelNotExecuteOrder() {
 		// TODO Auto-generated method stub
 		return OrderByUserServiceImpl.filter(list, 1);
 	}
 
 	@Override
-	public List<OrderVO> getExecuteOrder() {
+	public List<OrderVO> getHotelExecuteOrder() {
 		// TODO Auto-generated method stub
 		return OrderByUserServiceImpl.filter(list, 2);
 	}
 
 	@Override
-	public List<OrderVO> getUnusualOrder() {
+	public List<OrderVO> getHotelUnusualOrder() {
 		// TODO Auto-generated method stub
 		return OrderByUserServiceImpl.filter(list, 3);
 	}
 
 	@Override
-	public List<OrderVO> getCancelOrder() {
+	public List<OrderVO> getHotelCancelOrder() {
 		// TODO Auto-generated method stub
 		return OrderByUserServiceImpl.filter(list, 4);
 	}
@@ -148,6 +154,8 @@ public class OrderByHotelServiceImpl extends OrderService{
 		return true;
 		
 	}
+
+
 	
 
 }

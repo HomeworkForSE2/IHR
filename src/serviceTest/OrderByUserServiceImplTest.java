@@ -15,52 +15,67 @@ public class OrderByUserServiceImplTest {
 
 	@Test
 	public void testGetAllOrder() {
-		OrderByUserServiceImpl test0=new OrderByUserServiceImpl(1);
-		OrderByUserServiceImpl test1=new OrderByUserServiceImpl(2);
-		OrderByUserServiceImpl test2=new OrderByUserServiceImpl(3);
-		assertEquals(test0.getAllOrder().size(), 5);
-		assertEquals(test1.getAllOrder().size(), 3);
-		assertEquals(test2.getAllOrder().size(), 2);
+		OrderByUserServiceImpl test0=new OrderByUserServiceImpl();
+		OrderByUserServiceImpl test1=new OrderByUserServiceImpl();
+		OrderByUserServiceImpl test2=new OrderByUserServiceImpl();
+		test0.initUser(1);
+		test1.initUser(2);
+		test2.initUser(3);
+		assertEquals(test0.getAllUserOrder().size(), 5);
+		assertEquals(test1.getAllUserOrder().size(), 3);
+		assertEquals(test2.getAllUserOrder().size(), 2);
 	}
 
 	@Test
 	public void testGetNotExecuteOrder() {
-		OrderByUserServiceImpl test0=new OrderByUserServiceImpl(1);
-		OrderByUserServiceImpl test1=new OrderByUserServiceImpl(2);
-		OrderByUserServiceImpl test2=new OrderByUserServiceImpl(3);
-		assertEquals(test0.getNotExecuteOrder().size(), 1);
-		assertEquals(test1.getNotExecuteOrder().size(), 2);
-		assertEquals(test2.getNotExecuteOrder().size(), 0);
+		OrderByUserServiceImpl test0=new OrderByUserServiceImpl();
+		OrderByUserServiceImpl test1=new OrderByUserServiceImpl();
+		OrderByUserServiceImpl test2=new OrderByUserServiceImpl();
+		test0.initUser(1);
+		test1.initUser(2);
+		test2.initUser(3);
+		assertEquals(test0.getUserNotExecuteOrder().size(), 1);
+		assertEquals(test1.getUserNotExecuteOrder().size(), 2);
+		assertEquals(test2.getUserNotExecuteOrder().size(), 0);
 	}
 
 	@Test
 	public void testGetExecuteOrder() {
-		OrderByUserServiceImpl test0=new OrderByUserServiceImpl(1);
-		OrderByUserServiceImpl test1=new OrderByUserServiceImpl(2);
-		OrderByUserServiceImpl test2=new OrderByUserServiceImpl(3);
-		assertEquals(test0.getExecuteOrder().size(), 3);
-		assertEquals(test1.getExecuteOrder().size(), 1);
-		assertEquals(test2.getExecuteOrder().size(), 1);
+		OrderByUserServiceImpl test0=new OrderByUserServiceImpl();
+		OrderByUserServiceImpl test1=new OrderByUserServiceImpl();
+		OrderByUserServiceImpl test2=new OrderByUserServiceImpl();
+		test0.initUser(1);
+		test1.initUser(2);
+		test2.initUser(3);
+		assertEquals(test0.getUserExecuteOrder().size(), 3);
+		assertEquals(test1.getUserExecuteOrder().size(), 1);
+		assertEquals(test2.getUserExecuteOrder().size(), 1);
 	}
 
 	@Test
 	public void testGetUnusualOrder() {
-		OrderByUserServiceImpl test0=new OrderByUserServiceImpl(1);
-		OrderByUserServiceImpl test1=new OrderByUserServiceImpl(2);
-		OrderByUserServiceImpl test2=new OrderByUserServiceImpl(3);
-		assertEquals(test0.getUnusualOrder().size(), 0);
-		assertEquals(test1.getUnusualOrder().size(), 1);
-		assertEquals(test2.getUnusualOrder().size(), 1);
+		OrderByUserServiceImpl test0=new OrderByUserServiceImpl();
+		OrderByUserServiceImpl test1=new OrderByUserServiceImpl();
+		OrderByUserServiceImpl test2=new OrderByUserServiceImpl();
+		test0.initUser(1);
+		test1.initUser(2);
+		test2.initUser(3);
+		assertEquals(test0.getUserUnusualOrder().size(), 0);
+		assertEquals(test1.getUserUnusualOrder().size(), 1);
+		assertEquals(test2.getUserUnusualOrder().size(), 1);
 	}
 
 	@Test
 	public void testGetCancelOrder() {
-		OrderByUserServiceImpl test0=new OrderByUserServiceImpl(1);
-		OrderByUserServiceImpl test1=new OrderByUserServiceImpl(2);
-		OrderByUserServiceImpl test2=new OrderByUserServiceImpl(3);
-		assertEquals(test0.getCancelOrder().size(), 1);
-		assertEquals(test1.getCancelOrder().size(), 0);
-		assertEquals(test2.getCancelOrder().size(), 1);
+		OrderByUserServiceImpl test0=new OrderByUserServiceImpl();
+		OrderByUserServiceImpl test1=new OrderByUserServiceImpl();
+		OrderByUserServiceImpl test2=new OrderByUserServiceImpl();
+		test0.initUser(1);
+		test1.initUser(2);
+		test2.initUser(3);
+		assertEquals(test0.getUserCancelOrder().size(), 1);
+		assertEquals(test1.getUserCancelOrder().size(), 0);
+		assertEquals(test2.getUserCancelOrder().size(), 1);
 		
 	}
 
@@ -79,7 +94,7 @@ public class OrderByUserServiceImplTest {
 	//初测成功
 	@Test
 	public void testCancelOrder() {
-		OrderByUserServiceImpl test0=new OrderByUserServiceImpl(1);
+		OrderByUserServiceImpl test0=new OrderByUserServiceImpl();
 		test0.cancelOrder(1);
 	}
 

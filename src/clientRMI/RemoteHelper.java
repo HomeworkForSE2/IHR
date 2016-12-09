@@ -9,7 +9,9 @@ import service.HotelManageService;
 import service.JudgeService;
 import service.LoginService;
 import service.MemberService;
-import service.OrderService;
+import service.OrderByHotelService;
+import service.OrderByUserService;
+import service.OrderByWebService;
 import service.RoomService;
 import service.StrategyService;
 import service.UserInfoService;
@@ -59,10 +61,6 @@ public class RemoteHelper {
 		return (MemberService)remote;
 	}
 	
-	public OrderService getOrderService(){
-		return (OrderService)remote;
-	}
-	
 	public RoomService getRoomService(){
 		return (RoomService)remote;
 	}
@@ -79,5 +77,16 @@ public class RemoteHelper {
 		return (UserManageService)remote;
 	}
 	
+	public OrderByHotelService getOrderByHotelService(){
+		return (OrderByHotelService)remote;
+	}
+	
+	public OrderByUserService getOrderByUserService(){
+		return (OrderByUserService)remote;
+	}
+	
+	public OrderByWebService getOrderByWebService(){
+		return (OrderByWebService)remote;
+	}
 
 }

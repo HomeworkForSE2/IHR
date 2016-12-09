@@ -1,10 +1,7 @@
 package service;
 
 import java.rmi.Remote;
-import java.util.List;
-
-import dataDao.UserDao;
-import vo.HotelInfoVO;
+import java.rmi.RemoteException;
 import vo.UserInfoVO;
 
 public interface UserInfoService extends Remote{
@@ -14,7 +11,7 @@ public interface UserInfoService extends Remote{
 	 * @param userID
 	 * @return 用户基本信息
 	 */
-	public UserInfoVO showUserInfo(int userID);
+	public UserInfoVO showUserInfo(int userID)throws RemoteException;
 		
 
 	
@@ -23,7 +20,7 @@ public interface UserInfoService extends Remote{
 	 * @param userInfo
 	 * @return 是否修改用户信息成功
 	 */
-	public boolean modifyUserInfo(UserInfoVO userInfo);
+	public boolean modifyUserInfo(UserInfoVO userInfo)throws RemoteException;
 	
 
 }

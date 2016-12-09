@@ -1,9 +1,8 @@
 package service;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.List;
-
-import vo.OrderVO;
 import vo.StrategyVO;
 
 public interface StrategyService extends Remote{
@@ -14,7 +13,7 @@ public interface StrategyService extends Remote{
 	 * @param strategy
 	 * @return 是否制定特殊时期策略成功
 	 */
-	public boolean setSpecialTimeByHotel(StrategyVO strategy);
+	public boolean setSpecialTimeByHotel(StrategyVO strategy)throws RemoteException;
 	
 	/**
 	 * 
@@ -22,21 +21,21 @@ public interface StrategyService extends Remote{
 	 * @param roomNum
 	 * @return 是否制定预订房间数策略成功
 	 */
-	public boolean setResRoomNumByHotel(StrategyVO strategy ,int roomNum);
+	public boolean setResRoomNumByHotel(StrategyVO strategy ,int roomNum)throws RemoteException;
 	
 	/**
 	 * 
 	 * @param StrategyVO	
 	 * @return 是否制定特殊时期策略（网站）成功
 	 */
-	public boolean setSpecialTimeByWeb(StrategyVO strategy);
+	public boolean setSpecialTimeByWeb(StrategyVO strategy)throws RemoteException;
 	
 	/**
 	 * 
 	 * @param StrategyVO
 	 * @return 是否制定生日策略成功
 	 */
-	public boolean setBirthdayByHotel(StrategyVO strategy);
+	public boolean setBirthdayByHotel(StrategyVO strategy)throws RemoteException;
 	
 	/**
 	 * 
@@ -44,7 +43,7 @@ public interface StrategyService extends Remote{
 	 * @param String
 	 * @return 是否制定合作企业策略成功
 	 */
-	public boolean setEnterpriseByHotel(StrategyVO strategy,String enterpriseName);
+	public boolean setEnterpriseByHotel(StrategyVO strategy,String enterpriseName)throws RemoteException;
 	
 	/**
 	 * 
@@ -53,7 +52,7 @@ public interface StrategyService extends Remote{
 	 * @param BD
 	 * @return 是否制定会员相关策略成功
 	 */
-	public boolean setForVip(StrategyVO strategy,String BD,int vipGrade);
+	public boolean setForVip(StrategyVO strategy,String BD,int vipGrade)throws RemoteException;
 	
 	/**
 	 * 
@@ -61,27 +60,27 @@ public interface StrategyService extends Remote{
 	 * @param credit
 	 * @return 是否制定会员等级成功
 	 */
-	public boolean setVipGrade(int vipGrade,int credit);
+	public boolean setVipGrade(int vipGrade,int credit)throws RemoteException;
 	
 	/**
 	 * 
 	 * @param hotelName
 	 * @return 酒店策略列表
 	 */
-	public List<StrategyVO> viewHotelStrategyList(int hotelID);
+	public List<StrategyVO> viewHotelStrategyList(int hotelID)throws RemoteException;
 	
 	/**
 	 * 
 	 * @return 网站策略列表
 	 */
-	public List<StrategyVO> viewWebStrategyList();
+	public List<StrategyVO> viewWebStrategyList()throws RemoteException;
 	
 	/**
 	 * 
 	 * @param vo
 	 * @return 订单最低价格
 	 */
-	public double calcute(int userID,int hotelID,double price,int roomNum);
+	public double calcute(int userID,int hotelID,double price,int roomNum)throws RemoteException;
 	
 	
 	

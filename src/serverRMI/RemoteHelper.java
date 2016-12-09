@@ -16,7 +16,7 @@ public class RemoteHelper {
 	public void initServer() throws FileNotFoundException{
 		DataRemoteObject dataRemoteObject;
 		try {
-			dataRemoteObject = new DataRemoteObject(10);
+			dataRemoteObject = new DataRemoteObject();
 			LocateRegistry.createRegistry(8888);
 			Naming.bind("rmi://localhost:8888/DataRemoteObject",
 					dataRemoteObject);
