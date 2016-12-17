@@ -14,10 +14,10 @@ import dataDaoImpl.OrderDaoImpl;
 import dataDaoImpl.UserDaoImpl;
 import po.OrderPO;
 import po.RoomPO;
-import service.OrderByUserService;
+import service.OrderService;
 import vo.OrderVO;
 
-public class OrderByUserServiceImpl implements OrderByUserService{
+public class OrderByUserServiceImpl extends OrderService{
 
 	private OrderDao orderDao;
 	
@@ -31,19 +31,13 @@ public class OrderByUserServiceImpl implements OrderByUserService{
 	
 	private int orderNum;
 	
-	public OrderByUserServiceImpl() {
+	public OrderByUserServiceImpl(int userID) {
 		// TODO Auto-generated constructor stub
 		orderDao=OrderDaoImpl.getInstance();
-		userDao=UserDaoImpl.getInstance();		
-		this.orderNum=orderDao.getOrderNum()+1;
-	}
-	
-	@Override
-	public boolean initUser(int userID) {
-		// TODO Auto-generated method stub
+		userDao=UserDaoImpl.getInstance();
 		list=orderDao.getUserOrderList(userID);
 		this.userID=userID;
-		return true;
+		this.orderNum=orderDao.getOrderNum()+1;
 	}
 	
 	public static List<OrderVO> filter(List<OrderPO> list,int orderType){
@@ -64,31 +58,31 @@ public class OrderByUserServiceImpl implements OrderByUserService{
 	}
 	
 	@Override
-	public List<OrderVO> getAllUserOrder() {
+	public List<OrderVO> getAllOrder() {
 		// TODO Auto-generated method stub
 		return filter(list,0);
 	}
 
 	@Override
-	public List<OrderVO> getUserNotExecuteOrder() {
+	public List<OrderVO> getNotExecuteOrder() {
 		// TODO Auto-generated method stub
 		return filter(list,1);
 	}
 
 	@Override
-	public List<OrderVO> getUserExecuteOrder() {
+	public List<OrderVO> getExecuteOrder() {
 		// TODO Auto-generated method stub
 		return filter(list,2);
 	}
 
 	@Override
-	public List<OrderVO> getUserUnusualOrder() {
+	public List<OrderVO> getUnusualOrder() {
 		// TODO Auto-generated method stub
 		return filter(list,3);
 	}
 
 	@Override
-	public List<OrderVO> getUserCancelOrder() {
+	public List<OrderVO> getCancelOrder() {
 		// TODO Auto-generated method stub
 		return filter(list,4);
 	}
@@ -193,7 +187,5 @@ public class OrderByUserServiceImpl implements OrderByUserService{
 		return true;
 		
 	}
-
-	
 
 }

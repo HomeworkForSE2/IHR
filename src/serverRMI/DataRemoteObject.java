@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
+
+import po.MemberPO;
 import service.CreditService;
 import service.HotelBrowseService;
 import service.HotelInfoService;
@@ -11,9 +13,7 @@ import service.HotelManageService;
 import service.JudgeService;
 import service.LoginService;
 import service.MemberService;
-import service.OrderByHotelService;
-import service.OrderByUserService;
-import service.OrderByWebService;
+import service.OrderService;
 import service.RoomService;
 import service.StrategyService;
 import service.UserInfoService;
@@ -39,7 +39,7 @@ import vo.RoomConditionVO;
 import vo.StrategyVO;
 import vo.UserInfoVO;
 
-public class DataRemoteObject extends UnicastRemoteObject implements CreditService,HotelBrowseService,HotelInfoService,HotelManageService,JudgeService,LoginService,MemberService,RoomService,StrategyService,UserInfoService,UserManageService,OrderByUserService,OrderByHotelService,OrderByWebService{
+public class DataRemoteObject extends UnicastRemoteObject implements CreditService,HotelBrowseService,HotelInfoService,HotelManageService,JudgeService,LoginService,MemberService,OrderServiceXX,RoomService,StrategyService,UserInfoService,UserManageService{
 	private static final long serialVersionUID = 4029039744279087114L;
 	
 	private CreditService creditService;
@@ -49,15 +49,13 @@ public class DataRemoteObject extends UnicastRemoteObject implements CreditServi
 	private JudgeService judgeService;
 	private LoginService loginService;
 	private MemberService memberService;
-	private OrderByHotelService orderByHotelService;
-	private OrderByUserService orderByUserService;
-	private OrderByWebService orderByWebService;
+	private OrderService orderService;
 	private RoomService roomService;
 	private StrategyService strategyService;
 	private UserInfoService userInfoService;
 	private UserManageService userManageService;
 	
-	protected DataRemoteObject() throws RemoteException, FileNotFoundException {
+	protected DataRemoteObject(int userID,int hotelID) throws RemoteException, FileNotFoundException {
 		creditService=new CreditServiceImpl();
 		hotelBrowseService=new HotelBrowseServiceImpl();
 		hotelInfoService=new HotelInfoServiceImpl();
@@ -65,312 +63,277 @@ public class DataRemoteObject extends UnicastRemoteObject implements CreditServi
 		judgeService=new JudgeServiceImpl();
 		loginService=new LoginServiceImpl();
 		memberService=new MemberServiceImpl();
-		orderByHotelService=new OrderByHotelServiceImpl();
-		orderByUserService=new OrderByUserServiceImpl();
-		orderByWebService=new OrderByWebServiceImpl();
+		
 		roomService=new RoomServiceImpl();
 		strategyService=new StrategyServiceImpl();
 		userInfoService=new UserInfoServiceImpl();
 		userManageService=new UserManageServiceImpl();
 	}
 	@Override
-	public UserInfoVO showUserInfo(String userName) throws RemoteException {
+	public UserInfoVO showUserInfo(String userName) {
 		// TODO Auto-generated method stub
 		return userManageService.showUserInfo(userName);
 	}
 	@Override
-	public boolean addWebsiteWorker(UserInfoVO vo) throws RemoteException {
+	public boolean addWebsiteWorker(UserInfoVO vo) {
 		// TODO Auto-generated method stub
 		return userManageService.addWebsiteWorker(vo);
 	}
 	@Override
-	public UserInfoVO showUserInfo(int userID) throws RemoteException {
+	public UserInfoVO showUserInfo(int userID) {
 		// TODO Auto-generated method stub
 		return userInfoService.showUserInfo(userID);
 	}
 	@Override
-	public List<HotelInfoVO> showReservedHotel(int userID) throws RemoteException {
+	public List<HotelInfoVO> showReservedHotel(int userID) {
 		// TODO Auto-generated method stub
 		return hotelBrowseService.showReservedHotel(userID);
 	}
 	@Override
-	public boolean modifyUserInfo(UserInfoVO userInfo) throws RemoteException {
+	public boolean modifyUserInfo(UserInfoVO userInfo) {
 		// TODO Auto-generated method stub
 		return userInfoService.modifyUserInfo(userInfo);
 	}
 	@Override
-	public boolean setSpecialTimeByHotel(StrategyVO strategy) throws RemoteException {
+	public boolean setSpecialTimeByHotel(StrategyVO strategy) {
 		// TODO Auto-generated method stub
 		return strategyService.setSpecialTimeByHotel(strategy);
 	}
 	@Override
-	public boolean setResRoomNumByHotel(StrategyVO strategy, int roomNum) throws RemoteException {
+	public boolean setResRoomNumByHotel(StrategyVO strategy, int roomNum) {
 		// TODO Auto-generated method stub
 		return strategyService.setResRoomNumByHotel(strategy, roomNum);
 	}
 	@Override
-	public boolean setSpecialTimeByWeb(StrategyVO strategy) throws RemoteException {
+	public boolean setSpecialTimeByWeb(StrategyVO strategy) {
 		// TODO Auto-generated method stub
 		return strategyService.setSpecialTimeByWeb(strategy);
 	}
 	@Override
-	public boolean setBirthdayByHotel(StrategyVO strategy) throws RemoteException {
+	public boolean setBirthdayByHotel(StrategyVO strategy) {
 		// TODO Auto-generated method stub
 		return strategyService.setBirthdayByHotel(strategy);
 	}
 	@Override
-	public boolean setEnterpriseByHotel(StrategyVO strategy, String enterpriseName) throws RemoteException {
+	public boolean setEnterpriseByHotel(StrategyVO strategy, String enterpriseName) {
 		// TODO Auto-generated method stub
 		return strategyService.setEnterpriseByHotel(strategy, enterpriseName);
 	}
 	@Override
-	public boolean setForVip(StrategyVO strategy, String BD,int vipGrade) throws RemoteException {
+	public boolean setForVip(StrategyVO strategy, String BD,int vipGrade) {
 		// TODO Auto-generated method stub
 		return strategyService.setForVip(strategy, BD,vipGrade);
 	}
 	@Override
-	public boolean setVipGrade(int vipGrade, int credit) throws RemoteException {
+	public boolean setVipGrade(int vipGrade, int credit) {
 		// TODO Auto-generated method stub
 		return strategyService.setVipGrade(vipGrade, credit);
 	}
 	@Override
-	public List<StrategyVO> viewHotelStrategyList(int hotelID) throws RemoteException {
+	public List<StrategyVO> viewHotelStrategyList(int hotelID) {
 		// TODO Auto-generated method stub
 		return strategyService.viewHotelStrategyList(hotelID);
 	}
 	@Override
-	public List<StrategyVO> viewWebStrategyList() throws RemoteException {
+	public List<StrategyVO> viewWebStrategyList() {
 		// TODO Auto-generated method stub
 		return strategyService.viewWebStrategyList();
 	}
+	@Override
+	public double calcute(OrderVO vo) {
+		// TODO Auto-generated method stub
+		return strategyService.calcute(vo);
+	}
+	@Override
+	public boolean creatRoom(int hotelID, int roomType, boolean state, int price) {
+		// TODO Auto-generated method stub
+		return roomService.creatRoom(hotelID, roomType, state, price);
+	}
+	@Override
+	public boolean checkInRoom(int roomID, String startTime, String endTime) {
+		// TODO Auto-generated method stub
+		return roomService.checkInRoom(roomID, startTime, endTime);
+	}
+	@Override
+	public boolean checkOutRoom(int roomID, String finshTime) {
+		// TODO Auto-generated method stub
+		return roomService.checkOutRoom(roomID, finshTime);
+	}
+	@Override
+	public int getValue(int orderID) {
+		// TODO Auto-generated method stub
+		return orderService.getValue(orderID);
+	}
+	@Override
+	public List<OrderVO> getUserAllOrder(int userID) {
+		// TODO Auto-generated method stub
+		return orderService.getUserAllOrder(userID);
+	}
+	@Override
+	public List<OrderVO> getUserNotExecuteOredr(int userID) {
+		// TODO Auto-generated method stub
+		return orderService.getUserNotExecuteOredr(userID);
+	}
+	@Override
+	public List<OrderVO> getUserExecuteOredr(int userID) {
+		// TODO Auto-generated method stub
+		return orderService.getUserExecuteOredr(userID);
+	}
+	@Override
+	public List<OrderVO> getUserUnusualOredr(int userID) {
+		// TODO Auto-generated method stub
+		return orderService.getUserUnusualOredr(userID);
+	}
+	@Override
+	public List<OrderVO> getUserCancelOrder(int userID) {
+		// TODO Auto-generated method stub
+		return orderService.getUserCancelOrder(userID);
+	}
+	@Override
+	public List<OrderVO> getHotelAllOrder(int hotelID) {
+		// TODO Auto-generated method stub
+		return orderService.getHotelAllOrder(hotelID);
+	}
+	@Override
+	public List<OrderVO> getHotelNotExecuteOredr(int hotelID) {
+		// TODO Auto-generated method stub
+		return orderService.getHotelNotExecuteOredr(hotelID);
+	}
+	@Override
+	public List<OrderVO> getHotelExecuteOredr(int hotelID) {
+		// TODO Auto-generated method stub
+		return orderService.getHotelExecuteOredr(hotelID);
+	}
+	@Override
+	public List<OrderVO> getHotelUnusualOredr(int hotelID) {
+		// TODO Auto-generated method stub
+		return orderService.getHotelUnusualOredr(hotelID);
+	}
+	@Override
+	public List<OrderVO> getHotelCancelOrder(int hotelID) {
+		// TODO Auto-generated method stub
+		return orderService.getHotelCancelOrder(hotelID);
+	}
 
 	@Override
-	public boolean initialize(UserInfoVO user) throws RemoteException {
+	public boolean initialize(UserInfoVO user) {
 		// TODO Auto-generated method stub
 		return memberService.initialize(user);
 	}
 	@Override
-	public boolean member(int userID,String birthday,String enterpriseName) throws RemoteException {
+	public boolean member(int userID,String birthday,String enterpriseName) {
 		// TODO Auto-generated method stub
 		return memberService.member(userID,birthday,enterpriseName);
 	}
 	
 	@Override
-	public boolean login(String userName, String password) throws RemoteException {
+	public boolean login(String userName, String password) {
 		// TODO Auto-generated method stub
 		return loginService.login(userName, password);
 	}
 	@Override
-	public List<HotelInfoVO> viewNotJudgeHotelList(int userID) throws RemoteException {
+	public List<HotelInfoVO> viewNotJudgeHotelList(int userID) {
 		// TODO Auto-generated method stub
 		return judgeService.viewNotJudgeHotelList(userID);
 	}
 	@Override
-	public boolean setJudge(int userId, int hotelId, int star, String evaluation) throws RemoteException {
+	public boolean setJudge(int userId, int hotelId, int star, String evaluation) {
 		// TODO Auto-generated method stub
 		return judgeService.setJudge(userId, hotelId, star, evaluation);
 	}
 	@Override
-	public boolean addHotel(HotelInfoVO hotel) throws RemoteException {
+	public boolean addHotel(HotelInfoVO hotel) {
 		// TODO Auto-generated method stub
 		return hotelManageService.addHotel(hotel);
 	}
 	@Override
-	public boolean addHotelworker(UserInfoVO vo) throws RemoteException {
+	public boolean addHotelworker(UserInfoVO vo) {
 		// TODO Auto-generated method stub
 		return hotelManageService.addHotelworker(vo);
 	}
 	@Override
-	public boolean maintainHotelInfo(HotelInfoVO hotel) throws RemoteException {
+	public boolean maintainHotelInfo(HotelInfoVO hotel) {
 		// TODO Auto-generated method stub
 		return hotelInfoService.maintainHotelInfo(hotel);
 	}
 	@Override
-	public HotelInfoVO searchHotel(String hotelName) throws RemoteException {
+	public HotelInfoVO searchHotel(String hotelName) {
 		// TODO Auto-generated method stub
 		return hotelBrowseService.searchHotel(hotelName);
 	}
 	@Override
-	public List<HotelInfoVO> viewHotelList(String location, String BD, RoomConditionVO room, int star, int judgeScore) throws RemoteException {
+	public List<HotelInfoVO> viewHotelList(String location, String BD, RoomConditionVO room, int star, int judgeScore) {
 		// TODO Auto-generated method stub
 		return hotelBrowseService.viewHotelList(location, BD, room, star, judgeScore);
 	}
 	@Override
-	public boolean addRechargeCredit(int userID, int credit, int orderID) throws RemoteException {
+	public boolean addRechargeCredit(int userID, int credit, int orderID) {
 		// TODO Auto-generated method stub
 		return creditService.addRechargeCredit(userID, credit, orderID);
 	}
 	@Override
-	public boolean recoverCredit(int userID, int dicision, int orderID) throws RemoteException {
+	public boolean recoverCredit(int userID, int dicision, int orderID) {
 		// TODO Auto-generated method stub
 		return creditService.recoverCredit(userID, dicision, orderID);
 	}
 	@Override
-	public boolean deduceCredit(int userID, int credit, int orderID) throws RemoteException {
+	public boolean deduceCredit(int userID, int credit, int orderID) {
 		// TODO Auto-generated method stub
 		return creditService.deduceCredit(userID, credit, orderID);
 	}
 	@Override
-	public boolean addOrderFinishCredit(int userID, int credit, int orderID) throws RemoteException {
+	public boolean addOrderFinishCredit(int userID, int credit, int orderID) {
 		// TODO Auto-generated method stub
 		return creditService.addOrderFinishCredit(userID, credit, orderID);
 	}
 	@Override
-	public List<CreditChangeVO> showCreditRecord(int userID) throws RemoteException {
+	public List<CreditChangeVO> showCreditRecord(int userID) {
 		// TODO Auto-generated method stub
 		return creditService.showCreditRecord(userID);
 	}
-	
 	@Override
-	public boolean loginAdmin(String password) throws RemoteException {
+	public boolean cancelOrder(int orderID) {
+		// TODO Auto-generated method stub
+		return orderService.cancelOrder(orderID);
+	}
+	@Override
+	public boolean createOrder(OrderVO order) {
+		// TODO Auto-generated method stub
+		return orderService.createOrder(order);
+	}
+	@Override
+	public boolean setOrderUnusual(int orderID) {
+		// TODO Auto-generated method stub
+		return orderService.setOrderUnusual(orderID);
+	}
+	@Override
+	public boolean setOrderUnusualToCancel(int orderID) {
+		// TODO Auto-generated method stub
+		return orderService.setOrderUnusualToCancel(orderID);
+	}
+	@Override
+	public boolean setOrderUnusualToExecute(int orderID) {
+		// TODO Auto-generated method stub
+		return orderService.setOrderUnusualToExecute(orderID);
+	}
+	@Override
+	public boolean setOrderExecute(int orderID) {
+		// TODO Auto-generated method stub
+		return orderService.setOrderExecute(orderID);
+	}
+	@Override
+	public boolean loginAdmin(String password) {
 		// TODO Auto-generated method stub
 		return loginService.loginAdmin(password);
 	}
 	@Override
-	public HotelInfoVO findHotel(int hotelID) throws RemoteException {
+	public HotelInfoVO findHotel(int hotelID) {
 		// TODO Auto-generated method stub
 		return hotelInfoService.findHotel(hotelID);
 	}
 	@Override
-	public boolean memberUpdate(int userID, String birthday, String enterpriseName) throws RemoteException {
+	public boolean memberUpdate(int userID, String birthday, String enterpriseName) {
 		// TODO Auto-generated method stub
 		return memberService.memberUpdate(userID, birthday, enterpriseName);
 	}
-	@Override
-	public double calcute(int userID, int hotelID, double price, int roomNum) throws RemoteException {
-		// TODO Auto-generated method stub
-		return strategyService.calcute(userID, hotelID, price, roomNum);
-	}
-	@Override
-	public boolean creatRoom(int hotelID, int roomType, int roomNum, double price) throws RemoteException {
-		// TODO Auto-generated method stub
-		return roomService.creatRoom(hotelID, roomType, roomNum, price);
-	}
-	@Override
-	public boolean checkInRoom(int roomID) throws RemoteException {
-		// TODO Auto-generated method stub
-		return roomService.checkInRoom(roomID);
-	}
-	@Override
-	public boolean checkOutRoom(int roomID) throws RemoteException {
-		// TODO Auto-generated method stub
-		return roomService.checkOutRoom(roomID);
-	}
-	@Override
-	public List<OrderVO> getAllWebOrder() throws RemoteException {
-		// TODO Auto-generated method stub
-		return orderByWebService.getAllWebOrder();
-	}
-	@Override
-	public List<OrderVO> getWebNotExecuteOrder() throws RemoteException {
-		// TODO Auto-generated method stub
-		return orderByWebService.getWebNotExecuteOrder();
-	}
-	@Override
-	public List<OrderVO> getWebExecuteOrder() throws RemoteException {
-		// TODO Auto-generated method stub
-		return orderByWebService.getWebExecuteOrder();
-	}
-	@Override
-	public List<OrderVO> getWebUnusualOrder() throws RemoteException {
-		// TODO Auto-generated method stub
-		return orderByWebService.getWebUnusualOrder();
-	}
-	@Override
-	public List<OrderVO> getWebCancelOrder() throws RemoteException {
-		// TODO Auto-generated method stub
-		return orderByWebService.getWebCancelOrder();
-	}
-	@Override
-	public boolean cancelUnusualOrder(int orderID, int dec) throws RemoteException {
-		// TODO Auto-generated method stub
-		return orderByWebService.cancelUnusualOrder(orderID, dec);
-	}
-	@Override
-	public boolean initHotel(int ID) throws RemoteException {
-		// TODO Auto-generated method stub
-		return orderByHotelService.initHotel(ID);
-		
-	}
-	@Override
-	public List<OrderVO> getAllHotelOrder() throws RemoteException {
-		// TODO Auto-generated method stub
-		return orderByHotelService.getAllHotelOrder();
-	}
-	@Override
-	public List<OrderVO> getHotelNotExecuteOrder() throws RemoteException {
-		// TODO Auto-generated method stub
-		return orderByHotelService.getHotelNotExecuteOrder();
-	}
-	@Override
-	public List<OrderVO> getHotelExecuteOrder() throws RemoteException {
-		// TODO Auto-generated method stub
-		return orderByHotelService.getHotelExecuteOrder();
-	}
-	@Override
-	public List<OrderVO> getHotelUnusualOrder() throws RemoteException {
-		// TODO Auto-generated method stub
-		return orderByHotelService.getHotelUnusualOrder();
-	}
-	@Override
-	public List<OrderVO> getHotelCancelOrder() throws RemoteException {
-		// TODO Auto-generated method stub
-		return orderByHotelService.getHotelCancelOrder();
-	}
-	@Override
-	public boolean executeOrder(int orderID) throws RemoteException {
-		// TODO Auto-generated method stub
-		return orderByHotelService.executeOrder(orderID);
-	}
-	@Override
-	public boolean finishOrder(int orderID) throws RemoteException {
-		// TODO Auto-generated method stub
-		return orderByHotelService.finishOrder(orderID);
-	}
-	@Override
-	public boolean setUnusualToExecute(int orderID) throws RemoteException {
-		// TODO Auto-generated method stub
-		return orderByHotelService.setUnusualToExecute(orderID);
-	}
-	@Override
-	public boolean initUser(int ID) throws RemoteException {
-		// TODO Auto-generated method stub
-		return orderByUserService.initUser(ID);
-	}
-	@Override
-	public List<OrderVO> getAllUserOrder()throws RemoteException {
-		// TODO Auto-generated method stub
-		return orderByUserService.getAllUserOrder();
-	}
-	@Override
-	public List<OrderVO> getUserNotExecuteOrder() throws RemoteException{
-		// TODO Auto-generated method stub
-		return orderByUserService.getUserNotExecuteOrder();
-	}
-	@Override
-	public List<OrderVO> getUserExecuteOrder()throws RemoteException {
-		// TODO Auto-generated method stub
-		return orderByUserService.getUserExecuteOrder();
-	}
-	@Override
-	public List<OrderVO> getUserUnusualOrder() throws RemoteException{
-		// TODO Auto-generated method stub
-		return orderByUserService.getUserUnusualOrder();
-	}
-	@Override
-	public List<OrderVO> getUserCancelOrder() throws RemoteException{
-		// TODO Auto-generated method stub
-		return orderByUserService.getUserCancelOrder();
-	}
-	@Override
-	public boolean createOrder(OrderVO order) throws RemoteException{
-		// TODO Auto-generated method stub
-		return orderByUserService.createOrder(order);
-	}
-	@Override
-	public boolean cancelOrder(int orderID) throws RemoteException{
-		// TODO Auto-generated method stub
-		return orderByUserService.cancelOrder(orderID);
-	}
-	
 }

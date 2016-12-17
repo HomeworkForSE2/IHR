@@ -1,7 +1,6 @@
 package service;
 
 import java.rmi.Remote;
-import java.rmi.RemoteException;
 
 public interface RoomService extends Remote{
 	/**
@@ -11,7 +10,7 @@ public interface RoomService extends Remote{
 	 * @param price
 	 * @return 是否创建房间成功
 	 */
-	public boolean creatRoom(int hotelID,int roomType,int roomNum,double price)throws RemoteException;
+	public boolean creatRoom(int hotelID,int roomType,int roomNum,double price);
 	/**
 	 * 
 	 * @param roomID
@@ -19,7 +18,7 @@ public interface RoomService extends Remote{
 	 * @param endTime
 	 * @return 是否更新房间信息（入住）成功
 	 */
-	public boolean checkInRoom(int roomID)throws RemoteException;
+	public boolean checkInRoom(int roomID);
 	
 	/**
 	 * 
@@ -27,6 +26,6 @@ public interface RoomService extends Remote{
 	 * @param finshTime
 	 * @return 是否更新房间信息（退房）成功
 	 */
-	public boolean checkOutRoom(int roomID)throws RemoteException;
+	public boolean checkOutRoom(int roomID);
 
 }

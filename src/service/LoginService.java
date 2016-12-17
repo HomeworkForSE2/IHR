@@ -1,7 +1,6 @@
 package service;
 
 import java.rmi.Remote;
-import java.rmi.RemoteException;
 
 public interface LoginService extends Remote{
 	/**
@@ -10,13 +9,13 @@ public interface LoginService extends Remote{
 	 * @param password
 	 * @return 是否登陆成功
 	 */
-	public boolean login(String userName,String password) throws RemoteException;
+	public boolean login(String userName,String password);
 	
 	/**
 	 * 
 	 * @param password
 	 * @return 管理员是否登陆成功
 	 */
-	public boolean loginAdmin(String password) throws RemoteException;
+	public boolean loginAdmin(String password);
 
 }

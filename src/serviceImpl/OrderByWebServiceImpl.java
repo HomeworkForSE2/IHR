@@ -8,10 +8,10 @@ import java.util.List;
 import dataDao.OrderDao;
 import dataDaoImpl.OrderDaoImpl;
 import po.OrderPO;
-import service.OrderByWebService;
+import service.OrderService;
 import vo.OrderVO;
 
-public class OrderByWebServiceImpl implements OrderByWebService{
+public class OrderByWebServiceImpl extends OrderService{
 
 	private OrderDao orderDao;
 	
@@ -22,33 +22,32 @@ public class OrderByWebServiceImpl implements OrderByWebService{
 		orderDao=OrderDaoImpl.getInstance();
 		list=orderDao.getAllOrderList();
 	}
-	
 	@Override
-	public List<OrderVO> getAllWebOrder() {
+	public List<OrderVO> getAllOrder() {
 		// TODO Auto-generated method stub
 		return OrderByUserServiceImpl.filter(list, 0);
 	}
 
 	@Override
-	public List<OrderVO> getWebNotExecuteOrder() {
+	public List<OrderVO> getNotExecuteOrder() {
 		// TODO Auto-generated method stub
 		return OrderByUserServiceImpl.filter(list, 1);
 	}
 
 	@Override
-	public List<OrderVO> getWebExecuteOrder() {
+	public List<OrderVO> getExecuteOrder() {
 		// TODO Auto-generated method stub
 		return OrderByUserServiceImpl.filter(list, 2);
 	}
 
 	@Override
-	public List<OrderVO> getWebUnusualOrder() {
+	public List<OrderVO> getUnusualOrder() {
 		// TODO Auto-generated method stub
 		return OrderByUserServiceImpl.filter(list, 3);
 	}
 
 	@Override
-	public List<OrderVO> getWebCancelOrder() {
+	public List<OrderVO> getCancelOrder() {
 		// TODO Auto-generated method stub
 		return OrderByUserServiceImpl.filter(list, 4);
 	}
@@ -70,7 +69,5 @@ public class OrderByWebServiceImpl implements OrderByWebService{
 		return false;
 		
 	}
-
-	
 
 }

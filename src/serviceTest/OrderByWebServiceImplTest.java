@@ -16,32 +16,32 @@ public class OrderByWebServiceImplTest {
 	@Test
 	public void testGetAllOrder() {
 		OrderByWebServiceImpl test=new OrderByWebServiceImpl();
-		assertEquals(test.getAllWebOrder().size(),10);
+		assertEquals(test.getAllOrder().size(),10);
 		
 	}
 
 	@Test
 	public void testGetNotExecuteOrder() {
 		OrderByWebServiceImpl test=new OrderByWebServiceImpl();
-		assertEquals(test.getWebNotExecuteOrder().size(), 4);
+		assertEquals(test.getNotExecuteOrder().size(), 4);
 	}
 
 	@Test
 	public void testGetExecuteOrder() {
 		OrderByWebServiceImpl test=new OrderByWebServiceImpl();
-		assertEquals(test.getWebExecuteOrder().size(), 2);
+		assertEquals(test.getExecuteOrder().size(), 2);
 	}
 
 	@Test
 	public void testGetUnusualOrder() {
 		OrderByWebServiceImpl test=new OrderByWebServiceImpl();
-		assertEquals(test.getWebUnusualOrder().size(), 1);
+		assertEquals(test.getUnusualOrder().size(), 1);
 	}
 
 	@Test
 	public void testGetCancelOrder() {
 		OrderByWebServiceImpl test=new OrderByWebServiceImpl();
-		assertEquals(test.getWebCancelOrder().size(), 3);
+		assertEquals(test.getCancelOrder().size(), 3);
 	}
 	
 	//初测成功
