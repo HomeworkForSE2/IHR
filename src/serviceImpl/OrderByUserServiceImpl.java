@@ -14,10 +14,10 @@ import dataDaoImpl.OrderDaoImpl;
 import dataDaoImpl.UserDaoImpl;
 import po.OrderPO;
 import po.RoomPO;
-import service.OrderService;
+import service.OrderByUserService;
 import vo.OrderVO;
 
-public class OrderByUserServiceImpl extends OrderService{
+public class OrderByUserServiceImpl implements OrderByUserService{
 
 	private OrderDao orderDao;
 	
@@ -31,13 +31,19 @@ public class OrderByUserServiceImpl extends OrderService{
 	
 	private int orderNum;
 	
-	public OrderByUserServiceImpl(int userID) {
+	public OrderByUserServiceImpl() {
 		// TODO Auto-generated constructor stub
 		orderDao=OrderDaoImpl.getInstance();
-		userDao=UserDaoImpl.getInstance();
+		userDao=UserDaoImpl.getInstance();		
+		this.orderNum=orderDao.getOrderNum()+1;
+	}
+	
+	@Override
+	public boolean initUser(int userID) {
+		// TODO Auto-generated method stub
 		list=orderDao.getUserOrderList(userID);
 		this.userID=userID;
-		this.orderNum=orderDao.getOrderNum()+1;
+		return true;
 	}
 	
 	public static List<OrderVO> filter(List<OrderPO> list,int orderType){
@@ -58,31 +64,31 @@ public class OrderByUserServiceImpl extends OrderService{
 	}
 	
 	@Override
-	public List<OrderVO> getAllOrder() {
+	public List<OrderVO> getAllUserOrder() {
 		// TODO Auto-generated method stub
 		return filter(list,0);
 	}
 
 	@Override
-	public List<OrderVO> getNotExecuteOrder() {
+	public List<OrderVO> getUserNotExecuteOrder() {
 		// TODO Auto-generated method stub
 		return filter(list,1);
 	}
 
 	@Override
-	public List<OrderVO> getExecuteOrder() {
+	public List<OrderVO> getUserExecuteOrder() {
 		// TODO Auto-generated method stub
 		return filter(list,2);
 	}
 
 	@Override
-	public List<OrderVO> getUnusualOrder() {
+	public List<OrderVO> getUserUnusualOrder() {
 		// TODO Auto-generated method stub
 		return filter(list,3);
 	}
 
 	@Override
-	public List<OrderVO> getCancelOrder() {
+	public List<OrderVO> getUserCancelOrder() {
 		// TODO Auto-generated method stub
 		return filter(list,4);
 	}
@@ -187,5 +193,7 @@ public class OrderByUserServiceImpl extends OrderService{
 		return true;
 		
 	}
+
+	
 
 }
