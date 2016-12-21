@@ -217,6 +217,13 @@ public class OrderByUserServiceImpl implements OrderByUserService{
 		return checkHelper(hotelID,3);
 	}
 
+	
+	@Override
+	public boolean isUserOrderingInThisHotel(int hotelID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return checkHelper(hotelID,1);
+	}
+	
 	public boolean checkHelper(int hotelID,int state){
 		Iterator it=list.iterator();
 		while(it.hasNext()){
@@ -227,6 +234,7 @@ public class OrderByUserServiceImpl implements OrderByUserService{
 		}
 		return false;
 	}
+
 	
 
 }

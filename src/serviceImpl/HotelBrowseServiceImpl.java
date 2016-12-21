@@ -57,9 +57,9 @@ public class HotelBrowseServiceImpl implements HotelBrowseService{
 			List<Integer> l=roomDao.suitableHotelIDList(condition.getRoomType(), condition.getPrice(), condition.getRoomNum());
 			Iterator ite=hotelList.iterator();
 			while(ite.hasNext()){
-				HotelInfoVO hv=(HotelInfoVO)it.next();
+				HotelInfoVO hv=(HotelInfoVO)ite.next();
 				if(!l.contains(hv.getHotelID())){
-					hotelList.remove(hv);
+					ite.remove();
 				}
 			}
 		}

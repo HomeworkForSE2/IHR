@@ -46,6 +46,7 @@ public class MainUI extends Application {
         signUpStage.show();
         signUpController.getSignUpStage(signUpStage);
     }
+    
     static void toUserWelcome() throws IOException {
         Parent root = FXMLLoader.load(indexController.class.getResource("userWelcome.fxml"));
 
@@ -61,6 +62,7 @@ public class MainUI extends Application {
         stage.setScene(scene);
         stage.show();
     }
+    
     public static void main(String[] args) {
         launch(args);
     }

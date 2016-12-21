@@ -393,5 +393,10 @@ public class DataRemoteObject extends UnicastRemoteObject implements CreditServi
 		// TODO Auto-generated method stub
 		return orderByUserService.hasUserUnusualOrderInThisHotel(hotelID);
 	}
+	@Override
+	public boolean isUserOrderingInThisHotel(int hotelID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return orderByUserService.isUserOrderingInThisHotel(hotelID);
+	}
 	
 }

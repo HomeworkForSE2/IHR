@@ -15,40 +15,13 @@ public class RoomConditionVO {
 	
 	private int price;
 	
-	private int roomNum;
-	
-	private String startTime;
-	
-	private String endTime;
-	
+	private int roomNum;	
 
-	public RoomConditionVO(int roomType, int price, int roomNum, String startTime, String endTime) {
+	public RoomConditionVO(int roomType, int price, int roomNum) {
 		super();
 		this.roomType = roomType;
 		this.price = price;
 		this.roomNum = roomNum;
-		this.startTime = startTime;
-		this.endTime = endTime;
-	}
-	
-
-	public String getStartTime() {
-		return startTime;
-	}
-
-
-	public void setStartTime(String startTime) {
-		this.startTime = startTime;
-	}
-
-
-	public String getEndTime() {
-		return endTime;
-	}
-
-
-	public void setEndTime(String endTime) {
-		this.endTime = endTime;
 	}
 
 

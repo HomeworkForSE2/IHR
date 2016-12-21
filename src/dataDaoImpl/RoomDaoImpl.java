@@ -12,6 +12,7 @@ import dataDataHelper.RoomDataHelper;
 import dataDataHelperImpl.DataFactoryImpl;
 import po.OrderPO;
 import po.RoomPO;
+import po.UserPO;
 
 public class RoomDaoImpl implements RoomDao {
 	private Map<Integer,RoomPO> map;
@@ -72,7 +73,10 @@ public class RoomDaoImpl implements RoomDao {
 		List<Integer> hotelIDList=new ArrayList<Integer>();
 		Iterator<Map.Entry<Integer,RoomPO>> it=map.entrySet().iterator();
 		while(it.hasNext()){
-			RoomPO room=(RoomPO)it.next();
+//			Map.Entry<Integer,UserPO> entry=it.next();
+//			UserPO user=entry.getValue();
+			Map.Entry<Integer,RoomPO> entry=it.next();
+			RoomPO room=entry.getValue();
 			if(room.isState()==false&&room.getPrice()<=price&&room.getRoomType()==roomType){
 				list.add(room.getHotelID());
 			}
@@ -105,7 +109,8 @@ public class RoomDaoImpl implements RoomDao {
 		List<RoomPO> list=new ArrayList<>();
 		Iterator<Map.Entry<Integer,RoomPO>> it=map.entrySet().iterator();
 		while(it.hasNext()){
-			RoomPO room=(RoomPO)it.next();
+			Map.Entry<Integer,RoomPO> entry=it.next();
+			RoomPO room=entry.getValue();
 			list.add(room);
 		}
 		return list;

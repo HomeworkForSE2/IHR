@@ -32,11 +32,15 @@ import vo.HotelInfoVO;
 import vo.MemberVO;
 import vo.OrderVO;
 import vo.RoomConditionVO;
+import vo.SortHotelListByScore;
+import vo.SortHotelListByStarNum;
 import vo.UserInfoVO;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class userWelcomeController {
@@ -53,7 +57,8 @@ public class userWelcomeController {
     @FXML private ChoiceBox<String> rankBar;
     private VBox slideBar;
     private GridPane advancedSearchBar;
-
+    private List<OrderVO> list;
+    private static boolean isTrue=true;
     
     private HotelBrowseService hotelBrowseService;
     private UserInfoService userInfoService;
@@ -73,7 +78,7 @@ public class userWelcomeController {
         Label marks = new Label("评分：");
         Label roomNum = new Label("房间数量：");
         Label roomType = new Label("房间类型：");
-        Label price = new Label("每间价格：");
+        Label price = new Label("最高价格：");
 
         TextField addressField = new TextField();
         TextField circleField = new TextField();
@@ -81,10 +86,8 @@ public class userWelcomeController {
         TextField marksField = new TextField();
         TextField roomNumField = new TextField();
         TextField roomTypeField = new TextField();
-        TextField roomLowPriceField = new TextField();
         TextField roomHighPriceField = new TextField();
 
-        Text hyphen = new Text("-");
         Text unit = new Text("￥");
 
         Button search = new Button("搜索");
@@ -105,9 +108,7 @@ public class userWelcomeController {
         advancedSearchBar.add(roomNum,4,2);
         advancedSearchBar.add(roomNumField,5,2,3,1);
         advancedSearchBar.add(price,0,3);
-        advancedSearchBar.add(roomLowPriceField,1,3);
-        advancedSearchBar.add(hyphen,2,3);
-        advancedSearchBar.add(roomHighPriceField,3,3);
+        advancedSearchBar.add(roomHighPriceField,1,3,3,1);
         advancedSearchBar.add(unit,4,3);
 
         advancedSearchBar.add(search,0,4);
@@ -122,19 +123,44 @@ public class userWelcomeController {
             String ad = addressField.getText();
             String ci = circleField.getText();
             String rN = roomNumField.getText();
-            String rT = roomTypeField.getText();
-            
+            String rT = roomTypeField.getText();           
             String hP = roomHighPriceField.getText();
-            String lP = roomLowPriceField.getText();
             String gd = gradeField.getText();
             String mk = marksField.getText();
-            //房间类型、最高价格、数量、起始时间、结束时间
+            //房间类型、最高价格、数量
             //2种排序方式，星级、评分
-//            RoomConditionVO roomCondition=new RoomConditionVO();
+            RoomConditionVO roomCondition=null;
+            if(rT.equals("")||hP.equals("")||rN.equals("")){
+            	///////////////////////////
+            	System.out.println("请把房间信息填写完整！！");
+            }else{
+            	roomCondition=new RoomConditionVO(Integer.parseInt(rT),Integer.parseInt(hP),Integer.parseInt(rN));
+            	
+            }
+           
+            int starNum;
+            if(!gd.equals("")){
+            	starNum=Integer.parseInt(gd);
+            }else{
+            	starNum=0;
+            }
             
+            int judgeScore;
+            if(!mk.equals("")){
+            	judgeScore=Integer.parseInt(mk);
+            }else{
+            	judgeScore=0;
+            }
+            try {
+				List<HotelInfoVO> hotelList=hotelBrowseService.viewHotelList(ad, ci, roomCondition, starNum, judgeScore);
+				System.out.println(hotelList.size());
+				search(hotelList);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             //传参，高级搜索数据，你需要返回的一个List，作为search（）的参数，这里我现在空着，你来补一下
             //！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
-            search();
         });
 
         cancel.setOnAction(event -> {
@@ -151,46 +177,29 @@ public class userWelcomeController {
         //要求跟上一个一样
         hotelBrowseService=new HotelBrowseServiceImpl();
         HotelInfoVO hotel=hotelBrowseService.searchHotel(result);
-        //?????????
-        search();
+        List<HotelInfoVO> hotelList=new ArrayList<>();
+        if(hotel==null){
+        	
+        }else{
+        	hotelList.add(hotel);
+        }
+        System.out.println(hotelList.size());
+        search(hotelList);
     }
-
-    //这个没有分类查看吧？？
-    private void search(){
+    
+    ObservableList<String> rankList = FXCollections.observableArrayList("排序查看","评分升序","评分降序","星级升序","星级降序");    
+    private void search(List<HotelInfoVO> list) throws IOException{
         searchIcon.setVisible(false);
-        sortBar.setVisible(true);
+        sortBar.setVisible(false);
         rankBar.setVisible(true);
         searchResult.getChildren().remove(0);
+        
+        orderByUserService=new OrderByUserServiceImpl();    
+		orderByUserService.initUser(MainUI.userID);	
 
-        ObservableList<String> sortList = FXCollections.observableArrayList("分类查看","预定过","入住过","异常过","撤销过");
-        sortBar.setItems(sortList);
-        sortBar.setValue("分类查看");
-        sortBar.setOnAction(event -> {
-            String sort = sortBar.getSelectionModel().getSelectedItem();
-            if(sort==null){return;}
-            if(!(sort.equals("分类查看"))){
-                //返回分类查看的值，修改你传过来的list
-                //我先写的，共有四种类型："预定过","入住过","异常过","撤销过"
-                //值在sort里面
-            }
-            search();
-            sortBar.setValue(sort);
-        });
-
-        ObservableList<String> rankList = FXCollections.observableArrayList("排序查看","评分升序","评分降序","星级升序","星级降序");
         rankBar.setItems(rankList);
         rankBar.setValue("排序查看");
-        rankBar.setOnAction(event -> {
-            String rank = rankBar.getSelectionModel().getSelectedItem();
-            if(rank==null){return;}
-            if(!(rank.equals("排序"))){
-                //返回分类查看的值，修改你传过来的list
-                //我先写的，共有四种排序方法："评分升序","评分降序","星级升序","星级降序"
-                //值在rank里面
-            }
-            search();
-            rankBar.setValue(rank);
-        });
+        
 
         VBox board = new VBox();
         board.setPadding(new Insets(20,30,20,20));
@@ -199,7 +208,7 @@ public class userWelcomeController {
         board.setStyle("-fx-background-color: rgba(0,0,0,0)");
 
         //酒店信息,长度
-        int lengthOfList = 10;
+        int lengthOfList = list.size();
         if(lengthOfList==0){
             Text none = new Text("对不起，没有符合条件的酒店，请重试！");
             searchResult.getChildren().add(none);
@@ -209,17 +218,21 @@ public class userWelcomeController {
         for(int i=0;i<lengthOfList;i++){
             //List 应该有这些参数？？？？
             //传参，加上四种状态是否预订，是否入住过，是否撤销过，是否异常过
-            String name = "xxHotel";
-            String address = "address";
-            String circle = "circle";
-            String phone = "555-44444";
-            int starsNum = 5;
-            double marks = 9;
-            boolean isLived = true;
-            boolean isCanceled = true;
-            boolean isUnmoral = true;
-            boolean isOrdered = true;
+        	
+        	HotelInfoVO hotel=list.get(i);
+            String name = hotel.getHotelName();
+            String address = hotel.getLocation();
+            String circle = hotel.getBD();
+            
+            int hotelID=hotel.getHotelID();
 
+            int starsNum = hotel.getStarNum();
+            int marks = hotel.getScore();
+            boolean isLived = orderByUserService.hasUserFinishedOrderInThisHotel(hotelID);
+            boolean isCanceled = orderByUserService.hasUserCanceledOrderInThisHotel(hotelID);
+            boolean isUnmoral = orderByUserService.hasUserUnusualOrderInThisHotel(hotelID);
+            boolean isOrdering = true;
+            
             GridPane singleRecord = new GridPane();
             singleRecord.setAlignment(Pos.CENTER);
 
@@ -235,10 +248,21 @@ public class userWelcomeController {
             }
             starsText.setText(stars);
             starsText.setFill(Color.YELLOW);
-            Text marksText = new Text(Double.toString(marks)+" 分");
+            Text marksText = new Text(Integer.toString(marks)+" 分");
             HBox stateBox = new HBox();
             stateBox.setAlignment(Pos.CENTER);
             stateBox.setSpacing(5);
+            if(isOrdering){
+            	Text text = new Text("当前预订中");
+                text.setFont(Font.font(10));
+                text.setFill(Color.WHITE);
+                HBox bg = new HBox();
+                bg.setPrefSize(40,14);
+                bg.setAlignment(Pos.CENTER);
+                bg.setStyle("-fx-background-color: rgb(0,176,80);-fx-background-radius: 10px;-fx-border-radius: 10px;");
+                bg.getChildren().add(text);
+                stateBox.getChildren().add(bg);
+            }
             if(isLived){
                 Text text = new Text("入住过");
                 text.setFont(Font.font(11));
@@ -272,17 +296,7 @@ public class userWelcomeController {
                 bg.getChildren().add(text);
                 stateBox.getChildren().add(bg);
             }
-            if(isOrdered){
-                Text text = new Text("预订过");
-                text.setFont(Font.font(11));
-                text.setFill(Color.WHITE);
-                HBox bg = new HBox();
-                bg.setPrefSize(40,14);
-                bg.setAlignment(Pos.CENTER);
-                bg.setStyle("-fx-background-color: rgb(0,176,80);-fx-background-radius: 10px;-fx-border-radius: 10px;");
-                bg.getChildren().add(text);
-                stateBox.getChildren().add(bg);
-            }
+           
             nameBox.getChildren().addAll(nameText,starsText,marksText,stateBox);
             singleRecord.add(nameBox,0,0,1,2);
 
@@ -291,10 +305,9 @@ public class userWelcomeController {
             addressBox.setAlignment(Pos.CENTER);
             Text addressText = new Text(address);
             Text circleText = new Text(circle);
-            Text phoneText = new Text(phone);
             addressBox.setSpacing(5);
             addressBox.setStyle("-fx-background-color: rgba(255,255,255,0.1)");
-            addressBox.getChildren().addAll(addressText,circleText,phoneText);
+            addressBox.getChildren().addAll(addressText,circleText);
             singleRecord.add(addressBox,1,0,1,2);
 
             HBox order = new HBox();
@@ -332,6 +345,37 @@ public class userWelcomeController {
         sp.setMaxHeight(400);
 
         searchResult.getChildren().add(sp);
+        
+        rankBar.setOnAction(event -> {
+            String rank = rankBar.getSelectionModel().getSelectedItem();
+            if(!(rank.equals("排序"))){
+                //返回分类查看的值，修改你传过来的list
+                //我先写的，共有四种排序方法："评分升序","评分降序","星级升序","星级降序"
+                //值在rank里面
+            	if(rank.equals("评分升序")){
+            		SortHotelListByScore s=new SortHotelListByScore();
+            		Collections.sort(list, s); 
+            	}else if(rank.equals("评分降序")){
+            		SortHotelListByScore s=new SortHotelListByScore();
+            		Collections.sort(list, s); 
+            		Collections.reverse(list);
+            	}else if(rank.equals("星级升序")){
+            		SortHotelListByStarNum s=new SortHotelListByStarNum();
+            		Collections.sort(list, s); 
+            	}else if(rank.equals("星级降序")){
+            		SortHotelListByStarNum s=new SortHotelListByStarNum();
+            		Collections.sort(list, s); 
+            		Collections.reverse(list);
+            	}
+            }
+            try {
+				search(list);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            rankBar.setValue(rank);
+        });
     }
 
     @FXML private void openSlideBar(){
@@ -646,7 +690,7 @@ public class userWelcomeController {
 
         swap.getChildren().add(table);
     }
-
+    
     private void toCreditRecord(){
         swap.getChildren().remove(0);
         sortBar.setVisible(false);
@@ -750,7 +794,7 @@ public class userWelcomeController {
 
         swap.getChildren().add(sp);
     }
-
+    
     private void toHotelRecord() throws IOException{
         swap.getChildren().remove(0);
         sortBar.setVisible(false);
@@ -765,6 +809,8 @@ public class userWelcomeController {
 
         //酒店信息,长度
         hotelBrowseService=new HotelBrowseServiceImpl();
+        orderByUserService=new OrderByUserServiceImpl();    
+		orderByUserService.initUser(MainUI.userID);	
         List<HotelInfoVO> list=hotelBrowseService.showReservedHotel(MainUI.userID);
         int lengthOfList = list.size();
 
@@ -781,10 +827,11 @@ public class userWelcomeController {
             String address = hotel.getLocation();
             String circle = hotel.getBD();
             
-            //////////////是否预订过2、撤销过4、异常过3
+            //////////////是否完成过2、撤销过4、异常过3
             boolean isLived = orderByUserService.hasUserFinishedOrderInThisHotel(hotel.getHotelID());
             boolean isCanceled = orderByUserService.hasUserCanceledOrderInThisHotel(hotel.getHotelID());
             boolean isUnmoral = orderByUserService.hasUserUnusualOrderInThisHotel(hotel.getHotelID());
+            boolean isOrdering = orderByUserService.isUserOrderingInThisHotel(hotel.getHotelID());
 
             GridPane singleRecord = new GridPane();
             singleRecord.setAlignment(Pos.CENTER);
@@ -797,6 +844,17 @@ public class userWelcomeController {
             HBox stateBox = new HBox();
             stateBox.setAlignment(Pos.CENTER);
             stateBox.setSpacing(5);
+            if(isOrdering){
+            	Text text = new Text("当前预订中");
+                text.setFont(Font.font(10));
+                text.setFill(Color.WHITE);
+                HBox bg = new HBox();
+                bg.setPrefSize(40,14);
+                bg.setAlignment(Pos.CENTER);
+                bg.setStyle("-fx-background-color: rgb(0，176，80);-fx-background-radius: 10px;-fx-border-radius: 10px;");
+                bg.getChildren().add(text);
+                stateBox.getChildren().add(bg);
+            }
             if(isLived){
                 Text text = new Text("入住过");
                 text.setFont(Font.font(10));
@@ -880,52 +938,26 @@ public class userWelcomeController {
 
         swap.getChildren().add(sp);
     }
-
+    ObservableList<String> sortList = FXCollections.observableArrayList("分类查看","正常","异常","已执行","撤销");
     private void toOrderInfo() throws IOException{
         swap.getChildren().remove(0);
         sortBar.setVisible(true);
         rankBar.setVisible(false);
         searchIcon.setVisible(true);
 
-        final ObservableList<String> sortList = FXCollections.observableArrayList("分类查看","正常","异常","已执行","撤销");
+        
         sortBar.setItems(sortList);
-        sortBar.setValue("分类查看");
+        	sortBar.setValue("分类查看");
+       
         /////////
         orderByUserService=new OrderByUserServiceImpl();    
 		orderByUserService.initUser(MainUI.userID);	
 		hotelInfoService=new HotelInfoServiceImpl();
-        List<OrderVO> list=orderByUserService.getAllUserOrder();
+		if(isTrue){
+			list=orderByUserService.getAllUserOrder();
+		}
+		
         
-        sortBar.setOnAction(event -> {
-            String sort = sortBar.getSelectionModel().getSelectedItem();
-        	if(sort==null){return;}
-            if(!(sort.equals("分类查看"))){
-                //返回分类查看的值，修改你传过来的list
-                //我先写的，共有四种类型：正常，异常，已执行，已撤销
-                //值在sort里面    
-            	
-            	if(sort.equals("正常")){
-//            		list=orderByUserService.getUserNotExecuteOrder();
-            		
-            	}else if(sort.equals("异常")){
-//            		list=orderByUserService.getUserUnusualOrder();
-            		
-            	}else if(sort.equals("已执行")){
-//            		list=orderByUserService.getUserExecuteOrder();
-            		
-            	}else if(sort.equals("撤销")){
-//            		list=orderByUserService.getUserCancelOrder();
-            		
-            	}
-            }
-            try {
-				toOrderInfo();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-            sortBar.setValue(sort);
-        });
 
         VBox board = new VBox();
         board.setPadding(new Insets(20,30,20,20));
@@ -957,6 +989,7 @@ public class userWelcomeController {
             int roomNum = order.getRoomNum();
             int peopleNum = order.getPeopleNum();
             boolean hasChildren = order.isHasChildren();
+
 
             GridPane singleRecord = new GridPane();
             singleRecord.setAlignment(Pos.CENTER);
@@ -1014,7 +1047,7 @@ public class userWelcomeController {
 
             HBox peopleBox = new HBox();
             Text peopleText = new Text();
-            if(hasChildren){
+            if(!hasChildren){
                 peopleText.setText(Integer.toString(peopleNum)+"人，无儿童");
             }else{
                 peopleText.setText(Integer.toString(peopleNum)+"人，有儿童");
@@ -1098,6 +1131,60 @@ public class userWelcomeController {
         sp.setMaxHeight(600);
 
         swap.getChildren().add(sp);
+        
+        sortBar.setOnAction(event -> {
+            String sort = sortBar.getSelectionModel().getSelectedItem();
+//        	if(sort==null){return;}
+            if(!(sort.equals("分类查看"))){
+                //返回分类查看的值，修改你传过来的list
+                //我先写的，共有四种类型：正常，异常，已执行，已撤销
+                //值在sort里面    
+            	
+            	isTrue=false;
+            	if(sort.equals("正常")){
+            		try {
+						list=orderByUserService.getUserNotExecuteOrder();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+            	}else if(sort.equals("异常")){
+            		try {
+						list=orderByUserService.getUserUnusualOrder();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+            		
+            	}else if(sort.equals("已执行")){
+            		try {
+						list=orderByUserService.getUserExecuteOrder();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+            		
+            	}else if(sort.equals("撤销")){
+            		try {
+						list=orderByUserService.getUserCancelOrder();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+            		
+            	}
+            }else{
+            	isTrue=true;
+            }
+            try {
+				toOrderInfo();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            sortBar.setValue(sort);
+        });
     }
 
     @FXML private void toSearch(){
@@ -1106,5 +1193,7 @@ public class userWelcomeController {
         searchIcon.setVisible(true);
         swap.getChildren().add(container);
     }
+
+    
 
 }

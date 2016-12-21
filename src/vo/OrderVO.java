@@ -146,7 +146,7 @@ public class OrderVO {
 	public String getStartTime() {
 		String year=startTime.substring(0,4);
 		String month=startTime.substring(4,6);
-		String day=startTime.substring(6);
+		String day=startTime.substring(6,8);
 		return year+"-"+month+"-"+day;
 	}
 
@@ -157,7 +157,7 @@ public class OrderVO {
 	public String getEndTime() {
 		String year=endTime.substring(0,4);
 		String month=endTime.substring(4,6);
-		String day=endTime.substring(6);
+		String day=endTime.substring(6,8);
 		return year+"-"+month+"-"+day;
 	}
 
@@ -168,7 +168,7 @@ public class OrderVO {
 	public String getFinishTime() {
 		String year=finishTime.substring(0,4);
 		String month=finishTime.substring(4,6);
-		String day=finishTime.substring(6);
+		String day=finishTime.substring(6,8);
 		return year+"-"+month+"-"+day;
 	}
 

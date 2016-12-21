@@ -64,15 +64,15 @@ public class CreditChangeVO {
 
 	public String getAction() {
 		String result=null;
-		if(action==1){
+		if(action==0){
 			result="执行订单";
-		}else if(action==2){
+		}else if(action==1){
 			result="异常订单";
-		}else if(action==3){
+		}else if(action==2){
 			result="撤销订单";
-		}else if(action==4){
+		}else if(action==3){
 			result="信用充值";
-		}else if(action==5){
+		}else if(action==4){
 			result="信用恢复";
 		}
 		return result;
