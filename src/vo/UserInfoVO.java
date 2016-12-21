@@ -33,6 +33,7 @@ public class UserInfoVO {
 	public UserInfoVO(UserPO user){
 		this.userID=user.getUserID();
 		this.userName=user.getUserName();
+		this.password=user.getPassword();
 		this.phoneNumber=user.getPhoneNumber();
 		this.credit=user.getCredit();
 		

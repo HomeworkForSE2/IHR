@@ -13,9 +13,9 @@ public class LoginServiceImpl implements LoginService{
 	}
 	
 	@Override
-	public boolean login(String userName, String password) {
+	public int login(String userName, String password,int userType) {
 		// TODO Auto-generated method stub
-		return loginDao.checkUser(userName, password);
+		return loginDao.checkUser(userName, password,userType);
 	}
 
 	@Override

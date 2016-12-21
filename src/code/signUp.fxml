@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ToggleButton?>
+
+
+<?import javafx.scene.control.DatePicker?>
+<GridPane fx:controller="code.signUpController"
+          xmlns:fx="http://javafx.com/fxml" alignment="CENTER" vgap="20" styleClass="root" fx:id="root">
+
+    <HBox GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="2" alignment="CENTER">
+        <Text text="意" />
+        <Text text="居" />
+    </HBox>
+    <HBox GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.columnSpan="2" alignment="CENTER">
+        <Text text="欢迎您" />
+    </HBox>
+    <TextField GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="2" fx:id="userNameArea"/>
+    <PasswordField GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.columnSpan="2" fx:id="passwordArea" />
+    <HBox GridPane.rowIndex="4" GridPane.columnIndex="0" GridPane.columnSpan="2" alignment="CENTER">
+        <ToggleButton text="普通用户注册" fx:id="normalArea" onAction="#normalClick"/>
+        <ToggleButton text="企业用户注册" fx:id="enterpriseArea" onAction="#enterpriseClick"/>
+    </HBox>
+    <TextField GridPane.rowIndex="5" GridPane.columnIndex="0" GridPane.columnSpan="2" fx:id="enterpriseName" visible="false"/>
+    <DatePicker GridPane.rowIndex="5" GridPane.columnIndex="0" GridPane.columnSpan="2" fx:id="birthday"/>
+    <TextField GridPane.rowIndex="6" GridPane.columnIndex="0" GridPane.columnSpan="2" fx:id="connectionArea" />
+    <HBox GridPane.rowIndex="7" GridPane.columnIndex="0" alignment="CENTER_LEFT">
+        <Button text="注册" onAction="#signUp"/>
+    </HBox>
+    <HBox GridPane.rowIndex="7" GridPane.columnIndex="1" alignment="CENTER_RIGHT">
+        <Button text="取消" onAction="#cancel"/>
+    </HBox>
+</GridPane>

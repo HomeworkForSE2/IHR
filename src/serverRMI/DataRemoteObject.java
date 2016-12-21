@@ -34,6 +34,7 @@ import serviceImpl.UserInfoServiceImpl;
 import serviceImpl.UserManageServiceImpl;
 import vo.CreditChangeVO;
 import vo.HotelInfoVO;
+import vo.MemberVO;
 import vo.OrderVO;
 import vo.RoomConditionVO;
 import vo.StrategyVO;
@@ -145,20 +146,20 @@ public class DataRemoteObject extends UnicastRemoteObject implements CreditServi
 	}
 
 	@Override
-	public boolean initialize(UserInfoVO user) throws RemoteException {
+	public int initialize(UserInfoVO user,String birthday,String enterpriseName) throws RemoteException {
 		// TODO Auto-generated method stub
-		return memberService.initialize(user);
+		return memberService.initialize(user,birthday,enterpriseName);
 	}
 	@Override
 	public boolean member(int userID,String birthday,String enterpriseName) throws RemoteException {
 		// TODO Auto-generated method stub
 		return memberService.member(userID,birthday,enterpriseName);
 	}
-	
+
 	@Override
-	public boolean login(String userName, String password) throws RemoteException {
+	public int login(String userName, String password,int userType) throws RemoteException {
 		// TODO Auto-generated method stub
-		return loginService.login(userName, password);
+		return loginService.login(userName, password,userType);
 	}
 	@Override
 	public List<HotelInfoVO> viewNotJudgeHotelList(int userID) throws RemoteException {
@@ -371,6 +372,26 @@ public class DataRemoteObject extends UnicastRemoteObject implements CreditServi
 	public boolean cancelOrder(int orderID) throws RemoteException{
 		// TODO Auto-generated method stub
 		return orderByUserService.cancelOrder(orderID);
+	}
+	@Override
+	public MemberVO getMember(int userID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return memberService.getMember(userID);
+	}
+	@Override
+	public boolean hasUserFinishedOrderInThisHotel(int hotelID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return orderByUserService.hasUserFinishedOrderInThisHotel(hotelID);
+	}
+	@Override
+	public boolean hasUserCanceledOrderInThisHotel(int hotelID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return orderByUserService.hasUserCanceledOrderInThisHotel(hotelID);
+	}
+	@Override
+	public boolean hasUserUnusualOrderInThisHotel(int hotelID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return orderByUserService.hasUserUnusualOrderInThisHotel(hotelID);
 	}
 	
 }

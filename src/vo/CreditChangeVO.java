@@ -62,8 +62,20 @@ public class CreditChangeVO {
 		this.endCredit = endCredit;
 	}
 
-	public int getAction() {
-		return action;
+	public String getAction() {
+		String result=null;
+		if(action==1){
+			result="执行订单";
+		}else if(action==2){
+			result="异常订单";
+		}else if(action==3){
+			result="撤销订单";
+		}else if(action==4){
+			result="信用充值";
+		}else if(action==5){
+			result="信用恢复";
+		}
+		return result;
 	}
 
 	public void setAction(int action) {

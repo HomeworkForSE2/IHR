@@ -65,4 +65,31 @@ public interface OrderByUserService extends Remote {
 	 */
 	public boolean cancelOrder(int orderID)throws RemoteException;
 
+	/**
+	 * 
+	 * @param userID
+	 * @param hotelID
+	 * @return
+	 * @throws RemoteException
+	 */
+	public boolean hasUserFinishedOrderInThisHotel(int hotelID)throws RemoteException;
+	
+	/**
+	 * 
+	 * @param userID
+	 * @param hotelID
+	 * @return
+	 * @throws RemoteException
+	 */
+	public boolean hasUserCanceledOrderInThisHotel(int hotelID)throws RemoteException;
+	
+	/**
+	 * 
+	 * @param userID
+	 * @param hotelID
+	 * @return
+	 * @throws RemoteException
+	 */
+	public boolean hasUserUnusualOrderInThisHotel(int hotelID)throws RemoteException;
+	
 }

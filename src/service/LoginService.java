@@ -10,7 +10,7 @@ public interface LoginService extends Remote{
 	 * @param password
 	 * @return 是否登陆成功
 	 */
-	public boolean login(String userName,String password) throws RemoteException;
+	public int login(String userName,String password,int userType) throws RemoteException;
 	
 	/**
 	 * 

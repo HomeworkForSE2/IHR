@@ -36,12 +36,14 @@ public class OrderPO {
 	
 	private int roomNum;
 	
+	private int peopleNum;
+	
 	private boolean hasChildren;
 	
 	private String roomID;
 	
 	public OrderPO(int orderID, int userID, int hotelID, int state,double price, String startTime,
-			String endTime, String finishTime, int roomType, int roomNum, boolean hasChildren,String roomID) {
+			String endTime, String finishTime, int roomType, int roomNum, int peopleNum,boolean hasChildren,String roomID) {
 		super();
 		this.orderID = orderID;
 		this.userID = userID;
@@ -55,9 +57,20 @@ public class OrderPO {
 		this.roomID=roomID;
 		this.roomNum = roomNum;
 		this.hasChildren = hasChildren;
+		this.peopleNum=peopleNum;
 	}
 	
 	
+	
+	public int getPeopleNum() {
+		return peopleNum;
+	}
+
+	public void setPeopleNum(int peopleNum) {
+		this.peopleNum = peopleNum;
+	}
+
+
 	public String getRoomID() {
 		return roomID;
 	}

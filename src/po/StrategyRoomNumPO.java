@@ -8,7 +8,7 @@ public class StrategyRoomNumPO extends StrategyPO{
 		this.roomNum=roomNum;
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	private int roomNum;
 
 	public int getRoomNum() {

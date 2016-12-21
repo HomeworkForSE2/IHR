@@ -14,6 +14,7 @@ import po.HotelPO;
  *评分
  */
 public class HotelInfoVO {
+	
 	private int hotelID;
 	
 	private String hotelName;

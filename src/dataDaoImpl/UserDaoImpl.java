@@ -117,7 +117,7 @@ public class UserDaoImpl implements UserDao ,LoginDao,UserManageDao{
 	 * 用户登陆匹配
 	 */
 	@Override
-	public boolean checkUser(String userName, String password) {
+	public int checkUser(String userName, String password,int userType) {
 		// TODO Auto-generated method stub
 		Iterator<Map.Entry<Integer,UserPO>> it=map.entrySet().iterator();
 		while(it.hasNext()){
@@ -125,13 +125,20 @@ public class UserDaoImpl implements UserDao ,LoginDao,UserManageDao{
 			UserPO user=entry.getValue();
 			if(user.getUserName().equals(userName)){
 				if(user.getPassword().equals(password)){
-					return true;
+					if(userType==1&&user.getUserID()>10000&&user.getUserID()<1000000){
+						return user.getUserID();
+					}else if(userType==2&&user.getUserID()>0&&user.getUserID()<10000){
+						return user.getUserID();
+					}else if(userType==3&&user.getUserID()>1000000){
+						return user.getUserID();
+					}
 				}
 			}
 		}
-		return false;
+		return -1;
 	}
 
+	
 	/*
 	 * 管理员登陆匹配
 	 */
@@ -219,20 +226,20 @@ public class UserDaoImpl implements UserDao ,LoginDao,UserManageDao{
 	
 	public static void main(String[] args) {
 		UserDaoImpl go=new UserDaoImpl();
-		go.test4();
+		System.out.println(go.checkUser("朱劲", "abc", 1));
 	}
 	
-	public void test1(){
-		System.out.println(checkUser("宋吉哉", "aaaab"));
-		System.out.println(checkUser("宋吉哉", "aaaaba"));
-		System.out.println(checkUser("叶童", "wwwwww"));
-		System.out.println(checkUser("叶童", "wwwwwwa"));
-		System.out.println(checkUser("朱劲", "ajjjba"));
-		System.out.println(checkUser("朱劲", "ajjjba1"));
-		System.out.println(checkUser("单苏婉", "1111111"));
-		System.out.println(checkUser("单苏婉", "1111111a"));
-		
-	}
+//	public void test1(){
+//		System.out.println(checkUser("宋吉哉", "aaaab"));
+//		System.out.println(checkUser("宋吉哉", "aaaaba"));
+//		System.out.println(checkUser("叶童", "wwwwww"));
+//		System.out.println(checkUser("叶童", "wwwwwwa"));
+//		System.out.println(checkUser("朱劲", "ajjjba"));
+//		System.out.println(checkUser("朱劲", "ajjjba1"));
+//		System.out.println(checkUser("单苏婉", "1111111"));
+//		System.out.println(checkUser("单苏婉", "1111111a"));
+//		
+//	}
 	
 	public void test2(){
 		UserPO u1=new UserPO(1, "朱劲", "aa", "111", 4000);

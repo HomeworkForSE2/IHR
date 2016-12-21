@@ -1,5 +1,6 @@
 package serviceImpl;
 
+import java.rmi.RemoteException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -102,9 +103,10 @@ public class OrderByUserServiceImpl implements OrderByUserService{
 		int userID=order.getUserId();
 		int hotelID=order.getHotelId();
 		int roomNum=order.getRoomNum();
-		int roomType=order.getRoomType();
+		int roomType=order.getRoomType2();
 		String startTime=order.getStartTime();
 		String endTime=order.getEndTime();
+		int peopleNum=order.getPeopleNum();
 		boolean hasChildren=order.isHasChildren();
 		int st=Integer.valueOf(startTime);
 		int et=Integer.valueOf(endTime);
@@ -167,7 +169,7 @@ public class OrderByUserServiceImpl implements OrderByUserService{
 		}
 		roomID+=roomList.get(roomNum-1).getRoomID();
 		
-		OrderPO fOrder=new OrderPO(orderNum, userID, hotelID, 1, price, startTime, endTime, "", roomType, roomNum, hasChildren, roomID);		
+		OrderPO fOrder=new OrderPO(orderNum, userID, hotelID, 1, price, startTime, endTime, "", roomType, roomNum,peopleNum, hasChildren, roomID);		
 		orderDao.addOrder(fOrder);
 		return true;	
 	}
@@ -194,6 +196,37 @@ public class OrderByUserServiceImpl implements OrderByUserService{
 		
 	}
 
+	
+	@Override
+	public boolean hasUserFinishedOrderInThisHotel(int hotelID) {
+		// TODO Auto-generated method stub
+		return checkHelper(hotelID,2);
+	}
+	
+
+	@Override
+	public boolean hasUserCanceledOrderInThisHotel(int hotelID) {
+		// TODO Auto-generated method stub
+		return checkHelper(hotelID,4);
+	}
+	
+
+	@Override
+	public boolean hasUserUnusualOrderInThisHotel(int hotelID)  {
+		// TODO Auto-generated method stub
+		return checkHelper(hotelID,3);
+	}
+
+	public boolean checkHelper(int hotelID,int state){
+		Iterator it=list.iterator();
+		while(it.hasNext()){
+			OrderPO o=(OrderPO)it.next();
+			if(o.getUserID()==this.userID&&o.getHotelID()==hotelID&&o.getState()==state){
+				return true;
+			}
+		}
+		return false;
+	}
 	
 
 }

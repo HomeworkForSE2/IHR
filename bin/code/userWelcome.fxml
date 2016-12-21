@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
+
+<GridPane fx:controller="code.userWelcomeController"
+          xmlns:fx="http://javafx.com/fxml" alignment="CENTER" styleClass="root" fx:id="root">
+    <gridLinesVisible>true</gridLinesVisible>
+    <GridPane GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="1280" prefHeight="50" alignment="CENTER">
+        <HBox alignment="CENTER_LEFT" GridPane.columnIndex="0" GridPane.rowIndex="0" prefWidth="640" spacing="10">
+            <padding><Insets left="20"/></padding>
+            <ChoiceBox fx:id="sortBar" visible="false">
+            </ChoiceBox>
+            <ChoiceBox fx:id="rankBar" visible="false">
+            </ChoiceBox>
+        </HBox>
+        <HBox alignment="CENTER_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="640">
+            <padding><Insets right="20"/> </padding>
+            <HBox fx:id="searchIcon" onMouseClicked="#toSearch" visible="false">
+                <ImageView>
+                    <Image url="@/pic/smallSearchIcon.png"/>
+                </ImageView>
+            </HBox>
+        </HBox>
+    </GridPane>
+
+    <VBox GridPane.rowIndex="0" GridPane.columnIndex="0" prefHeight="720" minHeight="720" GridPane.rowSpan="2"  fx:id="small">
+        <HBox onMouseClicked="#openSlideBar">
+            <ImageView>
+                <Image url="@/pic/menu.png"/>
+            </ImageView>
+        </HBox>
+    </VBox>
+    <HBox GridPane.rowIndex="1" GridPane.columnIndex="1" fx:id="swap" alignment="CENTER">
+        <GridPane fx:id="container" alignment="CENTER" vgap="20">
+            <HBox GridPane.rowIndex="0" GridPane.columnIndex="0" alignment="CENTER">
+                <Text text="意"/>
+                <Text text="居"/>
+            </HBox>
+            <HBox GridPane.rowIndex="1" GridPane.columnIndex="0" alignment="CENTER" fx:id="searchBar">
+                <StackPane alignment="CENTER_RIGHT">
+                    <TextField prefWidth="500" fx:id="searchArea"/>
+                    <ImageView onMouseClicked="#normalSearch">
+                        <Image url="@/pic/searchIcon.png"/>
+                    </ImageView>
+                </StackPane>
+            </HBox>
+            <HBox GridPane.rowIndex="2" GridPane.columnIndex="0" alignment="CENTER" fx:id="advanceTag">
+                <HBox alignment="TOP_RIGHT" prefWidth="500"><Text text="高级搜索" onMouseClicked="#toggleAdvancedSearch" /></HBox>
+            </HBox>
+            <HBox GridPane.rowIndex="3" GridPane.columnIndex="0" fx:id="searchResult" alignment="CENTER">
+                <HBox/>
+            </HBox>
+        </GridPane>
+    </HBox>
+</GridPane>

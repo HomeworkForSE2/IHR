@@ -25,8 +25,8 @@ public interface MemberDao {
 	 * @return 插入新用户信息
 	 */
 	public boolean insert(UserPO user);
-
-	public String findBirthday(int UserID);
+	
 	public String findEnterprise(int UserID);
 	
+	public String findBirthday(int UserID);
 }

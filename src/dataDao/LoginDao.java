@@ -8,7 +8,7 @@ public interface LoginDao {
 	 * @param password
 	 * @return 匹配
 	 */
-	public boolean checkUser(String userName,String password);
+	public int checkUser(String userName,String password,int userType);
 	
 	/**
 	 * 

@@ -30,7 +30,7 @@ public class OrderDataTxtHelper implements OrderDataHelper{
 					while(it.hasNext()){
 						Map.Entry<Integer,OrderPO> entry=it.next();
 						OrderPO order=entry.getValue();
-						String str=order.getOrderID()+";"+order.getUserID()+";"+order.getHotelID()+";"+order.getState()+";"+order.getPrice()+";"+order.getStartTime()+";"+order.getEndTime()+";"+order.getFinishTime()+";"+order.getRoomType()+";"+order.getRoomNum()+";"+order.isHasChildren()+";"+order.getRoomID();
+						String str=order.getOrderID()+";"+order.getUserID()+";"+order.getHotelID()+";"+order.getState()+";"+order.getPrice()+";"+order.getStartTime()+";"+order.getEndTime()+";"+order.getFinishTime()+";"+order.getRoomType()+";"+order.getRoomNum()+";"+order.getPeopleNum()+";"+order.isHasChildren()+";"+order.getRoomID();
 						bw.write(str);
 						bw.newLine();
 					}
@@ -66,10 +66,11 @@ public class OrderDataTxtHelper implements OrderDataHelper{
 				String finishTime=data[7];
 				int roomType=Integer.valueOf(data[8]);
 				int roomNum=Integer.valueOf(data[9]);
-				boolean isHasChildren =Boolean.valueOf(data[10]);
-				String roomID=data[11];
+				int peopleNum=Integer.valueOf(data[10]);
+				boolean isHasChildren =Boolean.valueOf(data[11]);
+				String roomID=data[12];
 				
-				OrderPO order=new OrderPO(orderID,userID, hotelID,state,price,startTime,endTime,finishTime,roomType,roomNum,isHasChildren,roomID);
+				OrderPO order=new OrderPO(orderID,userID, hotelID,state,price,startTime,endTime,finishTime,roomType,roomNum,peopleNum,isHasChildren,roomID);
 				map.put(orderID,order);
 				
 				str=br.readLine();				
