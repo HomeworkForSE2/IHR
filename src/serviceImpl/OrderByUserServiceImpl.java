@@ -169,7 +169,7 @@ public class OrderByUserServiceImpl implements OrderByUserService{
 		}
 		roomID+=roomList.get(roomNum-1).getRoomID();
 		
-		OrderPO fOrder=new OrderPO(orderNum, userID, hotelID, 1, price, startTime, endTime, "", roomType, roomNum,peopleNum, hasChildren, roomID);		
+		OrderPO fOrder=new OrderPO(orderNum, userID, hotelID, 1, price, startTime, endTime, null, roomType, roomNum,peopleNum, hasChildren, roomID);		
 		orderDao.addOrder(fOrder);
 		return true;	
 	}

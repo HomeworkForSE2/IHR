@@ -23,7 +23,6 @@ public class MainUI extends Application {
         stage.setScene(new Scene(root, 1280, 720));
 
 //        stage.initStyle(StageStyle.UNDECORATED);
-
         stage.show();
     }
 
@@ -57,6 +56,14 @@ public class MainUI extends Application {
 
     static void toIndex() throws IOException{
         Parent root = FXMLLoader.load(indexController.class.getResource("index.fxml"));
+
+        Scene scene = new Scene(root,1280,720);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    static void toHotelWorker() throws IOException {
+        Parent root = FXMLLoader.load(indexController.class.getResource("hotelWorker.fxml"));
 
         Scene scene = new Scene(root,1280,720);
         stage.setScene(scene);

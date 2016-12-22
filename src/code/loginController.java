@@ -51,7 +51,7 @@ public class loginController {
         }else if(type.equals("酒店管理人员")){
         	result=loginService.login(userName, password,2);
         	if(result>0){
-//        		MainUI.toHotelWorkerWelcome
+        		MainUI.toHotelWorker();
         		MainUI.userID=result;
         		stage.close();
         	}else{

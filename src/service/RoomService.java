@@ -2,6 +2,9 @@ package service;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.List;
+
+import vo.RoomVO;
 
 public interface RoomService extends Remote{
 	/**
@@ -28,5 +31,12 @@ public interface RoomService extends Remote{
 	 * @return 是否更新房间信息（退房）成功
 	 */
 	public boolean checkOutRoom(int roomID)throws RemoteException;
-
+	
+	/**
+	 * 
+	 * @param hotelID
+	 * @return
+	 */
+	public List<RoomVO> getRoomListInThisHotel(int hotelID);
+	
 }

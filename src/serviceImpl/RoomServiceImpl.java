@@ -1,5 +1,9 @@
 package serviceImpl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import dataDao.OrderDao;
 import dataDao.RoomDao;
 import dataDaoImpl.OrderDaoImpl;
@@ -7,6 +11,7 @@ import dataDaoImpl.RoomDaoImpl;
 import po.OrderPO;
 import po.RoomPO;
 import service.RoomService;
+import vo.RoomVO;
 
 public class RoomServiceImpl implements RoomService{
 	
@@ -57,6 +62,19 @@ public class RoomServiceImpl implements RoomService{
 		RoomPO room=roomDao.getRoom(roomID);
 		room.setState(false);
 		return roomDao.updateRoom(room);
+	}
+
+	@Override
+	public List<RoomVO> getRoomListInThisHotel(int hotelID) {
+		// TODO Auto-generated method stub
+		List<RoomPO> list=roomDao.getAllRoom(hotelID);
+		List<RoomVO> roomList=new ArrayList<>();
+		Iterator it=list.iterator();
+		while(it.hasNext()){
+			RoomPO room=(RoomPO)it.next();
+			roomList.add(new RoomVO(room));
+		}
+		return roomList;
 	}
 
 }

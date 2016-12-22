@@ -166,10 +166,16 @@ public class OrderVO {
 	}
 
 	public String getFinishTime() {
-		String year=finishTime.substring(0,4);
-		String month=finishTime.substring(4,6);
-		String day=finishTime.substring(6,8);
-		return year+"-"+month+"-"+day;
+		String result=null;
+		if(this.finishTime.equals("null")||this.finishTime==null){
+			result="尚未完成";
+		}else{
+			String year=finishTime.substring(0,4);
+			String month=finishTime.substring(4,6);
+			String day=finishTime.substring(6,8);
+			result=year+"-"+month+"-"+day;
+		}
+		return result;
 	}
 
 	public void setFinishTime(String finishTime) {
@@ -210,11 +216,6 @@ public class OrderVO {
 
 	public void setHasChildren(boolean hasChildren) {
 		this.hasChildren = hasChildren;
-	}
-
-	public int getOrderID() {
-		// TODO Auto-generated method stub
-		return orderId;
 	}
 
 	public int getPrice() {

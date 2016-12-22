@@ -111,7 +111,9 @@ public class RoomDaoImpl implements RoomDao {
 		while(it.hasNext()){
 			Map.Entry<Integer,RoomPO> entry=it.next();
 			RoomPO room=entry.getValue();
-			list.add(room);
+			if(room.getHotelID()==hotelID){
+				list.add(room);
+			}
 		}
 		return list;
 	}

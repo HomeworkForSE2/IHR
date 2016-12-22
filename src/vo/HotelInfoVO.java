@@ -32,7 +32,7 @@ public class HotelInfoVO {
 	private int score;
 
 	//
-	public HotelInfoVO(int hotelID,String hotelName, String location, String bD, int starNum, String introduction, String device) {
+	public HotelInfoVO(int hotelID,String hotelName, String location, String bD, int starNum, String introduction, String device,int score) {
 		super();
 		this.hotelID=hotelID;
 		this.hotelName = hotelName;
@@ -41,6 +41,7 @@ public class HotelInfoVO {
 		this.starNum = starNum;
 		this.introduction = introduction;
 		this.device = device;
+		this.score=score;
 	}
 	
 	//

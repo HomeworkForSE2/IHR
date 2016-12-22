@@ -8,12 +8,13 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ChoiceBox?>
 
+<?import java.net.URL?>
 <GridPane fx:controller="code.hotelWorkerController"
           xmlns:fx="http://javafx.com/fxml" alignment="CENTER" styleClass="root" fx:id="root">
     <gridLinesVisible>true</gridLinesVisible>
-    <HBox alignment="CENTER_LEFT" GridPane.columnIndex="0" GridPane.rowIndex="0" prefWidth="640" spacing="10">
+    <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="1280" prefHeight="50" spacing="10">
         <padding><Insets left="20"/></padding>
-        <ChoiceBox fx:id="sortBar" visible="false">
+        <ChoiceBox fx:id="sortBar">
         </ChoiceBox>
     </HBox>
 
@@ -26,6 +27,10 @@
     </VBox>
 
     <HBox GridPane.rowIndex="1" GridPane.columnIndex="1" fx:id="swap" alignment="CENTER">
-
+        <HBox>
+        </HBox>
     </HBox>
+    <stylesheets>
+        <URL value="@/stylesheets/hotelWorker.css"/>
+    </stylesheets>
 </GridPane>
