@@ -26,7 +26,17 @@ public interface MemberDao {
 	 */
 	public boolean insert(UserPO user);
 	
+	/**
+	 * 
+	 * @param UserID
+	 * @return 企业会员企业名
+	 */
 	public String findEnterprise(int UserID);
 	
+	/**
+	 * 
+	 * @param UserID
+	 * @return 普通会员生日
+	 */
 	public String findBirthday(int UserID);
 }

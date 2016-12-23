@@ -7,7 +7,7 @@ public interface HotelDao {
 	/**
 	 * 
 	 * @param hotelID
-	 * @return
+	 * @return 酒店信息
 	 */
 	public HotelPO findHotel(int hotelID);
 	

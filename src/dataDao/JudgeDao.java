@@ -18,7 +18,7 @@ public interface JudgeDao {
 	/**
 	 * 
 	 * @param userID
-	 * @return
+	 * @return 用户已经评价的酒店列表
 	 */
 	public List<Integer> judgedHotelIDList(int userID);
 }

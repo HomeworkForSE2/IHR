@@ -8,21 +8,21 @@ public interface UserDao {
 	/**
 	 * 
 	 * @param userID
-	 * @return
+	 * @return 查找用户信息
 	 */
 	public UserPO findUser(int userID);
 	
 	/**
 	 * 
 	 * @param user
-	 * @return
+	 * @return 更新用户信息
 	 */
 	public boolean updateUser(UserPO user);
 	
 	/**
 	 * 
 	 * @param admin
-	 * @return
+	 * @return 更新网站管理员信息
 	 */
 	public boolean updateAdmin(WebsiteAdminPO admin);
 

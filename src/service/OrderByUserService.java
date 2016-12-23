@@ -53,7 +53,7 @@ public interface OrderByUserService extends Remote {
 	/**
 	 * 
 	 * @param order
-	 * @return
+	 * @return 生成订单是否成功
 	 */
 	public boolean createOrder(OrderVO order)throws RemoteException;
 	
@@ -61,7 +61,7 @@ public interface OrderByUserService extends Remote {
 	/**
 	 * 
 	 * @param orderID
-	 * @return
+	 * @return 撤销订单是否成功
 	 */
 	public boolean cancelOrder(int orderID)throws RemoteException;
 
@@ -69,7 +69,7 @@ public interface OrderByUserService extends Remote {
 	 * 
 	 * @param userID
 	 * @param hotelID
-	 * @return
+	 * @return 用户是否在此酒店完成过订单
 	 * @throws RemoteException
 	 */
 	public boolean hasUserFinishedOrderInThisHotel(int hotelID)throws RemoteException;
@@ -78,7 +78,7 @@ public interface OrderByUserService extends Remote {
 	 * 
 	 * @param userID
 	 * @param hotelID
-	 * @return
+	 * @return 用户是否在此酒店撤销过订单
 	 * @throws RemoteException
 	 */
 	public boolean hasUserCanceledOrderInThisHotel(int hotelID)throws RemoteException;
@@ -87,7 +87,7 @@ public interface OrderByUserService extends Remote {
 	 * 
 	 * @param userID
 	 * @param hotelID
-	 * @return
+	 * @return 用户是否在此酒店有过异常订单
 	 * @throws RemoteException
 	 */
 	public boolean hasUserUnusualOrderInThisHotel(int hotelID)throws RemoteException;
@@ -95,7 +95,7 @@ public interface OrderByUserService extends Remote {
 	/**
 	 * 
 	 * @param hotelID
-	 * @return
+	 * @return 用户是否正在此酒店预订
 	 * @throws RemoteException
 	 */
 	public boolean isUserOrderingInThisHotel(int hotelID)throws RemoteException;

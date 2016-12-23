@@ -45,13 +45,13 @@ public interface UserManageDao {
 	
 	/**
 	 * 
-	 * @return
+	 * @return 网站管理员总数
 	 */
 	public int getWebsiteWorkerNum();
 	
 	/**
 	 * 
-	 * @return
+	 * @return 用户总数
 	 */
 	public int getUserNum();
 }

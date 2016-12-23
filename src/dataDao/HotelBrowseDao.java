@@ -17,7 +17,7 @@ public interface HotelBrowseDao {
 	 * 
 	 * @param location
 	 * @param BD
-	 * @return 符合条件酒店列表
+	 * @return 符合商圈、地址条件酒店列表
 	 */
 	public List<HotelPO> searchHotelList(String location,String BD);
 	

@@ -78,20 +78,16 @@ public interface StrategyService extends Remote{
 	
 	/**
 	 * 
-	 * @return
-	 * @throws RemoteException
+	 * @return vip列表
 	 */
 	public List<VipVO> viewWebVipList()throws RemoteException;
 	
 	/**
 	 * 
 	 * @param vo
-	 * @return 订单最低价格
+	 * @return 计算订单最低价格
 	 */
 	public double calcute(int userID,int hotelID,double price,int roomNum)throws RemoteException;
-	
-	
-	
 	
 
 }

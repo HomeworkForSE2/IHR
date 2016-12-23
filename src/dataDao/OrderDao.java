@@ -16,13 +16,13 @@ public interface OrderDao {
 	/**
 	 * 
 	 * @param userID
-	 * @return
+	 * @return 用户订单列表
 	 */
 	public List<OrderPO> getUserOrderList(int userID);
 	
 	/**
 	 * 
-	 * @return
+	 * @return 网站所有订单列表
 	 */
 	public List<OrderPO> getAllOrderList();
 	
@@ -36,7 +36,7 @@ public interface OrderDao {
 	/**
 	 * 
 	 * @param orderID
-	 * @return
+	 * @return 订单对应房间号列表
 	 */
 	public List<Integer> getRoomIDByOrder(int orderID);
 	
@@ -64,13 +64,13 @@ public interface OrderDao {
 	/**
 	 * 
 	 * @param userID
-	 * @return
+	 * @return 用户已经预订酒店列表
 	 */
 	public List<Integer> resHotelIDList(int userID);
 
 	/**
 	 * 
-	 * @return
+	 * @return 订单总数量
 	 */
 	public int getOrderNum();
 	

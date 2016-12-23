@@ -15,7 +15,11 @@ public interface CreditDao {
 	public boolean addCreditChange(CreditChangePO creditChange);
 	
 	
-	
+	/**
+	 * 
+	 * @param userID
+	 * @return 用户信用记录列表
+	 */
 	public List<CreditChangePO> findCreditChangeList(int userID);
 	
 

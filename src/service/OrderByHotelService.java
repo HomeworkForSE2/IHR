@@ -11,6 +11,7 @@ public interface OrderByHotelService extends Remote{
 	/**
 	 * 
 	 * @param ID
+	 * 
 	 */
 	public boolean initHotel(int ID)throws RemoteException;
 	
@@ -53,7 +54,7 @@ public interface OrderByHotelService extends Remote{
 	/**
 	 * 
 	 * @param orderID
-	 * @return
+	 * @return 执行订单是否成功
 	 */
 	public boolean executeOrder(int orderID)throws RemoteException;
 	
@@ -62,7 +63,7 @@ public interface OrderByHotelService extends Remote{
 	/**
 	 * 
 	 * @param orderID
-	 * @return
+	 * @return 完成订单是否成功
 	 */
 	public boolean finishOrder(int orderID)throws RemoteException;
 	
@@ -70,7 +71,7 @@ public interface OrderByHotelService extends Remote{
 	/**
 	 * 
 	 * @param orderID
-	 * @return
+	 * @return 延迟入住是否成功
 	 */
 	public boolean setUnusualToExecute(int orderID)throws RemoteException;
 

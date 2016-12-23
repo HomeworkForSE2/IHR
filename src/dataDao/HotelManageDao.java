@@ -22,7 +22,7 @@ public interface HotelManageDao {
 	
 	/**
 	 * 
-	 * @return
+	 * @return 酒店总数量
 	 */
 	public int getHotelNum();
 

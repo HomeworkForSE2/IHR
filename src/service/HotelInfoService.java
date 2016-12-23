@@ -15,8 +15,8 @@ public interface HotelInfoService extends Remote{
 	public boolean maintainHotelInfo(HotelInfoVO hotel) throws RemoteException;
 
 	/**
-	 * 
-	 * @return
+	 * @param hotelID
+	 * @return 酒店信息
 	 */
 	public HotelInfoVO findHotel(int hotelID) throws RemoteException;
 }

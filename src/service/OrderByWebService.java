@@ -50,7 +50,7 @@ public interface OrderByWebService extends Remote{
 	 * 
 	 * @param orderID
 	 * @param dec
-	 * @return
+	 * @return 撤销订单
 	 */
 	public boolean cancelUnusualOrder(int orderID,int dec)throws RemoteException;
 

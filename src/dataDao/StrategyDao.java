@@ -29,7 +29,7 @@ public interface StrategyDao {
 	
 	/**
 	 * 
-	 * @return
+	 * @return 网站会员等级列表
 	 */
 	public List<VipPO> findWebVipList();
 	
@@ -40,5 +40,10 @@ public interface StrategyDao {
 	 */
 	public boolean addVip(VipPO vip);
 
+	/**
+	 * 
+	 * @param credit
+	 * @return 信用值对应会员等级
+	 */
 	public int getVipGrade(int credit);
 }

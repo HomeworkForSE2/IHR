@@ -23,20 +23,20 @@ public interface RoomDao {
 	/**
 	 * 
 	 * @param roomID
-	 * @return
+	 * @return 房间信息
 	 */
 	public  RoomPO getRoom(int roomID);
 	
 	/**
 	 * 
-	 * @return
+	 * @return 房间总数量
 	 */
 	public int getRoomNum();
 
 	/**
 	 * 
 	 * @param hotelID
-	 * @return
+	 * @return 酒店房间信息列表
 	 */
 	public List<RoomPO> getAllRoom(int hotelID);
 	
@@ -45,7 +45,7 @@ public interface RoomDao {
 	 * @param roomType
 	 * @param price
 	 * @param roomNum
-	 * @return
+	 * @return 符合房间条件的酒店ID列表
 	 */
 	public List<Integer> suitableHotelIDList(int roomType, int price, int roomNum);
 }
