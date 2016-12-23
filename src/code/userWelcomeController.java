@@ -978,7 +978,7 @@ public class userWelcomeController {
             //传参
         	OrderVO order=list.get(i);
             String orderState = order.getState();//我觉得只有四种状态：正常、异常、已执行、已撤销
-            String orderID = String.valueOf(order.getOrderID());
+            String orderID = String.valueOf(order.getOrderId());
             String hotelName = hotelInfoService.findHotel(order.getHotelId()).getHotelName();
             String value = order.getPrice()+"$";
             String startDate = order.getStartTime();//三个都要按照格式YYYY-MM-DD

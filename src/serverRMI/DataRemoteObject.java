@@ -37,6 +37,7 @@ import vo.HotelInfoVO;
 import vo.MemberVO;
 import vo.OrderVO;
 import vo.RoomConditionVO;
+import vo.RoomVO;
 import vo.StrategyVO;
 import vo.UserInfoVO;
 
@@ -397,6 +398,11 @@ public class DataRemoteObject extends UnicastRemoteObject implements CreditServi
 	public boolean isUserOrderingInThisHotel(int hotelID) throws RemoteException {
 		// TODO Auto-generated method stub
 		return orderByUserService.isUserOrderingInThisHotel(hotelID);
+	}
+	@Override
+	public List<RoomVO> getRoomListInThisHotel(int hotelID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return roomService.getRoomListInThisHotel(hotelID);
 	}
 	
 }

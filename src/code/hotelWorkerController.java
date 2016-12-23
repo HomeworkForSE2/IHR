@@ -334,7 +334,7 @@ public class hotelWorkerController {
         swap.getChildren().add(table);
     }
 
-    private void toRoomInfo(){
+    private void toRoomInfo() throws IOException{
         swap.getChildren().remove(0);
         sortBar.setVisible(false);
 
@@ -450,7 +450,12 @@ public class hotelWorkerController {
 						e.printStackTrace();
 					}
                 }
-                toRoomInfo();
+                try {
+					toRoomInfo();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             });
         }
 
@@ -504,7 +509,12 @@ public class hotelWorkerController {
                 typeField.setText("");
                 numField.setText("");
                 priceField.setText("");
-                toRoomInfo();
+                try {
+					toRoomInfo();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             });
             cancel.setOnMouseClicked(event1 -> {
                 container.getChildren().remove(0);
@@ -514,8 +524,9 @@ public class hotelWorkerController {
 
         swap.getChildren().add(roomBoard);
     }
-
+    
     private ObservableList<String> sortList = FXCollections.observableArrayList("分类查看","正常","异常","已执行","撤销");
+    
     private void toOprOrder() throws IOException{
         swap.getChildren().remove(0);
         sortBar.setVisible(true);
@@ -555,11 +566,10 @@ public class hotelWorkerController {
             int roomNum = order.getRoomNum();
             int peopleNum = order.getPeopleNum();
             boolean hasChildren = order.isHasChildren();
-            //
-//            boolean hasFinished =true;
+         
+            //自己加个状态
             if(orderState.equals("已执行")&&actDate.equals("尚未完成")){
-            	orderState="执行中";
-//            	hasFinished=false;          	
+            	orderState="执行中";        	
             }
             //为了实现完成订单只能点击一次的效果,传过来的参数要加一个:是否已经完成
             //或者加一个状态,比如已完成......
@@ -699,7 +709,7 @@ public class hotelWorkerController {
                     singleRecord.setPrefSize(600,350);
 
                     finish.setOnMouseClicked(event -> {
-//                        if(){return;}
+//                       if(){return;}
                         //修改你的数据的订单状态
                         //返回值，我觉得是你传过来的List里面的第i个
                         //i值可返回
@@ -711,7 +721,7 @@ public class hotelWorkerController {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-//                        hasFinished=true;
+
                        
                         try {
 							toOprOrder();

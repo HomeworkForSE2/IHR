@@ -37,6 +37,6 @@ public interface RoomService extends Remote{
 	 * @param hotelID
 	 * @return
 	 */
-	public List<RoomVO> getRoomListInThisHotel(int hotelID);
+	public List<RoomVO> getRoomListInThisHotel(int hotelID)throws RemoteException;
 	
 }
