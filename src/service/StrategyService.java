@@ -4,6 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 import vo.StrategyVO;
+import vo.VipVO;
 
 public interface StrategyService extends Remote{
 	
@@ -74,6 +75,13 @@ public interface StrategyService extends Remote{
 	 * @return 网站策略列表
 	 */
 	public List<StrategyVO> viewWebStrategyList()throws RemoteException;
+	
+	/**
+	 * 
+	 * @return
+	 * @throws RemoteException
+	 */
+	public List<VipVO> viewWebVipList()throws RemoteException;
 	
 	/**
 	 * 

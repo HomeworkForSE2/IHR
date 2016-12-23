@@ -40,6 +40,7 @@ import vo.RoomConditionVO;
 import vo.RoomVO;
 import vo.StrategyVO;
 import vo.UserInfoVO;
+import vo.VipVO;
 
 public class DataRemoteObject extends UnicastRemoteObject implements CreditService,HotelBrowseService,HotelInfoService,HotelManageService,JudgeService,LoginService,MemberService,RoomService,StrategyService,UserInfoService,UserManageService,OrderByUserService,OrderByHotelService,OrderByWebService{
 	private static final long serialVersionUID = 4029039744279087114L;
@@ -403,6 +404,11 @@ public class DataRemoteObject extends UnicastRemoteObject implements CreditServi
 	public List<RoomVO> getRoomListInThisHotel(int hotelID) throws RemoteException {
 		// TODO Auto-generated method stub
 		return roomService.getRoomListInThisHotel(hotelID);
+	}
+	@Override
+	public List<VipVO> viewWebVipList() throws RemoteException {
+		// TODO Auto-generated method stub
+		return strategyService.viewWebVipList();
 	}
 	
 }

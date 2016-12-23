@@ -70,6 +70,14 @@ public class MainUI extends Application {
         stage.show();
     }
     
+    static void toWebsiteWorker() throws IOException {
+        Parent root = FXMLLoader.load(indexController.class.getResource("websiteWorker.fxml"));
+
+        Scene scene = new Scene(root,1280,720);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
     public static void main(String[] args) {
         launch(args);
     }

@@ -1,11 +1,14 @@
 package serviceImpl;
 
+import java.rmi.RemoteException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+
+import com.sun.org.apache.xalan.internal.xsltc.dom.ArrayNodeListIterator;
 
 import dataDao.HotelDao;
 import dataDao.MemberDao;
@@ -23,6 +26,7 @@ import po.VipPO;
 import service.StrategyService;
 import vo.OrderVO;
 import vo.StrategyVO;
+import vo.VipVO;
 
 /*
  * 0特殊时期1生日2房间3合作企业4vip
@@ -181,9 +185,17 @@ public class StrategyServiceImpl implements StrategyService {
 		}
 		return price*discount;
 	}
-	
-	public static void main(String[] args) {
-		
+
+	@Override
+	public List<VipVO> viewWebVipList() throws RemoteException {
+		// TODO Auto-generated method stub
+		List<VipVO> list=new ArrayList();
+		List<VipPO> vipList=strategyDao.findWebVipList();
+		Iterator it=vipList.iterator();
+		while(it.hasNext()){
+			list.add(new VipVO((VipPO)it.next()));
+		}
+		return list;
 	}
 
 }

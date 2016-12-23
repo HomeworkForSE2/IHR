@@ -9,6 +9,7 @@ import dataDao.StrategyDao;
 import dataDataHelper.DataFactory;
 import dataDataHelper.StrategyDataHelper;
 import dataDataHelperImpl.DataFactoryImpl;
+import po.OrderPO;
 import po.StrategyPO;
 import po.VipPO;
 
@@ -102,13 +103,19 @@ public class StrategyDaoImpl implements StrategyDao{
 		}
 		return vipGrade;
 	}
-	
-	public static void main(String[] args) {
-		
-	}
-	
-	public void test(){
-		
+
+	@Override
+	public List<VipPO> findWebVipList() {
+		// TODO Auto-generated method stub
+		List<VipPO> list=new ArrayList();
+		Iterator<Map.Entry<Integer,VipPO>> it=map.entrySet().iterator();
+		while(it.hasNext()){
+			Map.Entry<Integer,VipPO> entry=it.next();
+			VipPO vip=entry.getValue();
+			list.add(vip);
+			
+		}
+		return list;
 	}
 
 	

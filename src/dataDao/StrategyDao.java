@@ -29,6 +29,12 @@ public interface StrategyDao {
 	
 	/**
 	 * 
+	 * @return
+	 */
+	public List<VipPO> findWebVipList();
+	
+	/**
+	 * 
 	 * @param vip
 	 * @return 是否添加会员等级成功
 	 */

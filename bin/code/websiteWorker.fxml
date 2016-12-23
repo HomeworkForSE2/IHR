@@ -1,1 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import java.net.URL?>
+
+<GridPane fx:controller="code.websiteWorkerController"
+          xmlns:fx="http://javafx.com/fxml" alignment="CENTER" styleClass="root" fx:id="root">
+    <gridLinesVisible>true</gridLinesVisible>
+    <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="1280" prefHeight="50" spacing="10">
+        <padding><Insets left="20"/></padding>
+        <ChoiceBox fx:id="sortBar">
+        </ChoiceBox>
+    </HBox>
+
+    <VBox GridPane.rowIndex="0" GridPane.columnIndex="0" prefHeight="720" minHeight="720" GridPane.rowSpan="2"  fx:id="small">
+        <HBox onMouseClicked="#openSlideBar">
+            <ImageView>
+                <Image url="@/pic/menu.png"/>
+            </ImageView>
+        </HBox>
+    </VBox>
+
+    <HBox GridPane.rowIndex="1" GridPane.columnIndex="1" fx:id="swap" alignment="CENTER">
+        <HBox>
+        </HBox>
+    </HBox>
+    <stylesheets>
+        <URL value="@/stylesheets/hotelWorker.css"/>
+    </stylesheets>
+</GridPane>

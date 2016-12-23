@@ -42,7 +42,7 @@ public class loginController {
         }else if(type.equals("网站营销人员")){
         	result=loginService.login(userName, password,3);
         	if(result>0){
-//        		MainUI.toWebsiteWorkerWelcome()
+        		MainUI.toWebsiteWorker();
         		MainUI.userID=result;
         		stage.close();
         	}else{
