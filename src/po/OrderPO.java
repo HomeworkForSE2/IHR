@@ -1,4 +1,5 @@
 package po;
+
 /* 订单ID
  * 用户ID
  * 酒店ID
@@ -42,6 +43,7 @@ public class OrderPO {
 	
 	private String roomID;
 	
+	//
 	public OrderPO(int orderID, int userID, int hotelID, int state,double price, String startTime,
 			String endTime, String finishTime, int roomType, int roomNum, int peopleNum,boolean hasChildren,String roomID) {
 		super();
@@ -61,7 +63,7 @@ public class OrderPO {
 	}
 	
 	
-	
+	//
 	public int getPeopleNum() {
 		return peopleNum;
 	}

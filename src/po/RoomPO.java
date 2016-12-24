@@ -29,6 +29,7 @@ public class RoomPO {
 		this.state = state;
 	}
 
+	//
 	public int getRoomID() {
 		return roomID;
 	}

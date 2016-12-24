@@ -293,7 +293,7 @@ public class websiteWorkerController {
                cb.getStylesheets().add("/stylesheets/choiceBoxArrow.css");
                Text text2 = new Text("信用值");
                creditBox.getChildren().addAll(text1,cb,text2);
-               singleRecord.add(creditBox,2,3);
+               singleRecord.add(creditBox,2,4);
 
                 singleRecord.setPrefSize(600,350);
 

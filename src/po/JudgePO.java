@@ -13,8 +13,7 @@ public class JudgePO {
 	
 	private int judgeScore;
 
-	//构造器
-	
+	//构造器	
 	public JudgePO(int userID, int hotelID, String judgeWord, int judgeScore) {
 		super();
 		this.userID = userID;
@@ -24,11 +23,6 @@ public class JudgePO {
 	}
 	
 	//set和get方法
-	
-	
-	
-
-
 	public int getUserID() {
 		return userID;
 	}

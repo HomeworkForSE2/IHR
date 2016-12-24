@@ -8,6 +8,7 @@ public class MemberPO {
 	
 	private String enterpriseName;
 
+	//
 	public MemberPO(int iD, String birthday, String enterpriseName) {
 		super();
 		userID = iD;
@@ -15,7 +16,7 @@ public class MemberPO {
 		this.enterpriseName = enterpriseName;
 	}
 
-	
+	//
 	public int getUserID() {
 		return userID;
 	}

@@ -43,8 +43,6 @@ public class HotelPO {
 	}
 
 	//
-	
-	
 	public int getHotelID() {
 		return hotelID;
 	}

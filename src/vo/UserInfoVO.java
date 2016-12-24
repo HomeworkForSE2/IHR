@@ -81,6 +81,18 @@ public class UserInfoVO {
 		this.credit = credit;
 	}
 	
+	public String getUserType(){
+		String result=null;
+		if(this.userID<=10000){
+			result="酒店工作人员";
+		}else if(this.userID>10000&&this.userID<=1000000){
+			result="用户";
+		}else if(this.userID>1000000){
+			result="网站营销人员";
+		}
+		return result;
+	}
+	
 	
 
 }

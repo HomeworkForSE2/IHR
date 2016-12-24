@@ -33,7 +33,7 @@ public class loginController {
         int result=0;
         if(type.equals("网站管理人员")){      	
         	if(loginService.loginAdmin(password)){
-//        		MainUI.toAdminWelcome();
+        		MainUI.toAdmin();
         		MainUI.userID=0;
         		stage.close();
         	}else{

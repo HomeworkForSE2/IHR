@@ -7,7 +7,6 @@ package po;
  * 初始信用值
  * 剩余信用值
  * 动作（执行0、异常1、撤销2、充值3、恢复4）
-
  */
 public class CreditChangePO {
 	
@@ -24,7 +23,7 @@ public class CreditChangePO {
 	private int action;
 
 	
-
+	//
 	public CreditChangePO(String time, int orderID, int userID, int startCredit, int endCredit, int action) {
 		super();
 		this.time = time;
@@ -35,7 +34,7 @@ public class CreditChangePO {
 		this.action = action;
 	}
 	
-	
+	//
 	public String getTime() {
 		return time;
 	}
