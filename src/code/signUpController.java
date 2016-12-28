@@ -82,7 +82,7 @@ public class signUpController {
         		stage.close();
         	}else{
         		//未完成
-        		System.out.println("注册失败！");
+//        		小弹窗 System.out.println("注册失败！");
         	}
     }
 

@@ -501,7 +501,12 @@ public class hotelWorkerController {
                 String price = priceField.getText();
                 try {
 					boolean result=roomService.creatRoom(MainUI.userID, Integer.parseInt(type), num, Double.parseDouble(price));
-				} catch (Exception e) {
+					if(result){
+						
+					}else{
+						//小弹窗
+					}
+                } catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

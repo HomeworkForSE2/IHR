@@ -132,7 +132,7 @@ public class userWelcomeController {
             RoomConditionVO roomCondition=null;
             if(rT.equals("")||hP.equals("")||rN.equals("")){
             	///////////////////////////
-            	System.out.println("请把房间信息填写完整！！");
+//        		小弹窗   这里指这三个一定要全填，看作一个整体和星级、评分相独立，System.out.println("请把房间信息填写完整！！");
             }else{
             	roomCondition=new RoomConditionVO(Integer.parseInt(rT),Integer.parseInt(hP),Integer.parseInt(rN));
             	
@@ -153,7 +153,6 @@ public class userWelcomeController {
             }
             try {
 				List<HotelInfoVO> hotelList=hotelBrowseService.viewHotelList(ad, ci, roomCondition, starNum, judgeScore);
-				System.out.println(hotelList.size());
 				search(hotelList);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -179,7 +178,7 @@ public class userWelcomeController {
         HotelInfoVO hotel=hotelBrowseService.searchHotel(result);
         List<HotelInfoVO> hotelList=new ArrayList<>();
         if(hotel==null){
-        	
+
         }else{
         	hotelList.add(hotel);
         }

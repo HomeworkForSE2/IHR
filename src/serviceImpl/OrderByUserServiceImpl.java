@@ -12,6 +12,7 @@ import dataDao.OrderDao;
 import dataDao.RoomDao;
 import dataDao.UserDao;
 import dataDaoImpl.OrderDaoImpl;
+import dataDaoImpl.RoomDaoImpl;
 import dataDaoImpl.UserDaoImpl;
 import po.OrderPO;
 import po.RoomPO;
@@ -35,7 +36,8 @@ public class OrderByUserServiceImpl implements OrderByUserService{
 	public OrderByUserServiceImpl() {
 		// TODO Auto-generated constructor stub
 		orderDao=OrderDaoImpl.getInstance();
-		userDao=UserDaoImpl.getInstance();		
+		userDao=UserDaoImpl.getInstance();	
+		roomDao=RoomDaoImpl.getInstance();
 		this.orderNum=orderDao.getOrderNum()+1;
 	}
 	
@@ -104,8 +106,8 @@ public class OrderByUserServiceImpl implements OrderByUserService{
 		int hotelID=order.getHotelId();
 		int roomNum=order.getRoomNum();
 		int roomType=order.getRoomType2();
-		String startTime=order.getStartTime();
-		String endTime=order.getEndTime();
+		String startTime=order.getStartTime2();
+		String endTime=order.getEndTime2();
 		int peopleNum=order.getPeopleNum();
 		boolean hasChildren=order.isHasChildren();
 		int st=Integer.valueOf(startTime);
@@ -116,15 +118,16 @@ public class OrderByUserServiceImpl implements OrderByUserService{
 			return false;
 		}
 		
-		//得到该酒店房间列表，删除不符合房型的房间
+		//得到该酒店房间列表，删除不符合房型的房
 		List<RoomPO> roomList=roomDao.getAllRoom(hotelID);
 		Iterator it=roomList.iterator();
 		while(it.hasNext()){
 			RoomPO room=(RoomPO)it.next();
 			if(room.getRoomType()!=roomType){
-				roomList.remove(room);
+				it.remove();
 			}
 		}
+		
 		//房间数量不够
 		if(roomList.size()<roomNum){
 			return false;
@@ -169,7 +172,7 @@ public class OrderByUserServiceImpl implements OrderByUserService{
 		}
 		roomID+=roomList.get(roomNum-1).getRoomID();
 		
-		OrderPO fOrder=new OrderPO(orderNum, userID, hotelID, 1, price, startTime, endTime, null, roomType, roomNum,peopleNum, hasChildren, roomID);		
+		OrderPO fOrder=new OrderPO(orderNum, userID, hotelID, 1,(int) price, startTime, endTime, null, roomType, roomNum,peopleNum, hasChildren, roomID);		
 		orderDao.addOrder(fOrder);
 		return true;	
 	}

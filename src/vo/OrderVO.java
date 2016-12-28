@@ -149,6 +149,10 @@ public class OrderVO {
 		String day=startTime.substring(6,8);
 		return year+"-"+month+"-"+day;
 	}
+	
+	public String getStartTime2() {
+		return this.startTime;
+	}
 
 	public void setStartTime(String startTime) {
 		this.startTime = startTime;
@@ -159,6 +163,10 @@ public class OrderVO {
 		String month=endTime.substring(4,6);
 		String day=endTime.substring(6,8);
 		return year+"-"+month+"-"+day;
+	}
+	
+	public String getEndTime2() {
+		return this.endTime;
 	}
 
 	public void setEndTime(String endTime) {
@@ -177,6 +185,7 @@ public class OrderVO {
 		}
 		return result;
 	}
+	
 
 	public void setFinishTime(String finishTime) {
 		this.finishTime = finishTime;
@@ -225,6 +234,7 @@ public class OrderVO {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+
 	
 	
 }

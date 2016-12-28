@@ -37,7 +37,7 @@ public class loginController {
         		MainUI.userID=0;
         		stage.close();
         	}else{
-        		System.out.println("网站管理人员密码错误");
+//        		小弹窗System.out.println("网站管理人员密码错误");
         	}
         }else if(type.equals("网站营销人员")){
         	result=loginService.login(userName, password,3);
@@ -46,7 +46,7 @@ public class loginController {
         		MainUI.userID=result;
         		stage.close();
         	}else{
-        		System.out.println("网站营销人员密码错误");
+//        		小弹窗        		System.out.println("网站营销人员密码错误");
         	}
         }else if(type.equals("酒店管理人员")){
         	result=loginService.login(userName, password,2);
@@ -55,7 +55,7 @@ public class loginController {
         		MainUI.userID=result;
         		stage.close();
         	}else{
-        		System.out.println("酒店管理人员密码错误");
+//        		小弹窗       		System.out.println("酒店管理人员密码错误");
         	}
         }else if(type.equals("客户")){
         	result=loginService.login(userName, password,1);
@@ -64,10 +64,10 @@ public class loginController {
         		MainUI.userID=result;
         		stage.close();
         	}else{
-        		System.out.println("客户密码错误");
+//        		小弹窗        		System.out.println("客户密码错误");
         	}
         }else{
-    		System.out.println("未选择身份");
+//    		小弹窗   		System.out.println("未选择身份");
     	}
         
         

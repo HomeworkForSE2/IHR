@@ -233,8 +233,12 @@ public class adminController {
             HotelInfoVO hotel=new HotelInfoVO(0, hotelName, address, circle, Integer.parseInt(stars), introduce, service, 0);
             UserInfoVO user=new UserInfoVO(0, workerName, password, "0", 0);
             try {
-				hotelManageService.addHotel(hotel);
-				hotelManageService.addHotelworker(user);
+				boolean result=hotelManageService.addHotel(hotel);
+				if(result){
+					hotelManageService.addHotelworker(user);
+				}else{
+					//小弹窗
+				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -315,6 +319,11 @@ public class adminController {
                 UserInfoVO websiteWorker=new UserInfoVO(0,name,password,"0",0);
                 try {
 					boolean result=userManageService.addWebsiteWorker(websiteWorker);
+					if(result){
+						
+					}else{
+//		        		小弹窗
+					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -339,7 +348,7 @@ public class adminController {
 			}
             
             if(user==null){
-            	System.out.println("!");
+            	//小弹窗
             	return;
             }
 
