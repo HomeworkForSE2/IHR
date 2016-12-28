@@ -17,7 +17,7 @@ public class MainUI extends Application {
     private static Stage stage;
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("admin.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("hotelInfo.fxml"));
         stage = primaryStage;
         stage.setTitle("意 居");
         stage.setScene(new Scene(root, 1280, 720));
@@ -80,6 +80,32 @@ public class MainUI extends Application {
     
     static void toAdmin() throws IOException {
         Parent root = FXMLLoader.load(indexController.class.getResource("admin.fxml"));
+
+        Scene scene = new Scene(root,1280,720);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    static void  toOrder(String hotelName) throws IOException{
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(indexController.class.getResource("order.fxml"));
+        Parent root = loader.load();
+
+        orderController oc = loader.getController();
+        oc.init(hotelName);
+
+        Scene scene = new Scene(root,1280,720);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    static void toHotelInfo(String[] hotelInfo) throws IOException{
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(indexController.class.getResource("hotelInfo.fxml"));
+        Parent root = loader.load();
+
+        hotelInfoController oc = loader.getController();
+        oc.init(hotelInfo);
 
         Scene scene = new Scene(root,1280,720);
         stage.setScene(scene);

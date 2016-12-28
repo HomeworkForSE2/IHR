@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+
+<GridPane fx:controller="code.hotelInfoController"
+          xmlns:fx="http://javafx.com/fxml" alignment="CENTER">
+    <Label text="酒店名称：" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+    <Text GridPane.rowIndex="0"  GridPane.columnIndex="1" fx:id="hotelName"/>
+
+    <Label text="酒店地址：" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+    <Text GridPane.rowIndex="1"  GridPane.columnIndex="1" fx:id="address"/>
+
+    <Label text="商圈：" GridPane.rowIndex="2"  GridPane.columnIndex="0"/>
+    <Text GridPane.rowIndex="2"  GridPane.columnIndex="1" fx:id="circle" />
+
+    <Label text="星级：" GridPane.rowIndex="3"  GridPane.columnIndex="0"/>
+    <HBox GridPane.rowIndex="3" GridPane.columnIndex="1" fx:id="star"/>
+
+    <Label text="评分：" GridPane.rowIndex="4"  GridPane.columnIndex="0"/>
+    <Text GridPane.rowIndex="4"  GridPane.columnIndex="1" fx:id="mark"/>
+
+    <Label text="设施服务：" GridPane.rowIndex="5"  GridPane.columnIndex="0"/>
+    <Text GridPane.rowIndex="5"  GridPane.columnIndex="1" fx:id="service"/>
+
+    <Label text="简介：" GridPane.rowIndex="6"  GridPane.columnIndex="0"/>
+    <Text GridPane.rowIndex="6"  GridPane.columnIndex="1" fx:id="intro"/>
+
+    <Button text="预订" GridPane.rowIndex="7"  GridPane.columnIndex="1" onMouseClicked="#ok" />
+</GridPane>
