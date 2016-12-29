@@ -2,7 +2,7 @@ package vo;
 
 import po.MemberPO;
 
-public class MemberVO {
+public class MemberVO implements java.io.Serializable{
 	
 	private String birthday;
 	

@@ -5,6 +5,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import clientRMI.RemoteHelper;
+import code.MainUI;
 
 
 public class ClientRunner {
@@ -19,7 +20,7 @@ public class ClientRunner {
 		try {
 			remoteHelper = RemoteHelper.getInstance();
 			remoteHelper.setRemote(Naming.lookup("rmi://localhost:8888/DataRemoteObject"));
-			System.out.println("linked");
+			System.out.println("客户端已成功连接");
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {
@@ -30,6 +31,8 @@ public class ClientRunner {
 	}
 	
 	private void initGUI() {
+		MainUI main=new MainUI();
+		main.main(null);
 
 	}
 	

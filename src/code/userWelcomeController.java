@@ -129,10 +129,16 @@ public class userWelcomeController {
             String mk = marksField.getText();
             //房间类型、最高价格、数量
             //2种排序方式，星级、评分
+            
+            //这里指这三个一定要全填，看作一个整体和星级、评分相独立
             RoomConditionVO roomCondition=null;
             if(rT.equals("")||hP.equals("")||rN.equals("")){
             	///////////////////////////
-//        		小弹窗   这里指这三个一定要全填，看作一个整体和星级、评分相独立，System.out.println("请把房间信息填写完整！！");
+            	if(rT.equals("")&&hP.equals("")&&rN.equals("")){
+            		
+            	}else{
+//            		小弹窗 
+            	}
             }else{
             	roomCondition=new RoomConditionVO(Integer.parseInt(rT),Integer.parseInt(hP),Integer.parseInt(rN));
             	

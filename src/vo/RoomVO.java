@@ -9,7 +9,7 @@ package vo;
 
 import po.RoomPO;
 
-public class RoomVO {
+public class RoomVO implements java.io.Serializable{
 	private int roomID;
 	
 	private int hotelID;

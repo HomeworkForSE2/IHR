@@ -17,12 +17,11 @@ public class MainUI extends Application {
     private static Stage stage;
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("order.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("index.fxml"));
         stage = primaryStage;
         stage.setTitle("意 居");
         stage.setScene(new Scene(root, 1280, 720));
 
-//        stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
     }
 

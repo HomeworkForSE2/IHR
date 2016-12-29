@@ -9,7 +9,7 @@ package vo;
  * 结束时间
  *  
  */
-public class RoomConditionVO {
+public class RoomConditionVO implements java.io.Serializable{
 	
 	private int roomType;
 	

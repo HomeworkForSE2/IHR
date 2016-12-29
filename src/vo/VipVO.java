@@ -2,7 +2,7 @@ package vo;
 
 import po.VipPO;
 
-public class VipVO {
+public class VipVO implements java.io.Serializable{
 
 	private int vipGrade;
 

@@ -15,7 +15,7 @@ import po.OrderPO;
  * 入住人数
  * 有无儿童
  */
-public class OrderVO {
+public class OrderVO implements java.io.Serializable{
 	
 	private int orderId;
 	

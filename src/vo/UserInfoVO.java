@@ -9,7 +9,7 @@ import po.UserPO;
  * 信用值
  */
 
-public class UserInfoVO {
+public class UserInfoVO implements java.io.Serializable{
 	private int userID;
 	
 	private String userName;

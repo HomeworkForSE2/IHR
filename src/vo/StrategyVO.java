@@ -9,7 +9,7 @@ import po.StrategyPO;
  * 起始时间
  * 结束时间
  */
-public class StrategyVO {
+public class StrategyVO implements java.io.Serializable{
 	private int ownerId;
 	
 	private String strategyName;

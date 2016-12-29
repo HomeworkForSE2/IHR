@@ -13,7 +13,7 @@ import po.HotelPO;
  *设施服务
  *评分
  */
-public class HotelInfoVO {
+public class HotelInfoVO implements java.io.Serializable{
 	
 	private int hotelID;
 	
